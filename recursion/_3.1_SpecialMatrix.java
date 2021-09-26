@@ -1,3 +1,5 @@
+//https://practice.geeksforgeeks.org/problems/special-matrix4201/1#
+
 class Solution{
    public int FindWays(int n, int m, int[][] blocked_cells){
         int[][] arr = new int[n][m];
