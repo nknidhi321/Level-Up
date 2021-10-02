@@ -1,6 +1,6 @@
 package recursion;
 
-public class _3_ {
+public class LongestShortestPath {
 
 	public static class Pair {
 		String psf = "";
