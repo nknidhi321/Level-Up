@@ -3,9 +3,13 @@ Permutation_Infy_CoinChange
 
 
 
+
 Combination_Infy_CoinChange
 ![Combination_Infy_CoinChange](https://user-images.githubusercontent.com/53194167/135858299-4e61f11a-9164-443c-8434-ff132e377e73.PNG)
 
 
 
+
+Combination_Single_CoinChange
+![Combination_Single_CoinChange](https://user-images.githubusercontent.com/53194167/135858790-3e072d80-c840-477d-ac32-e155bbcb7180.PNG)
 
