@@ -15,9 +15,26 @@ public class Main {
     }
   }
 
-  //====================================================================================================================
+  //=========================================================================================================================================
  
-  //PostOrder
+  //PostOrder  //Rajneesh
+  public static int countExactlyOneChild_00(TreeNode root) {
+    if(root == null || (root.left == null && root.right == null)) return 0;
+    
+    int count = 0;
+    //For the nodes where left or right child does not exist, and still we are making the call,
+    //that will be handled in base case when root == null
+    count += countExactlyOneChild_00(root.right);
+    count += countExactlyOneChild_00(root.left);
+    
+    if(root.left == null || root.right == null) return count + 1;
+    
+    return count;
+  }
+
+  //=========================================================================================================================================
+ 
+  //PostOrder //Mine
   public static int countExactlyOneChild_01(TreeNode root) {
     if(root == null || (root.left == null && root.right == null)) return 0;
     
@@ -26,7 +43,7 @@ public class Main {
     else return countExactlyOneChild_01(root.left) + countExactlyOneChild_01(root.right);
   }
 
-  //=====================================================================================================================
+  //===========================================================================================================================================
  
   //PreOrder //Using array of size 1 in parameter
   //If you don't want to keep a static count variable then create an array for that variable(will work same as static) and pass in parameter
@@ -46,7 +63,7 @@ public class Main {
     }
   }
 
-  //=====================================================================================================================
+  //==============================================================================================================================================
  
   //PreOrder //Using ArrayList in parameter
   public static void countExactlyOneChild_03(TreeNode root, ArrayList<Integer> list) {
@@ -60,7 +77,7 @@ public class Main {
     countExactlyOneChild_03(root.right, list);
   }
   
-  //======================================================================================================================
+  //==============================================================================================================================================
 
   public static TreeNode createTree(int[] arr, int[] IDX) {
     if (IDX[0] > arr.length || arr[IDX[0]] == -1) {
@@ -83,7 +100,9 @@ public class Main {
     int[] IDX = new int[1];
     TreeNode root = createTree(arr, IDX);
 
-    System.out.println(countExactlyOneChild_01(root));
+    System.out.println(countExactlyOneChild_00(root));
+    
+    // System.out.println(countExactlyOneChild_01(root));
  
     // int[] count = new int[1];
     // countExactlyOneChild_02(root, count);
