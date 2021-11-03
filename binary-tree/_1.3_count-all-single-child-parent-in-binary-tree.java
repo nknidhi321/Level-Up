@@ -27,8 +27,7 @@ public class Main {
     count += countExactlyOneChild_00(root.right);
     count += countExactlyOneChild_00(root.left);
     
-    if(root.left == null || root.right == null) return count + 1;
-    
+    if(root.left == null || root.right == null) count++;
     return count;
   }
 
