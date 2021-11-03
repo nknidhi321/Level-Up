@@ -51,6 +51,8 @@ NOTE: Here the question demands root to leaf path, and if we add ourself at the 
 this would require another helper function to reverse the final ans list.
 So, to escape the above problem and inorder to solve the question without any helper function, we can add ourself at the 0th index of the left and right smallAns
 But if we do so there will be shifting of O(n) already added elements in the list. Therefore, this Solution increases the complxity of the algorithm.
+TC : Number of leaf * Height of the tree
+
 So, the 1st Solution will be a better approach for this question.
 */
 
