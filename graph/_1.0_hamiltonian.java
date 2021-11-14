@@ -48,16 +48,16 @@ public class Main {
    }
 
     //======================================================================================================================================================
-	/*
-	  What is Hamiltonian Path ?
-	  1. Single Source, any random source
-	  2. Should travel through all the nodes only once in any sequence
-	  
-	  What is Hamiltonian Cycle(Mark with *) ?
-	  1. Single Source 
-	  2. Should travel through all the nodes only once in any sequence
-	  3. The last node should have direct edge with the original source node 
-	 */
+      /*
+	What is Hamiltonian Path ?
+	1. Single Source, any random source
+	2. Should travel through all the nodes only once in any sequence
+
+	What is Hamiltonian Cycle(Mark with *) ?
+	1. Single Source 
+	2. Should travel through all the nodes only once in any sequence
+	3. The last node should have direct edge with the original source node 
+     */
 	
 	// E = v - 1
 	public static void hamiltonainPathAndCycle(ArrayList<Edge>[] graph, int src, int osrc, int edgeCount, boolean[] vis, String psf, ArrayList<String> ans) {
@@ -93,14 +93,14 @@ public class Main {
     public static int findEdge(ArrayList<Edge>[] graph, int u, int v) {
         
        //Exploring all edges of node u to find if u has any direct edge to originalSource
-		for(int i = 0; i < graph[u].size(); i++) {
-			Edge e = graph[u].get(i);
-			if(e.nbr == v) {
-				return i; //idx at which the edge is found in the ArrayList
-			}
+	for(int i = 0; i < graph[u].size(); i++) {
+		Edge e = graph[u].get(i);
+		if(e.nbr == v) {
+			return i; //idx at which the edge is found in the ArrayList
 		}
-		return -1; //No direct edge found
 	}
-	//===================================================================================================================================================
+	return -1; //No direct edge found
+   }
+   //===================================================================================================================================================
 
 }
