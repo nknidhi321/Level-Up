@@ -17,14 +17,14 @@ public class Main {
   }
 
 
- //===============================================================================================================================
+ //===============================================================================================================================================================
 	/*	   
 
 	 # ALGO:-
 	   
 	 	Print kab karna h:
 	 		a. left is null
-	 		b. thread is used
+	 		b. thread is used or cut down
 	 		
 	 	Left pe kab jana h:
 	 		a. when we create a thread
@@ -73,7 +73,7 @@ public class Main {
 				}
 				
 				//Thread destroy //Thread kaat diya right pe chale jaao
-				else { //rightMostNode.right == curr //Agar null nahi h, mtlb curr k equal h, mtlb thread bna hua h, toh usko kato to escape infinte loop of only left subtree
+				else { //rightMostNode.right == curr //Agar null nahi h, mtlb curr k equal h, mtlb thread bna hua h, toh usko kato to maintain original tree
 					rightMostNode.right = null; //Thread cut down ho gaya
 					ans.add(curr.val); //Inorder wala root print karo
 					curr = curr.right; // And now move to right
@@ -82,7 +82,7 @@ public class Main {
 		}
 		return ans;
 	}
-	//=================================================================================================================================
+	//====================================================================================================================================================================
 	
 
   public static TreeNode createTree(int[] arr, int[] IDX) {
