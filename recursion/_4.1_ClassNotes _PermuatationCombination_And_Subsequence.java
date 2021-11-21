@@ -70,14 +70,20 @@ public class _4_PermuatationCombination_And_Subsequence {
 		return count;
 	}
 
+	
 	public static int combinationSingleCoins(int[] arr, int tar, int idx, String ans) {
-		if (tar == 0) { //idx will never be >= arr.length, so no need to check at base case for idx *
-			System.out.println(ans);
-			return 1;
+
+		//NOTE: If you do not make this idx == arr.length check then also, code would not be wrong because for idx == arr.length for loop will not run and 0 will be returned
+		if (tar == 0 || idx == arr.length) {  //idx will be == arr.length, so check at base case, *
+			if (tar == 0) {  
+				System.out.println(ans);
+				return 1;
+			}
+			return 0;
 		}
 
 		int count = 0;
-		for (int i = idx; i < arr.length; i++) { // * because for loop bacha legi before making the recursive calls
+		for (int i = idx; i < arr.length; i++) { // for loop bacha legi before making the recursive calls
 			if (tar - arr[i] >= 0)
 				count += combinationSingleCoins(arr, tar - arr[i], i + 1, ans + arr[i]);
 		}
