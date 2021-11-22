@@ -26,7 +26,7 @@ Why DFS from center cell would not work and only DFS from boundary cell would wo
 
 //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
-//Using direction matrix:
+//Using direction matrix: // Checking only boundary to make DFS calls
 
 class Solution {
     
@@ -75,6 +75,45 @@ class Solution {
     }
 }
 
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+//Using direction matrix: // Checking all cells to make DFS call
+
+class Solution {
+    public void solve(char[][] board) {
+        int row = board.length;
+        int col = board[0].length;
+        int[][] dir = {{-1, 0}, {0, 1}, {1, 0}, {0, -1}};
+        
+        for(int i = 0; i < row; i++) {
+            for(int j = 0; j < col; j++) {
+                if(i == 0 || i == row - 1 || j == 0 || j == col - 1) {
+                    if(board[i][j] == 'O') { 
+                        dfs(board, i, j, dir);
+                    }
+                }
+            }
+        }
+        
+        for(int i = 0; i < row; i++) {
+            for(int j = 0; j < col; j++) {
+                if(board[i][j] == 'O') board[i][j] = 'X';  // 1st this step would be done
+                if(board[i][j] == '$') board[i][j] = 'O';  // Then this step should be done 
+            }
+        }
+    }
+    
+    public static void dfs(char[][] board, int i, int j, int[][] dir) {
+        board[i][j] = '$';
+        for(int d = 0; d < dir.length; d++) {
+            int x = i + dir[d][0];
+            int y = j + dir[d][1];
+            if(x >= 0 && x < board.length && y >= 0 && y < board[0].length && board[x][y] == 'O') {
+                dfs(board, x, y, dir);
+            }
+        }
+    }
+}
 
 //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
@@ -124,4 +163,5 @@ class Solution {
         dfs(board, i, j-1);
     }
 }
+
 //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
