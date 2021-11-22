@@ -1,4 +1,5 @@
 //https://leetcode.com/problems/max-area-of-island/
+NOTE : Same as size of Generic Tree
 
 //Rajneesh //DFS
 
