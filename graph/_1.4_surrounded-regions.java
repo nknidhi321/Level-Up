@@ -1,6 +1,18 @@
 //https://leetcode.com/problems/surrounded-regions/
 
+NOTE: 
+Why DFS from center cell would not work and only DFS from boundary cell would work??
+
+  Suppose we start making a call from the center 'O', we move to few cells from where my call has gone and has bactracked, and now if we reach to a boundary cell(base case), 
+  we start marking our cells, but the cells from which you have already backtracked, those will never be marked because you have already made a call and returned from there(visited). 
+  So, all boundary cells might not get marked if we start from any center 'O'
+        
+  But when we make DFS from boundary we already know that we are making the calls from boundary cell, so we move ahead by marking only
+  So we know for sure that all the cells which are touched by boundary is now marked.
+
 /*
+    Approach:-
+    
     Since you are expected to flip all the surrounded O's by X
     So, we can make a dfs call on all the 4 boundaries of the grid and mark the bounday O's with $ just  to distinguish between the boundary O's and other O's.
 
