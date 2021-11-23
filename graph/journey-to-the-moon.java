@@ -2,21 +2,8 @@
 //Rajneesh 
 Efficeient
 
-import java.io.*;
-import java.math.*;
-import java.security.*;
-import java.text.*;
-import java.util.*;
-import java.util.concurrent.*;
-import java.util.function.*;
-import java.util.regex.*;
-import java.util.stream.*;
-import static java.util.stream.Collectors.joining;
-import static java.util.stream.Collectors.toList;
-
 class Result {
-	
-	
+
     //=============================================================================================================
     public static long journeyToMoon(int n, List<List<Integer>> edges) {
       ArrayList<Integer>[] graph = new ArrayList[n];
@@ -56,43 +43,6 @@ class Result {
        }
        return size + 1;
    }
-   //==========================================================================================================================
-
-}
-
-public class Solution {
-    public static void main(String[] args) throws IOException {
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
-
-        String[] firstMultipleInput = bufferedReader.readLine().replaceAll("\\s+$", "").split(" ");
-
-        int n = Integer.parseInt(firstMultipleInput[0]);
-
-        int p = Integer.parseInt(firstMultipleInput[1]);
-
-        List<List<Integer>> astronaut = new ArrayList<>();
-
-        IntStream.range(0, p).forEach(i -> {
-            try {
-                astronaut.add(
-                    Stream.of(bufferedReader.readLine().replaceAll("\\s+$", "").split(" "))
-                        .map(Integer::parseInt)
-                        .collect(toList())
-                );
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
-            }
-        });
-
-        long result = Result.journeyToMoon(n, astronaut);
-
-        bufferedWriter.write(String.valueOf(result));
-        bufferedWriter.newLine();
-
-        bufferedReader.close();
-        bufferedWriter.close();
-    }
 }
 
 //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
@@ -122,18 +72,6 @@ Good approach but TLE in 1 TC in Java
 
 		totalCombination	 =>      (AB + AC + AD + AE) + (BC + BD + BE) + (CD + CE) + (DE) - [ (AB) ] - [ (CD + CE + DE) ]  =>   6
 */
-
-import java.io.*;
-import java.math.*;
-import java.security.*;
-import java.text.*;
-import java.util.*;
-import java.util.concurrent.*;
-import java.util.function.*;
-import java.util.regex.*;
-import java.util.stream.*;
-import static java.util.stream.Collectors.joining;
-import static java.util.stream.Collectors.toList;
 
 class Result {
 
@@ -176,42 +114,6 @@ class Result {
        return size + 1;
    }
   //======================================================================================================================================
-
-}
-
-public class Solution {
-    public static void main(String[] args) throws IOException {
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
-
-        String[] firstMultipleInput = bufferedReader.readLine().replaceAll("\\s+$", "").split(" ");
-
-        int n = Integer.parseInt(firstMultipleInput[0]);
-
-        int p = Integer.parseInt(firstMultipleInput[1]);
-
-        List<List<Integer>> astronaut = new ArrayList<>();
-
-        IntStream.range(0, p).forEach(i -> {
-            try {
-                astronaut.add(
-                    Stream.of(bufferedReader.readLine().replaceAll("\\s+$", "").split(" "))
-                        .map(Integer::parseInt)
-                        .collect(toList())
-                );
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
-            }
-        });
-
-        long result = Result.journeyToMoon(n, astronaut);
-
-        bufferedWriter.write(String.valueOf(result));
-        bufferedWriter.newLine();
-
-        bufferedReader.close();
-        bufferedWriter.close();
-    }
 }
 
 //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
@@ -238,7 +140,7 @@ Not Efficient
 	
 	For country 2:-
 	so on...
-	
+		
 		
 	pairCount = 	
 	(10 * 20) + (10 * 15) + (10 * 5) +
@@ -279,8 +181,8 @@ public class Main {
       }
       
       int pairCount = 0;
-      for(int i = 0; i < comps.size(); i++) {
-          for(int j = i + 1; j < comps.size(); j++) {
+      for(int i = 0; i < comps.size(); i++) { // (A, B) pair is same as (B, A) pair => We need combination
+          for(int j = i + 1; j < comps.size(); j++) { // We need combination, not permutation so loop will always start from i + 1
               pairCount += comps.get(i).size() * comps.get(j).size();
           }
       }
@@ -300,6 +202,4 @@ public class Main {
    }
 
 }
-
 //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-
