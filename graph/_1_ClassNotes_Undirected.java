@@ -342,10 +342,23 @@ public class _1_Undirected {
 	}
 	
 	
-	//=======================================================================================================
+      //=======================================================================================================
 	
-	//BFS
-	
+      /*
+	 # BFS
+	    Moves Radially
+	    Shorest path Algorithm
+	    Single Source Algorithm
+	    Cycle can be detected, but number of cycles cannot be detected
+      */
+      --------------------------------------------------------------------
+		
+       /*
+	   Normal BFS with Cycle 
+	   Use this BFS with Cycle Algo where cycle matters
+	   This BFS is used in Dijkstra & Prims with little modifications
+        */
+	      
 	public static void bfs(ArrayList<Edge>[] graph, int src, boolean[] vis) {
 		LinkedList<Integer> que = new LinkedList<>();
 		que.add(src);
@@ -376,6 +389,16 @@ public class _1_Undirected {
 		}
 	}
 
+	
+	//===============================================================================================
+	
+	
+	/*
+	    BFS without cycle
+	    Use this BFS without cycle Algo where cycle does not matter
+            Used in rotten Oranges kind of qusetions
+	*/
+	
 	public static void bfs_withouCycle(ArrayList<Edge>[] graph, int src, boolean[] vis) {
 		LinkedList<Integer> que = new LinkedList<>();
 		que.add(src);
@@ -404,14 +427,43 @@ public class _1_Undirected {
 
 	
 	//==================================================================================================================================
-
 	
-	public static void constructGraph() {
-		int N = 7;
-		ArrayList<Edge>[] graph = new ArrayList[N];
-		for(int i = 0; i < N; i++) {
-			graph[i] = new ArrayList<>();
-		}
+	Bipartite
+	NOTE : If Graph is Non Bipartite => there is odd length cycle
+		
+		
+	
+									Odd
+							----------------------------------> Non Bipartite
+							|
+				       BFS		|
+				------------------> Cyclic Graph   
+				|			|
+				|			|
+				|			----------------------------------> Bipartite
+				|				  	Even
+				|				
+			      Graph 
+				|				
+				|
+				|
+				|
+				-----------------> Non Cyclic Graph-----------------------> Bipartite
+							(Tree)
+									
+	
+	
+										
+										
+	//==================================================================================================================================
+	
+	
+      public static void constructGraph() {
+	int N = 7;
+	ArrayList<Edge>[] graph = new ArrayList[N];
+	for(int i = 0; i < N; i++) {
+		graph[i] = new ArrayList<>();
+	}
 		
         addEdge(graph, 0, 1, 10);
         addEdge(graph, 0, 3, 10);
