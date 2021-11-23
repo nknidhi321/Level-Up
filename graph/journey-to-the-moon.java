@@ -17,7 +17,7 @@ import static java.util.stream.Collectors.toList;
 class Result {
 	
 	
-	//=============================================================================================================
+    //=============================================================================================================
     public static long journeyToMoon(int n, List<List<Integer>> edges) {
       ArrayList<Integer>[] graph = new ArrayList[n];
       for(int i = 0; i < n; i++) {
@@ -31,7 +31,7 @@ class Result {
           graph[v].add(u);
       }
       
-	  //=================Important===========================	
+      //=================Important===========================	
       long sum = 0, ans = 0;
       boolean[] vis = new boolean[n];
       for(int i = 0; i < n; i++) {
@@ -41,7 +41,7 @@ class Result {
               sum += size;
           }
       }
-	  //====================================================
+      //====================================================
       return ans; 
    }
    
@@ -103,9 +103,9 @@ Good approach but TLE in 1 TC in Java
 /*		
 	    Youtube, nC2 - Same Country Pair
 	
-		nCr    =     	n!			
-			    	-----------
-					(n - r)! r! 
+		nCr     =         n!			
+			      -----------
+			       (n - r)! r! 
 		
 		
 		nC2 	=   n * (n - 1) / 2
@@ -117,10 +117,10 @@ Good approach but TLE in 1 TC in Java
 									|				/   \
 									B		   	       D     E
 
-	    Same Country Pair =>	   AB 	 		 CD + CE + DE	
+	 	Same Country Pair =>	   				AB 		             CD + CE + DE	
 
 
-		totalCombination	      =>      (AB + AC + AD + AE) + (BC + BD + BE) + (CD + CE) + (DE) - [ (AB) ] - [ (CD + CE + DE) ]  =>   6
+		totalCombination	 =>      (AB + AC + AD + AE) + (BC + BD + BE) + (CD + CE) + (DE) - [ (AB) ] - [ (CD + CE + DE) ]  =>   6
 */
 
 import java.io.*;
@@ -137,7 +137,7 @@ import static java.util.stream.Collectors.toList;
 
 class Result {
 
-	//============================================================================================================================
+    //============================================================================================================================
     public static long journeyToMoon(int n, List<List<Integer>> edges) {
       ArrayList<Integer>[] graph = new ArrayList[n];
       for(int i = 0; i < n; i++) {
@@ -151,7 +151,7 @@ class Result {
           graph[v].add(u);
       }
    
-	  //Constratint n = 10 ^ 5 => (10 ^ 5) ^ 2 = 10 ^ 10  //And java can execute 10 ^ 9 in 1 sec, Therefore TLE
+      //Constratint n = 10 ^ 5 => (10 ^ 5) ^ 2 = 10 ^ 10  //And java can execute 10 ^ 9 in 1 sec, Therefore TLE
 		
       long totalCombination = n * (n - 1) / 2;   //n logo me se 2 logo ko choose karna hai, nC2 
       boolean[] vis = new boolean[n];
@@ -219,6 +219,32 @@ public class Solution {
 //https://pepcoding.com/resources/online-java-foundation/graphs/perfect-friends-official/ojquestion
 //Sumeet Malik 
 Not Efficient
+
+
+	     Country 1		    Country 2		   Country 3		   Country 4
+	-------------------	-----------------	-----------------	-----------------
+	-		  -	-		-	-		-	-		-
+	-	10	  -	-	20	-	-	15	-	-	5	-		where 10, 20, 15, 5 is gcc size
+	-		  -	-		-	-		-	-		-
+	-------------------	-----------------	-----------------	-----------------
+	
+	For country 1:-
+		
+	1 person of country 1 can be mapped in 20 different person(ways) of country 2     =>    10 person of country 1 can be mapped in 10 * 20 different ways of country 2
+				+												+
+	1 person of country 1 can be mapped to 15 different person(ways) of country 3	  =>	10 person of country 1 can be mapped to 10 * 15 different ways of country 3
+				+												+
+	1 person of country 1 can be mapped to 5 different person(ways) of country 4	  =>    10 person of country 1 can be mapped to 10 * 5 different ways of country 4
+	
+	For country 2:-
+	so on...
+	
+		
+	pairCount = 	
+	(10 * 20) + (10 * 15) + (10 * 5) +
+	(20 * 15) + (20 * 5) +
+	(15 * 5)
+	
 
 import java.io.*;
 import java.util.*;
