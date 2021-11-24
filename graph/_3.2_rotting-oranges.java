@@ -1,4 +1,5 @@
 //https://leetcode.com/problems/rotting-oranges/
+//MultiSource BFS
 
 /*
     Creating a Pair class to keep track of the x and y coordinate,
