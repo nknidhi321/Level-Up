@@ -17,6 +17,9 @@
 //More efficient
 
 class Solution {
+//     Not visited : -1
+//     Red : 0, visited
+//     Green : 1, visited
     public boolean isBipartite(int[][] graph) {
 
         int[] visitedOrMarkedColor = new int[graph.length];
@@ -64,7 +67,10 @@ class Solution {
 //Checking visited and color after adding in the queue
 
 class Solution {
-    public boolean isBipartite(int[][] graph) {
+//     Not visited : -1
+//     Red : 0, visited
+//     Green : 1, visited
+   public boolean isBipartite(int[][] graph) {
 
         int[] visitedOrMarkedColor = new int[graph.length];
         Arrays.fill(visitedOrMarkedColor, -1);
@@ -107,4 +113,44 @@ class Solution {
         return true;
     }
 }
+
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+//Mine //DFS
+
+class Solution {
+//     Not visited : -1
+//     Red : 0, visited
+//     Green : 1, visited
+    public boolean isBipartite(int[][] graph) {
+        
+        int[] visitedOrMarkedColor = new int[graph.length];
+        Arrays.fill(visitedOrMarkedColor, -1);  // Marking not visited
+            
+        for(int i = 0; i < graph.length; i++) { // Checking for all component
+            if(visitedOrMarkedColor[i] == -1 && !isComponentBipartite(i, 0, visitedOrMarkedColor, graph)) {
+                return false;
+            }
+        }
+        return true;
+    }
+    public static boolean isComponentBipartite(int src, int color, int[] visitedOrMarkedColor, int[][] graph) {
+        visitedOrMarkedColor[src] = color; // Marking visited or assigned color
+        color = (color + 1) % 2; // Toggling to check for neigh's
+        
+        for(int neigh : graph[src]) {                        
+            // Already visited + different color => Conflict
+            if(visitedOrMarkedColor[neigh] != -1 && visitedOrMarkedColor[neigh] != color) { 
+                return false;
+            } 
+            if(visitedOrMarkedColor[neigh] == -1) { // Not visited, so visit it and pass the toggled color
+                if(!isComponentBipartite(neigh, color, visitedOrMarkedColor, graph)) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+}
+
 //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
