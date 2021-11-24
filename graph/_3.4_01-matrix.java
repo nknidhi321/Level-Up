@@ -6,6 +6,12 @@
      So to check for visited nodes you need an extra matrix, because you cannot keep both answer and visited in the same matrix    
      
      The idea is to add all 0's in the queue, now start BFS traversal and whenever you find a nbr 1 update nbr cell with level + 1, also mark it visited.. and so on..
+     
+NOTE : If you think of adding all 1's as the source vtx, then the problem would be while adding all nbr 0's there might be a day when you will be surrounded by all 1's,
+     and you would keep travelling to find the nearest 0 for the initial 1, that was there in the queue, suppose now you have reached to a far distant place between 1 -----> 0,
+     so the problem is how would you update your 1th cell by the level + 1 answer you found.
+     
+     So the solution is to make a BFS call from all 1's and this would be a costly operation, so start with 0 instead of 1
  
 */
 
