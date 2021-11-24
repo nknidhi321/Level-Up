@@ -1,5 +1,34 @@
 //https://leetcode.com/problems/is-graph-bipartite/
 
+	
+	Bipartite
+	NOTE : If Graph is Non Bipartite => there is odd length cycle
+		
+		
+	
+									Odd
+							----------------------------------> Non Bipartite
+							|
+				       BFS		|
+				------------------> Cyclic Graph   
+				|			|
+				|			|
+				|			----------------------------------> Bipartite
+				|				  	Even
+				|				
+			      Graph 
+				|				
+				|
+				|
+				|
+				-----------------> Non Cyclic Graph-----------------------> Bipartite
+							(Tree)
+									
+	
+	
+										
+
+
 /*
   NOTE: If every vertex of graph is in connected component then :
     1) Every non cyclic graph is bipartite, you can check this by BFS traversal on that graph.
