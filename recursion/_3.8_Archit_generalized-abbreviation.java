@@ -39,3 +39,30 @@ public class Solution {
     }
 }
 //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+//Same code with ternary operator
+
+public class Solution {
+
+    public List<String> generateAbbreviations(String word) {
+        List<String> list = new ArrayList<>();
+        generateAbbreviations_Util(0, 0, word, "", list);
+        return list;
+    }
+
+    public static void generateAbbreviations_Util(int idx, int count, String word, String ans, List<String> list) {
+        if(idx == word.length()) {
+            if(count > 0) {
+                list.add(ans + count);
+                return;
+            }
+            list.add(ans);
+            return;
+        }
+
+        char ch = word.charAt(idx);
+        generateAbbreviations_Util(idx + 1, 0, word, ans + ((count == 0) ? "" : count) + ch, list);
+        generateAbbreviations_Util(idx + 1, count + 1, word, ans, list);
+    }
+}
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
