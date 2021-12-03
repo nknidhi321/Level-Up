@@ -187,6 +187,62 @@ public class Fundamentals_Revision {
 		}
 		return ans;
 	}
+	
+	
+       //By passing idx in the recursive call--------------------------------------------------------------------------
+       //Efficient Approach
+
+       //getType
+       public static ArrayList<String> getsubSequence_01(int idx, String str) {
+	     if(idx == str.length()) {
+		    ArrayList<String> base = new ArrayList<>();
+		    base.add("");
+		    return base;
+	      }
+
+	      ArrayList<String> smallAns = getsubSequence_01(idx + 1, str);
+
+	      //Nahi aane ki choice 
+	      //As it is jo smallAns me aaya usko final answer me daal diye
+	      ArrayList<String> ans = new ArrayList<>(smallAns);
+
+	      //Aane ki choice
+	      //Is baar saare smallAns k aage khud ko add append kar lo and add in final ans
+	      char ch = str.charAt(idx);
+	      for(String s : smallAns) {
+		    ans.add(ch + s);
+	      }
+
+	      return ans;
+	}
+
+	
+	//By passing substring in the recursive call-----------------------------------------------------------------------
+	//Less efficient //String ko katne ki complexity O(N) hoti hai
+
+	//get Type
+	 public static ArrayList<String> getsubSequence_02(String str) {
+	       if(str.length() == 0) {
+		    ArrayList<String> list = new ArrayList<>();
+		    list.add("");
+		    return list;
+		}
+
+		ArrayList<String> smallAns = getsubSequence_02(str.substring(1));
+
+		//Nahi aane ki choice 
+		//As it is jo smallAns me aaya usko final answer me daal diye
+		ArrayList<String> ans = new ArrayList<String>(smallAns);
+
+		//Aane ki choice
+		//Is baar saare smallAns k aage khud ko add append kar lo and add in final ans
+		char ch = str.charAt(0);
+		for(String s : smallAns) {
+		    ans.add(ch + s); 
+		}
+
+		return ans;
+	 }
 
 	
 	//Main-------------------------------------------------------------------------------------------------------
