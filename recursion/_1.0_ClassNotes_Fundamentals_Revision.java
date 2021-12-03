@@ -189,7 +189,8 @@ public class Fundamentals_Revision {
 	}
 	
 	
-       //By passing idx in the recursive call--------------------------------------------------------------------------
+       //https://pepcoding.com/resources/online-java-foundation/recursion-with-arraylists/get-subsequence-official/ojquestion-------------
+       //By passing idx in the recursive call
        //Efficient Approach
 
        //getType
@@ -243,6 +244,35 @@ public class Fundamentals_Revision {
 
 		return ans;
 	 }
+	
+	
+	//https://leetcode.com/problems/letter-combinations-of-a-phone-number/-----------------------------------------------------------
+	//getType
+	
+	//Refer questions of _1_ to for more Approaches 
+	public List<String> letterCombinations(String digits) {     
+		String[] words = {"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+		List<String> ans = letterCombinations_Util(0, digits, words);
+		return (ans.size() == 1 && ans.get(0).equals("")) ? new ArrayList<>() : ans;
+	}
+
+	public static List<String> letterCombinations_Util(int idx, String digits, String[] words) {
+		if(idx == digits.length()) {
+		    List<String> base = new ArrayList<>();
+		    base.add("");
+		    return base;
+		}   
+
+		List<String> ans = new ArrayList<>();
+		List<String> smallAns = letterCombinations_Util(idx + 1, digits, words);
+		String word = words[digits.charAt(idx) - '0'];
+		for(char c : word.toCharArray()) {
+		    for(String s : smallAns) {
+			ans.add(c + s);
+		    }
+		}
+		return ans;
+	}
 
 	
 	//Main-------------------------------------------------------------------------------------------------------
