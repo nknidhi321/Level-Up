@@ -12,6 +12,8 @@ NOTE: Utilize all elements
 
 */
 
+//Every element will have a choice to go in set1 or set2
+
 package recursion;
 
 public class EquiSet {
@@ -25,23 +27,38 @@ public class EquiSet {
 			return 0;
 		}
 		
-		int count = 0;
+		int count = 0; //Total counts of the answer
+		
+		//Choosing set 1
 		count += countEquiSet(idx + 1, sum1 + arr[idx], sum2, arr, set1 + arr[idx] + " ", set2);
+		
+		//Choosing set 2
 		count += countEquiSet(idx + 1, sum1, sum2 + arr[idx], arr, set1, set2 + arr[idx] + " ");
+		
 		return count;
 	}
 	
 	
 	public static void main(String[] args) {
+		
 		int[] arr = {10, 20, 30, 40, 50, 60, 70, 80};
 		
+		//This will generate mirror image, i.e arrangement of elements
+		//Example : 10, 20 = 30 | 30 = 10, 20  
+		//This will be considered as 2 different answers,
+		//But as per the question we have to consider both these sets as same *
 		System.out.println("All permutation set :- ");
 		System.out.println(countEquiSet(0, 0, 0, arr, "", ""));
 		
 		
+		// * How to achieve this ? See below..
+		
+		
 		//To obtain unique set fix one element of the array in any one of the particular set
-		//i.e do not provide option for any one element to chose any of the set by itself
-		//So, here fixing 10 in the 1st set
+		//i.e do not provide option for any one element to choose any of the set by itself
+		//So, here fixing 10 in the 1st set,
+		//So, passing idx as 1, i.e choosing a set will start from 20 not from 10 
+		//initital sum of that set will also be equal to that element
 		System.out.println("\nUnique set :- ");
 		System.out.println(countEquiSet(1, arr[0], 0, arr, arr[0] + " ", ""));
 
