@@ -219,7 +219,7 @@ public class _2_ {
 	
 	//=========================================================================================================================
 	
-	// All below solutions are of Rajneesh Bhaiya for reference : [ Look for your solutions in _3_ ]
+	// All below solutions are of Rajneesh Bhaiya for reference : [ Look for your solutions in _2_ Questions ]
 	
 	// https://practice.geeksforgeeks.org/problems/rat-in-a-maze-problem/1
 	// https://practice.geeksforgeeks.org/problems/special-matrix4201/1
