@@ -1,18 +1,26 @@
+//No platform to sumbit
+
 /*
  
-Problem Statement: 
-------------------
-Form 2 sets with the following properties :-
+	Problem Statement: 
+	------------------
+	Form 2 sets with the following properties :-
 
--> Summation of Set1 = Summation of Set2
--> Set1 union Set2 = arr
--> Set1 intesection Set2 = phy or empty
+	-> Summation of Set1 = Summation of Set2
+	-> Set1 union Set2 = arr
+	-> Set1 intesection Set2 = phy or empty
 
-NOTE: Utilize all elements
+	NOTE: Utilize all elements
+	
+	Intuition :-
+	----------
+	Every element will have 2 choices to go in set1 or in set2. 
+	Something like subSet choice to come or not come,
+	But, here you have to select either of the 2 sets.
 
 */
 
-//Every element will have a choice to go in set1 or set2
+
 
 package recursion;
 
