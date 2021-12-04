@@ -1,4 +1,4 @@
-//No platform to submit
+// No platform to submit
 
 package recursion;
 
