@@ -1,3 +1,5 @@
+//No platform to submit
+
 package recursion;
 
 public class LongestShortestPath {
