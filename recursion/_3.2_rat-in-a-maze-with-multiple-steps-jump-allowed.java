@@ -1,8 +1,13 @@
+//https://www.geeksforgeeks.org/rat-in-a-maze-with-multiple-steps-jump-allowed/
+
+//Important radius concept implemented
+
 package recursion;
 
 public class RatMazeMultipleJumps {
 
 	public static void main(String[] args) {
+
 		int[][] jumpMatrix = { {3, 1, 0, 1},
 							   {3, 0, 0, 1},
 							   {0, 1, 0, 1},
@@ -16,7 +21,7 @@ public class RatMazeMultipleJumps {
 	public static void solveMaze(int[][] jumpMatrix, int n) {
 		if (jumpMatrix[0][0] == 0) return;
 
-		int[][] ansMatrix = new int[n][n];
+		int[][] ansMatrix = new int[n][n]; 
 		solveMaze_Util(0, 0, n, jumpMatrix, ansMatrix);
 	}
 
@@ -42,13 +47,13 @@ public class RatMazeMultipleJumps {
 				//Within the matrix
 				if (r <= n - 1 && c <= n - 1) {
 					
-					//Checking if the cell is already visited or jump == 0
-					if (jumpMatrix[r][c] != 0) { //if yes then don't make that call
-						solveMaze_Util(r, c, n, jumpMatrix, ansMatrix); //else make the call
+					//Checking if the cell is not visited //Visited jumpMatrix was marked as 0
+					if (jumpMatrix[r][c] != 0) { 
+						solveMaze_Util(r, c, n, jumpMatrix, ansMatrix);
 					}
 				} 
 				
-				//Out of the matrix for that diection
+				//Out of the matrix for that diection //This will merely improve further checkings
 				else {
 					//If we go out of bounds for a particular direction
 					//say sr == 4  [and suppose n is also 4]
@@ -57,7 +62,7 @@ public class RatMazeMultipleJumps {
 					//then in next iteration when rad++ will take place
 					//then also sr + rad(incremented value of rad) will be false only and so on.. 
 					//So why to check the condition for rest of the rad++ 
-					//hence break the loop for of that direction jump
+					//hence break the loop for of that direction jump i.e. break the loop of rad
 					break;
 				}
 			}
@@ -77,3 +82,4 @@ public class RatMazeMultipleJumps {
 		System.out.println();
 	}
 }
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
