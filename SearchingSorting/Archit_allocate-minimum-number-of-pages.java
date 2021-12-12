@@ -38,15 +38,16 @@ class Solution {
         return probableAns;
     }
     
+    
     public static boolean isPossible(int fixedPage, int students, int[] pages) {
-        int sum = 0;
+        int currentPagesSum = 0;
         int actualStudents = 1; // set actualStudents at 1, kuki 1 element toh hoga he array me
         for(int i = 0; i < pages.length; i++) {
-            if(sum + pages[i] <= fixedPage) {
-                sum += pages[i];
+            if(currentPagesSum + pages[i] <= fixedPage) {
+                currentPagesSum += pages[i];
             }
-            else { // Agar sum exceed ho gaya fixedPage se toh actualStudents ko +1 kar do
-                sum = pages[i];
+            else { // Agar currentPagesSum exceed ho gaya fixedPage se toh actualStudents ko +1 kar do
+                currentPagesSum = pages[i];
                 actualStudents++;
             }
             
