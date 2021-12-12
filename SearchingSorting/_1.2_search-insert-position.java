@@ -47,7 +47,7 @@ class Solution {
 
     Target nahi mila toh target ka ceil is your answer :- 
         => low will always point to target ka ceil for unsuccessful target search return that
-        => high will always point to target ka floor for unsuccessful target search [INFO]
+        => high will always point to target ka floor(only for non duplicate elements) for unsuccessful target search [INFO]
 */
 
 class Solution {
