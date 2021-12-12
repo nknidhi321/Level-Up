@@ -5,9 +5,7 @@
 // Binary Search
 // Time Complexity : O(logN)
  
-/*
-	Approach
-   ---------	
+/*	
 	Ek potentialAnswer leke chalo, aur jab v tumko apna taget mil jaaye keh do, for the time being tum he mere answer ho,
 	aur agar first Occurence find kar rahe hai toh left move kar jaaenge ya last Occurence find kar rahe hai toh right move kar jaaenge.
 */
