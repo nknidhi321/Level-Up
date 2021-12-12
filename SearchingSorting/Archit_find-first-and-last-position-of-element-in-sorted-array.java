@@ -1,7 +1,16 @@
 // https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/
 
-// Modified Binary Search 
-// O(logN)
+// Most Intuitive
+// Archit
+// Binary Search
+// Time Complexity : O(logN)
+ 
+/*
+	Approach
+   ---------	
+	Ek potentialAnswer leke chalo, aur jab v tumko apna taget mil jaaye keh do, for the time being tum he mere answer ho,
+	aur agar first Occurence find kar rahe hai toh left move kar jaaenge ya last Occurence find kar rahe hai toh right move kar jaaenge.
+*/
 
 class Solution {
     
@@ -59,6 +68,74 @@ class Solution {
         return potentialAnswer;
     }
   
+}
+
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+//Rajneesh
+// Binary Search
+// Time Complexity : O(logN)
+
+/*
+	Approach
+	--------
+	
+    For first Occurence :-
+    Jab target mil jaaye toh khud pe khare hoke apne se pehle element ko check kar lo :-
+			-> Agar equal hai toh left move kar jaao, to find 1st idx
+			-> Agar equal nai hai toh tum he mere answer ho
+
+    For last Occurence :-
+    Jab target mil jaaye toh khud pe khare hoke apne se baad wale element ko check kar lo :-
+			-> Agar equal hai toh right move kar jaao, to find last idx
+			-> Agar equal nai hai toh tum he mere answer ho
+*/
+
+class Solution {
+    
+    public int[] searchRange(int[] arr, int target) {
+        return new int[] {firstOccurence(arr, target), lastOccurence(arr, target)};
+    }  
+        
+    public static int firstOccurence(int[] arr, int target) {
+        int low = 0;
+        int high = arr.length - 1;
+        
+        while(low <= high) {
+            int mid = low + (high - low) / 2;
+            if(arr[mid] == target) {
+                if(mid - 1 >= 0 && arr[mid - 1] == arr[mid]) high = mid - 1;
+                else return mid;
+            }
+            else if(target < arr[mid]) {
+                high = mid - 1;
+            }
+            else { // arr[mid] < target
+                low = mid + 1;
+            }
+        }
+        return -1;
+    }
+        
+    public static int lastOccurence(int[] arr, int target) {
+        int low = 0;
+        int high = arr.length - 1;
+        
+        while(low <= high) {
+            int mid = low + (high - low) / 2;
+            if(arr[mid] == target) {
+                if(mid + 1 < arr.length && arr[mid] == arr[mid + 1]) low = mid + 1;
+                else return mid;
+            }
+            else if(arr[mid] < target) {
+                low = mid + 1;
+            }
+            else { // target < arr[mid]
+                high = mid - 1;
+            }
+        }
+        return -1;
+    }
 }
 
 //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
