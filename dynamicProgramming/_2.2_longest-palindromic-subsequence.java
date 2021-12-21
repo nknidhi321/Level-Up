@@ -34,14 +34,15 @@ class Solution {
     }
 }
 
--------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------
 
 // Tabulation 
 
 /*
-    NOTE : Don't use Integer[][] dp, because it is making call at anti Diagonal (i + 1, j - 1) when gap = 1,
+    NOTE : Don't use Integer[][] dp, because it is making call at left-down Diagonal (i + 1, j - 1), here i > j when gap = 1,
            which stores null, so that will lead to null pointer exception.
-           But if you use int[][] dp, by default it will have 0, so accessing that element is not an error and 0 + ans => ans         
+           when i > j, Memoization can handle this, but in Tabulation we are only using the anti Diagonal top values, so make sure to use int[][] dp
+           If you use int[][] dp, by default it will have 0, so accessing that element is not an error and 0 + ans => ans         
 */
 
 class Solution {
