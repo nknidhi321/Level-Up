@@ -1,11 +1,13 @@
 // https://leetcode.com/problems/longest-palindromic-subsequence/
 
 /*
-    Approach 1 :- [ Efficient ]
+    Approach 1 :- [ Efficient ] 
     --------
     Keep a pointer at start and end of the given string and ask if :-
     1) Si == Sj, then what ?
     2) Si  != Sj, then what ?
+
+    NOTE : We wil be using only top antiDiagonal half of the DP, also when i < j, when gap = -1, that diagonal elements will also be used
 */
 
 // Memoization
