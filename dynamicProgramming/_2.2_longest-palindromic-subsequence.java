@@ -62,9 +62,9 @@ class Solution {
        
         for(int gap = 0; gap < n; gap++) {
             for(int i = 0, j = gap; j < n; i++, j++) {
-                if(i >= j) {
-                    dp[i][j] = (i == j ? 1 : 0);
-                    continue;
+                if(i >= j) {                            // In Tabulation i will never be greater than j, since we are initializing i = 0 and j = gap, where gap >= 0
+                    dp[i][j] = (i == j ? 1 : 0);        // That is why the lower half diagonal (i + 1, j - 1) will never be initialized 
+                    continue;                           // and when you hit for gap = 1, when Si == Sj => Null Pointer Exception when Integer[][] dp
                 }
 
                 if(s.charAt(i) == s.charAt(j)) { // When first and last character of string is equal
