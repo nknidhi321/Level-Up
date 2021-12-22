@@ -1,0 +1,94 @@
+// https://leetcode.com/problems/edit-distance/
+// https://www.youtube.com/watch?v=tooMn-xfYCU&t=661s
+
+/*
+	Si  ==  Sj ,  Toh kya?
+	Si  !=  Sj ,  Toh kya?
+*/
+
+// Memoization
+
+class Solution {
+    
+    public int minDistance(String s1, String s2) {
+        int len1 = s1.length();
+        int len2 = s2.length();
+        
+        Integer[][] dp = new Integer[len1 + 1][len2 + 1];
+        return minDistance_Memo(len1, len2, s1, s2, dp);
+    }
+    
+    public static int minDistance_Memo(int len1, int len2, String s1, String s2, Integer[][] dp) {
+        
+        if(len1 == 0 || len2 == 0) { //len1 -> exhaust -> insert | len2 -> exhaust -> delete 
+           
+            // Agar len2 = 0 ho gaya toh len1 me jitne characters bachenge sabko delete kar denge 
+            // => delete krne me jitne number of operations hoga wo len1 k equal hoga
+            
+            // Agar len1 = 0 ho gaya toh len2 me jitne characters bachenge sabko insert kar denge lenge len1 me 
+            // => insert krne me jitne number of operations hoga wo len2 k equal hoga
+            return dp[len1][len2] = (len1 == 0 ? len2 : len1);
+        }
+        
+        if(dp[len1][len2] != null) return dp[len1][len2];
+        
+        if(s1.charAt(len1 - 1) == s2.charAt(len2 - 1)) { // Agar si == sj hai toh yahi se min milega
+            return dp[len1][len2] = minDistance_Memo(len1 - 1, len2 - 1, s1, s2, dp);    
+        }
+        else { // Else wale section me hamesha +1 hoga, that means if se ek zyada operation le rahe hai hum
+            int insert = minDistance_Memo(len1, len2 - 1, s1, s2, dp);
+            int delete = minDistance_Memo(len1 - 1, len2, s1, s2, dp);
+            int replace = minDistance_Memo(len1 - 1, len2 - 1, s1, s2, dp);
+            return dp[len1][len2] = Math.min(replace, Math.min(insert, delete)) + 1;
+        }
+    }
+    
+}
+
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+// Tabulation
+
+class Solution {
+    
+    //NOTE : Target string is s2 => s1 ko s2 me convert karna hai
+    
+    public int minDistance(String s1, String s2) {
+        int len1 = s1.length();
+        int len2 = s2.length();
+        
+        Integer[][] dp = new Integer[len1 + 1][len2 + 1];
+        return minDistance_Tab(len1, len2, s1, s2, dp);
+    }
+    
+    public static int minDistance_Tab(int LEN1, int LEN2, String s1, String s2, Integer[][] dp) {
+        
+        for(int len1 = 0; len1 <= LEN1; len1++) {
+            for(int len2 = 0; len2 <= LEN2; len2++) {
+                if(len1 == 0 || len2 == 0) { //len1 -> exhaust -> insert | len2 -> exhaust -> delete 
+
+                    // Agar len2 = 0 ho gaya toh len1 me jitne characters bachenge sabko delete kar denge 
+                    // => delete krne me jitne number of operations hoga wo len1 k equal hoga
+
+                    // Agar len1 = 0 ho gaya toh len2 me jitne characters bachenge sabko insert kar denge lenge len1 me 
+                    // => insert krne me jitne number of operations hoga wo len2 k equal hoga
+                    dp[len1][len2] = (len1 == 0 ? len2 : len1);
+                    continue;
+                }
+
+                if(s1.charAt(len1 - 1) == s2.charAt(len2 - 1)) {
+                    dp[len1][len2] = dp[len1 - 1][len2 - 1];   // minDistance_Memo(len1 - 1, len2 - 1, s1, s2, dp);    
+                }
+                else {
+                    int insert = dp[len1][len2 - 1];      // minDistance_Memo(len1, len2 - 1, s1, s2, dp);
+                    int delete = dp[len1 - 1][len2];      // minDistance_Memo(len1 - 1, len2, s1, s2, dp);
+                    int replace = dp[len1 - 1][len2 - 1]; // minDistance_Memo(len1 - 1, len2 - 1, s1, s2, dp);
+                    dp[len1][len2] = Math.min(replace, Math.min(insert, delete)) + 1;
+                }
+            }
+        }
+        return dp[LEN1][LEN2];
+    }
+    
+}
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
