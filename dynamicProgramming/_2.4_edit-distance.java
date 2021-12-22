@@ -1,6 +1,10 @@
 // https://leetcode.com/problems/edit-distance/
 // https://www.youtube.com/watch?v=tooMn-xfYCU&t=661s
 
+// Minimum number of opeartions required ?
+// [Assumption : each operation of insert, delete, replace costs 1 rupee]
+// Do checkout follow up question at last !!
+
 /*
 	Si  ==  Sj ,  Toh kya?
 	Si  !=  Sj ,  Toh kya?
@@ -45,8 +49,8 @@ class Solution {
     
 }
 
-//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-
+------------------------------------------------------------------------------------------------------------
+	
 // Tabulation
 
 class Solution {
@@ -91,4 +95,55 @@ class Solution {
     }
     
 }
+
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+// Follow up qusetion: 
+// Minimum cost When each operation of insert, delete, replace costs x rupee]
+
+// Memoization
+
+class Solution {
+    
+    public int minDistance(String s1, String s2) {
+        int len1 = s1.length();
+        int len2 = s2.length();
+
+        // Folow up : Cost of Insert, Delete, Replace  
+        int[] cost = {2, 5, 3}; // {Insert, Delete, Replace}			// Given Cost
+        
+        Integer[][] dp = new Integer[len1 + 1][len2 + 1];
+        return minDistance_Memo(len1, len2, s1, s2, cost, dp);
+    }
+    
+    public static int minDistance_Memo(int len1, int len2, String s1, String s2, int[] cost, Integer[][] dp) {
+        
+        if(len1 == 0 || len2 == 0) { //len1 -> exhaust -> insert | len2 -> exhaust -> delete 
+           
+            // Agar len2 = 0 ho gaya toh len1 me jitne characters bachenge sabko delete kar denge 
+            // => delete krne me jitne number of operations hoga wo len1 k equal hoga
+            
+            // Agar len1 = 0 ho gaya toh len2 me jitne characters bachenge sabko insert kar denge lenge len1 me 
+            // => insert krne me jitne number of operations hoga wo len2 k equal hoga
+            
+            // Incase len1 == len2 == 0 hai, 0 * something => 0, so 0 cost 
+            return dp[len1][len2] = (len1 == 0 ? len2 * cost[0] : len1 * cost[1]); 	 // Insert OR Delete cost will be "multiplied" accordingly
+            
+        }
+        
+        if(dp[len1][len2] != null) return dp[len1][len2];
+        
+        if(s1.charAt(len1 - 1) == s2.charAt(len2 - 1)) {
+            return dp[len1][len2] = minDistance_Memo(len1 - 1, len2 - 1, s1, s2, cost, dp);    
+        }
+        else {
+            int insert = minDistance_Memo(len1, len2 - 1, s1, s2, cost, dp);
+            int delete = minDistance_Memo(len1 - 1, len2, s1, s2, cost, dp);
+            int replace = minDistance_Memo(len1 - 1, len2 - 1, s1, s2, cost, dp);
+            return dp[len1][len2] = Math.min(replace + cost[2], Math.min(insert + cost[0], delete + cost[1])); 		// Now, min will be selected as per the cost 
+        }
+    }
+    
+}
+
 //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
