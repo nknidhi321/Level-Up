@@ -23,9 +23,10 @@ class Solution {
         
         // Max of adjacent and currHouse se steal karne ka chance tvi milega jab house >= 2 honge
         int adjacentMax = 0, currMax = 0;
-        adjacentMax = rob_Memo(n - 1, nums, dp);
-        currMax = rob_Memo(n - 2, nums, dp) + nums[n - 1];
+        adjacentMax = rob_Memo(n - 1, nums, dp);  // Not taking curr element
+        currMax = rob_Memo(n - 2, nums, dp) + nums[n - 1];  // Taking curr element
         
+        // Now, take the max of the above two choices
         return dp[n] = Math.max(adjacentMax, currMax);
     }
 }
