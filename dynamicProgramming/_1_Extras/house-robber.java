@@ -56,4 +56,27 @@ class Solution {
         return dp[N];
     }
 }
+
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+// Optimization
+
+class Solution {
+    
+    public int rob(int[] nums) {
+        int n = nums.length;
+        if(n == 1) return nums[0];
+        return rob_opti(n, nums);
+    }
+    
+    public static int rob_opti(int N, int[] nums) {
+        int a = 0, b = nums[0];
+        for(int n = 2; n <= N; n++) {
+            int max = Math.max(b, a + nums[n - 1]);
+            a = b;
+            b = max;
+        }
+        return b;
+    }
+}
 //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
