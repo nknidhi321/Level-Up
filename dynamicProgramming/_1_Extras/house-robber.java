@@ -70,8 +70,8 @@ class Solution {
     }
     
     public static int rob_opti(int N, int[] nums) {
-        int a = 0, b = nums[0];
-        for(int n = 2; n <= N; n++) {
+        int a = 0, b = 0;
+        for(int n = 1; n <= N; n++) {
             int max = Math.max(b, a + nums[n - 1]);
             a = b;
             b = max;
