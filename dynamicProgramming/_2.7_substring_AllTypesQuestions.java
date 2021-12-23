@@ -1,4 +1,7 @@
 // https://leetcode.com/problems/longest-palindromic-substring/
+// https://practice.geeksforgeeks.org/problems/longest-palindrome-in-a-string3411/1# (Make sure not to update maxLen at = only update at less than)
+
+// Not updating maxLen at = in the below implemented code, so passes for both the above question
 
 /*
     NOTE :
