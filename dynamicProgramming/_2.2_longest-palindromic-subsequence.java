@@ -182,6 +182,87 @@ class Solution {
 
 //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
+// BackEngineering
+// When longest Palindromic Subsequece String is asked use backEngineering
+
+/*
+    How to use backEngineering ?
+        -> create maxLength Palindrome dp in one dfs,
+        -> Now, make another dfs call same code with optimization, move only to those cells which is having max len (check from pdp and move)
+        -> Keep forming ans in postArea
+*/
+
+    ..already created pdp
+    
+    // Here only forming longest Palindromic Subsequece String
+    public static String lpss_backEng(String str, int si, int ei, int[][] pdp) {
+        if (si >= ei) {
+            return si == ei ? str.charAt(si) + "" : "";
+        }
+
+        if (str.charAt(si) == str.charAt(ei)) {
+            return str.charAt(si) + lpss_backEng(str, si + 1, ei - 1, dp) + str.charAt(ei);
+        } else if (pdp[si + 1][ei] > pdp[si][ei - 1]) {
+            return lpss_backEng(str, si + 1, ei, dp);
+        } else {
+            return lpss_backEng(str, si, ei - 1, dp);
+        }
+    }
+
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+// Just an approach, but don't use
+
+/*
+     Using Dp of Pair class to store both max len and str of pali string, when maybe both is asked in question.
+     If both is asked use backEngineering instead of the below faltu approach.
+     NOTE : Space complexity is too poor, because you are storing string in dp of Pair class, and string might be toooo long.
+*/
+
+class Solution {
+
+    public static class Pair {
+        int len = 0;
+        String str = "";
+        
+        public Pair(int len, String str) {
+            this.len = len;
+            this.str = str;
+        }
+    }
+    
+    public int longestPalindromeSubseq(String s) {
+        int n = s.length();
+        Pair[][] dp = new Pair[n][n];
+        Pair ans = LPS_Memo(0, s, n - 1, dp);
+        System.out.println(ans.str);
+        return ans.len;
+    }
+    
+    public static Pair LPS_Memo(int i, String s, int j, Pair[][] dp) {
+        if(i >= j) {
+            if(i == j) dp[i][j] = new Pair(1, s.charAt(i) + "");
+            else dp[i][j] = new Pair(0, "");
+            return dp[i][j];
+        }
+        
+        if(dp[i][j] != null) return dp[i][j];
+        
+        if(s.charAt(i) == s.charAt(j)) { // When first and last character of string is equal
+            Pair pair = LPS_Memo(i + 1, s, j - 1, dp);
+            return dp[i][j] = new Pair(pair.len + 2, s.charAt(i) + pair.str + s.charAt(j));
+        }
+        else { // When last character of string is unequal
+            Pair max1 = LPS_Memo(i + 1, s, j, dp);  // Ignoring 1st character from string
+            Pair max2 = LPS_Memo(i, s, j - 1, dp);  // Ignoring last character from string
+            if(max1.len > max2.len) return dp[i][j] = max1;
+            else return dp[i][j] = max2;
+        }
+    }
+}
+
+----------------------------------------------------------------------------------------------
+
 // Using dp of String:-
 // Bad Approach since Using dp of string so lot  of complexity and storage issue
 // String dp[][] = new String[][] // Stores null so initalize before use
@@ -255,4 +336,5 @@ class Solution {
         return dp[0][dp[0].length - 1].length();
     }
 }
+
 //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
