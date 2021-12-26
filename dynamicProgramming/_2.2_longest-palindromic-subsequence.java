@@ -1,4 +1,5 @@
 // https://leetcode.com/problems/longest-palindromic-subsequence/
+// Make sure to check the follow up at down, used backEngineering
 
 /*
     Approach 1 :- [ Efficient ] 
@@ -181,6 +182,8 @@ class Solution {
 }
 
 //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+ Follow up : https://www.geeksforgeeks.org/print-longest-palindromic-subsequence/
 
 // BackEngineering
 // When longest Palindromic Subsequece String is asked use backEngineering
