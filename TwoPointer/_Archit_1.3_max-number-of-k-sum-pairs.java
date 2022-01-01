@@ -7,11 +7,13 @@ class Solution {
         int n = nums.length;
         Arrays.sort(nums);
 
-		    // Two Pointer
+	// Two Pointer
         int count = 0;
         int start = 0, end = nums.length - 1;
         while(start < end) {
             int sum = nums[start] + nums[end];
+	    
+	    //If you get your target, it is asked to remove both => Change both
             if(sum == target) {
                 count++;
                 start++;
