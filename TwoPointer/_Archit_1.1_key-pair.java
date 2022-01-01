@@ -31,7 +31,7 @@ class Solution {
     boolean hasArrayTwoCandidates(int nums[], int n, int target) {
         Arrays.sort(nums);
 
-		// Two Pointer
+	// Two Pointer
         int start = 0, end = nums.length - 1;
         while(start < end) {
             int sum = nums[start] + nums[end];
