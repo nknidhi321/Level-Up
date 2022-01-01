@@ -35,7 +35,7 @@ Hence O(N) Time complexity
 **Approach**
 ----------
 When you find an element search for the other half, target - nums[i] in the Map,
-If you find it, you got your answer, else continue your search.
+If you find it, you got your answer, else add yourself and continue your search.
 
 ```
 class Solution {
