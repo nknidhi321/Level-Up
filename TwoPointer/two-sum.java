@@ -42,7 +42,7 @@ class Solution {
 
     public int[] twoSum(int[] nums, int target) {
 
-				// {Element, Index}
+	// {Element, Index}
         Map<Integer, Integer> map = new HashMap<>();
         for(int i = 0; i < nums.length; i++){
             if(map.containsKey(target - nums[i])){
@@ -76,16 +76,16 @@ class Solution {
     public int[] twoSum(int[] nums, int target) {
         int n = nums.length;
         
-				// Creating PairNums to store element and index
-				Pair[] pairNums = new Pair[n];
+	// Creating PairNums to store element and index
+	Pair[] pairNums = new Pair[n];
         for(int i = 0; i < n; i++) {
             pairNums[i] = new Pair(nums[i], i);
         }
 				
-				// Sorting PairNums based on element
+	// Sorting PairNums based on element
         Arrays.sort(pairNums, (a, b) -> a.element - b.element);
 
-				// Two Pointer
+	// Two Pointer
         int start = 0, end = pairNums.length - 1;
         while(start < end) {
             Pair pStart = pairNums[start];
