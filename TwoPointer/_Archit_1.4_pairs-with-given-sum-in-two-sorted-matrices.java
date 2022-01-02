@@ -13,8 +13,8 @@
       
       NOTE : Don't add youself in HM while iterating on mat2, because elements need to be from {mat1, mat2} 
 
-    TC: O(N)
-    SC :O(N)
+    TC: O(N^2)
+    SC :O(N^2)
 */
 
 import java.util.*;
