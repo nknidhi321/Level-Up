@@ -5,6 +5,14 @@
       
       When start is at element 1 and end is at 12, calculate sum : 1 + 12 = 13, which is less than 14
       then 1 can make pair with elements like 3, 4, 10, 12 which is lesser than equal to 14
+      
+      (1, 12)   <=    14
+      (1, 10)   <=    14
+      (1, 4)    <=    14
+      (1, 3)    <=    14
+      
+      NOTE : start sbke saath pair bnaega till end
+      
       So, if I'm making pair of (1, 12) then it is obvious that 1 se bade and 12 se chote ya equal saare he target = 14 se kam aaenge,
       therefore, count += end - right 
 */
