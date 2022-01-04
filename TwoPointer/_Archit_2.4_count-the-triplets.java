@@ -15,7 +15,7 @@ class Solution {
     public int countTriplet(int nums[], int n) {
         Arrays.sort(nums);
         int count = 0;
-        for(int i = n - 1; i >= 2; i--) {
+        for(int i = n - 1; i >= 2; i--) {  // Fixing the ith element and calling 2 pointer from [0 to i-1]
             count += twoSum(0, i - 1, nums[i], nums);
         }
         return count;
