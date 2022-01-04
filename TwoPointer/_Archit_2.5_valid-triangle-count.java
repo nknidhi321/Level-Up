@@ -46,4 +46,33 @@ class Solution {
         return count;
     }
 }
+
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+// Brute Force 
+// TLE
+// TC : O(N^3)
+
+class Solution {
+    
+    public static int n;
+    
+    public int triangleNumber(int[] nums) {
+        n = nums.length;
+        int count = 0;
+        for(int i = 0; i <= n - 3; i++) {
+            for(int j = i + 1; j <= n - 2; j++) {
+                for(int k = j + 1; k <= n - 1; k++) {
+                    if(nums[i] + nums[j] > nums[k] &&
+                       nums[i] + nums[k] > nums[j] &&
+                       nums[k] + nums[j] > nums[i]) {
+                        count++;
+                    }
+                }
+            }
+        }
+        return count;
+    }
+}
+
 //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
