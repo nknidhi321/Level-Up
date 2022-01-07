@@ -10,7 +10,7 @@ class Solution {
         n = A.length; int target = 0;
         
         // Store all the sum combination of C + D in HM
-        HashMap<Integer, Integer> map = new HashMap<>();
+        HashMap<Integer, Integer> map = new HashMap<>();   // {Sum(A + B), Freq}
         for(int i = 0; i < n; i++) {
             for(int j = 0; j < n; j++) {
                 int CD = C[i] + D[j];
