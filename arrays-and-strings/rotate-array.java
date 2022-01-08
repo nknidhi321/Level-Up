@@ -1,12 +1,19 @@
 // https://leetcode.com/problems/rotate-array/
+// https://www.pepcoding.com/resources/online-java-foundation/function-and-arrays/rotate-an-array-official/ojquestion
+
 // https://www.youtube.com/watch?v=xP1iY5mIvmw
 
 
 // Intuitive
+// Below Code handles both -ve and +ve k
 
-// Reverse All
-// Reverse k elements from starting
-// Reverse the rest k + 1 to last
+/*
+        Approach :-
+        --------
+        Step 1) Reverse All
+        Step 2) Reverse k elements from starting
+        Step 3) Reverse the rest k + 1 to last
+*/
 
 ```
 class Solution {
