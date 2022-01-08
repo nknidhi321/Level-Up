@@ -8,7 +8,7 @@ but odd numbers place order would not be maintained.
 Why ?? Because negative numbers toh piche se aage apne sahi position pe aa jaa rahe hai, but positive wale ko aage se piche v kiya jaa raha hai swapping k waqt.
 
 /*
-		    Region :-
+	Region :-
         ------
         [0 - ptr] => Even
         [ptr+1 - itr-1] => Odd
