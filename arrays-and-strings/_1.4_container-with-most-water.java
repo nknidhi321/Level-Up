@@ -18,6 +18,12 @@
     Consider agar hum us badi wali pillar ko le paate har bar, toh hamara area badhne ki zyada probability hoti.
     So, currArea jo v aaya usko probable answer mante huye choti wali pillar ko khiska denge aage, is umeed me ki kya pta koi bada pillar mil jaaye humse aage,
     taaki us naye bade wale pillar k saath aur apne purane fixed pillar k saath hum uski kahani kar paaye.
+    
+    NOTE :
+    -----
+    Jab chote wale pillar k pointer ko khiskate hai uska mtlb hai ki us chote wale pillar k pointer ko use kar k ab us se best area nahi bn sakta, islye usko khiska do.
+    Still, agar mai chote wale ptr se baaki ko map karu, toh hum dekhenge ki Jo uska best area tha us se chota area zaroor bna dega
+    par us area se best nahi bna paaega kvi, Islye it is sensless to keep that chota height wala ptr
 
     Approach :-
     -------
