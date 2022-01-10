@@ -37,6 +37,78 @@ class Solution {
 
 //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
+// Union Find
+
+class Solution {
+    
+    public int[] par;
+    public int[] size;
+    
+    public int findPar(int v) {
+        if(par[v] == v) return v;
+        return par[v] = findPar(par[v]);
+    }
+    
+    public int mergeOrUnionBySize(int gpu, int gpv) {
+        if(size[gpu] > size[gpv]) {
+            par[gpv] = gpu;
+            size[gpu] += size[gpv];
+            return size[gpu];
+        }
+        else {
+            par[gpu] = gpv;
+            size[gpv] += size[gpu];
+            return size[gpv];
+        }
+    }
+    
+    public int maxAreaOfIsland(int[][] grid) {
+        int n = grid.length;
+        int m = grid[0].length;
+        int[][] dir = {{0, 1}, {1, 0}};
+        
+        par = new int[n * m];
+        size = new int[n * m];
+        
+        int maxArea = 0;
+        for(int i = 0; i < n; i++) {
+            for(int j = 0; j < m; j++) {
+                int idx = i * m + j;
+                if(grid[i][j] == 1) {
+                    par[idx] = idx;
+                    size[idx] = 1;
+                    maxArea = 1;
+                }
+            }
+        }
+        
+        for(int i = 0; i < n; i++) {
+            for(int j = 0; j < m; j++) {
+                if(grid[i][j] == 1) {
+                    int idx = i * m + j;
+                    
+                    for(int d = 0; d < dir.length; d++){
+                        int x = i + dir[d][0];
+                        int y = j + dir[d][1];
+
+                        if(x >= 0 && x < n && y >= 0 && y < m && grid[x][y] == 1) {
+                            int globalParentOfu = findPar(idx); 
+                            int globalParentOfv = findPar(x * m + y);
+                            
+                            if(globalParentOfu != globalParentOfv) {
+                                maxArea = Math.max(maxArea, mergeOrUnionBySize(globalParentOfu, globalParentOfv));
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return maxArea;
+    }
+}
+
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
 //Mine //BFS
 
 class Solution {
