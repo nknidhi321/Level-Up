@@ -1,4 +1,27 @@
-//https://www.lintcode.com/problem/434/
+// https://www.lintcode.com/problem/434/
+
+/*
+    If you solve using DFS complexity increases a lot. 
+    Why ?
+    Because Each time you pick an island from operators, make a DFS on entire n*n matrix, and simply count all the components, that is you ansSoFar...
+    TC : Suppose you have k operators then complexity would be k * (n*n)
+
+    A better approach would be DSU. Why ? TC : k + O(n*n)
+    
+    Assume you are surrounded by 4 islands all around you, and you are the middle island who has just arrived from operator, then :-
+    
+    Step1 ) You do a +1 in island count for including yourself.
+    Step2 ) Check all your nbr's in 4 directions, each time you find 1/island in your nbr merge yourself with your neighbouring island and reduce the island count by 1,
+            that becomes your ansSoFar.
+    
+    Observation:
+    ------------
+    For the same above scenario :- 
+    You have already been merged with the left neighbour, then when you go to merge with your top neighbour, you should/must find youself already merged in that group 
+    becuase of that left merge that happend just before, and this can be only ensured by DSU, like to know you are already a part of that group or not.
+*/
+
+// Union Find
 
 public class Solution {
   
