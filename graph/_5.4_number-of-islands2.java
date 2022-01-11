@@ -55,27 +55,27 @@ public class Solution {
         size = new int[n * m];
         
         for(int i = 0; i < par.length; i++) {
-            par[i] = i;
+            par[i] = i; // Khud ka parent
         }
 
         int islandCount = 0;
         for(Point p : operators) {
             int x = p.x;
             int y = p.y;
-            if(grid[x][y] == 0){
-                grid[x][y] = 1;
-                islandCount++;
+            if(grid[x][y] == 0){  // Agar us cell pe already ek island tha toh hamare insland count of ansSoFar me koi change nahi aaega
+                grid[x][y] = 1;  // Toh agar us cell pe pehle water tha and ab koi 1/asteroid/island aaya hai from operators, tvi usko process karo. 
+                islandCount++; // Khud k naam ka +1
 
                 for(int d = 0; d < dir.length; d++) {
                     int r = x + dir[d][0];
                     int c = y + dir[d][1];
 
-                    if(r >= 0 && r < n && c >= 0 && c < m && grid[r][c] == 1) {
+                    if(r >= 0 && r < n && c >= 0 && c < m && grid[r][c] == 1) { // Check karo hamare nbr me koi already existing island hai kya, agr hai toh uska part bn jaaenge hm
                         int globalParentOfu = findPar(x * m + y);
                         int globalParentOfv = findPar(r * m + c);
                         if(globalParentOfu != globalParentOfv) {
-                            mergeOrUnionBySize(globalParentOfu, globalParentOfv);    
-                            islandCount--;            
+                            mergeOrUnionBySize(globalParentOfu, globalParentOfv);    // Apne nbr k group ka part bn jaao
+                            islandCount--;   // Agar merging ho gayi => Nbr k group ka part bn gaye hum, then khud k naam ka jo +1 kiye the usko ab -1 kar do
                         }
                     }
                 }
