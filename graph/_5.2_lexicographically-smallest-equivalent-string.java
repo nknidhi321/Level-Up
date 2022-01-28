@@ -1,7 +1,5 @@
 // https://www.codingninjas.com/codestudio/problems/smallest-equivalent-string_1381859?leftPanelTab=0
 
-// Wrong
-
 public class Solution {
     
     public static char[] par;
@@ -28,8 +26,8 @@ public class Solution {
             char p1 = findPar(c1); char p2 = findPar(c2); 
             
             // Merge // Global parent hamesha lex min wala char hoga
-            if(p1 < p2) par[c2 - 'a'] = p1;
-            else par[c1 - 'a'] = p2; 
+            if(p1 < p2) par[p2 - 'a'] = p1;
+            else par[p1 - 'a'] = p2; 
         }
         
         // Find global Parent for all the chars of str and form answer
@@ -41,3 +39,4 @@ public class Solution {
     }
 }
 
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
