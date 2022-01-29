@@ -1,16 +1,18 @@
 // https://leetcode.com/problems/count-sub-islands/
 
-// Without extra space
+/*
+    Without extra space
 
-Intuition :-
-------
-Grid2 pe "poori" DFS call maro [ jitne connected 1's hai sab pe] and last me grid1[i][j] check karna.
+    Intuition :-
+    ------
+    Grid2 pe "poori" DFS call maro [ jitne connected 1's hai sab pe] and last me grid1[i][j] check karna.
 
-2 cases me subIsland nahi bnega mtlb DFS ka answer false ho sakta hai :-
-    1)  Agar DFS ka recursive answer (recAns) false ho ya
-    2)  Grid1 pe wo corresponding cell 0 ho toh answer false hoga
+    2 cases me subIsland nahi bnega mtlb DFS ka answer false ho sakta hai :-
+        1)  Agar DFS ka recursive answer (recAns) false ho ya
+        2)  Grid1 pe wo corresponding cell 0 ho toh answer false hoga
+*/
 
-```
+
 class Solution {
     
     public static int n, m;
@@ -51,18 +53,18 @@ class Solution {
         return ans && (grid1[i][j] == 1);
     }
 }
-```
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-// With extra space of List
+/*
+    With extra space of List
 
-Intuition : 
-------
-Make dfs call on each subIsland of grid2 and keep on adding the idx of that dfs call in List.
-Now, when you come out of that dfs call, now check if all the idx of that list in grid1 consists 1, if all the cells of list of that grid is 1 then increase the count. 
+    Intuition : 
+    ------
+    Make dfs call on each subIsland of grid2 and keep on adding the idx of that dfs call in List.
+    Now, when you come out of that dfs call, now check if all the idx of that list in grid1 consists 1, if all the cells of list of that grid is 1 then increase the count. 
+*/
 
-```
 class Solution {
     
     public static int n, m;
@@ -111,5 +113,5 @@ class Solution {
         }
     }
 }
-```
+
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
