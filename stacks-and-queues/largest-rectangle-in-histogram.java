@@ -2,6 +2,7 @@
 
 // Rajneesh Bhaiya
 // Finding, NSOL and NSOR together, Using single stack
+// TC : O(2N), at max stack me har ek ele 2 baar visit hoga, once while pushing next time while popping.
 
 class Solution {
     
