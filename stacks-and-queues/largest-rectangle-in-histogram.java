@@ -14,7 +14,7 @@ class Solution {
         
         for(int i = 0; i < n; i++) {
             // For NSOR, apne se bado ya equal ko pop karwana hai, and mai jisko v pop karwaungi mai uski NSOR banungi 
-            while (st.peek() != -1 && heights[st.peek()] >= heights[i]) {
+            while (st.peek() != -1 && heights[st.peek()] >= heights[i]) { // heights[st.peek()] > heights[i] // both will work
                 int eleIdx = st.peek(); // Jisko v pop karwao us idx ka maxArea bnwa lo
                 st.pop(); // eleIdx ka NSOL just uske niche hoga stack me *
 
