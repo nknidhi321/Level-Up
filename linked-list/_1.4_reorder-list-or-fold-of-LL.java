@@ -1,6 +1,11 @@
 // https://leetcode.com/problems/reorder-list/
 
-Reverse kar do 2nd half ko and links create krte jaao
+Intution :-
+--------
+Reverse kar do 2nd half ko
+Ab, 2 separate LL bn gayi 
+Now, iterate on both the LL and create links
+
 
 class Solution {
     
