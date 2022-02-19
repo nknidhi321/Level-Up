@@ -17,8 +17,8 @@ class Solution {
             ListNode forward = curr.next; // Break krne se pehle aage k nodes ko point karwa lo kisi se [backup]
             curr.next = prev;             // curr k next me prev node ka address daal do, Reverse ho gayi [link]
             
-            prev = curr;                  // next iteration k liye prev curr pe chala jaaega
-            curr = forward;               // aur curr forward pe chala jaaega 
+            prev = curr;                  // next iteration k liye prev curr pe chala jaaega [move]
+            curr = forward;               // aur curr forward pe chala jaaega [move]
         }
         
         // NOTE : forward bus ek temp backup node tha loop me
@@ -49,8 +49,8 @@ class Solution {
             forward = curr.next; // Break krne se pehle aage k nodes ko point karwa lo kisi se [backup]
             curr.next = prev;    // curr k next me prev node ka address daal do, Reverse ho gayi [link]
             
-            prev = curr;         // next iteration k liye prev curr pe chala jaaega
-            curr = forward;      // * aur curr forward pe chala jaaega 
+            prev = curr;         // next iteration k liye prev curr pe chala jaaega [move]
+            curr = forward;      // * aur curr forward pe chala jaaega [move]
         }
         return prev;
     }
