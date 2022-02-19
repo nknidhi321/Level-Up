@@ -5,7 +5,8 @@ Code for 2nd middle
 class Solution {
     
     public ListNode middleNode(ListNode head) {
-        if (head == null || head.next == null) return head;
+        if (head == null || head.next == null) return head;  // Aankh band kar k likh do saare question me, jaane anjane galti ko bacha lega hamesha #aadat
+        
         ListNode slow = head;
         ListNode fast = head;
 
@@ -25,7 +26,7 @@ Code for 1st middle
 
 ```
  public Node mid() {
-      if(head == null || head.next == null) return head;
+      if(head == null || head.next == null) return head;  // Aankh band kar k likh do saare question me, jaane anjane galti ko bacha lega hamesha #aadat
 
       Node slow = head; 
       Node fast = head;
