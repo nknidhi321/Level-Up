@@ -1,5 +1,5 @@
 https://nados.io/question/mid-of-linked-list?zen=true
-Code for 1st middle
+Code for 1st middle in Nados format
 
 ```
  public Node mid() {
@@ -7,6 +7,26 @@ Code for 1st middle
 
       Node slow = head; 
       Node fast = head;
+
+      while(fast.next != null && fast.next.next != null) {   // fast will never be null here
+        slow = slow.next;
+        fast = fast.next.next;
+      }
+      return slow;
+    }
+```
+
+--------------------------------------
+
+Code for 1st middle in leetcode format 
+
+```
+// 1st mid
+    public ListNode mid(ListNode head) {
+      if(head == null || head.next == null) return head;  
+
+      ListNode slow = head; 
+      ListNode fast = head;
 
       while(fast.next != null && fast.next.next != null) {   // fast will never be null here
         slow = slow.next;
