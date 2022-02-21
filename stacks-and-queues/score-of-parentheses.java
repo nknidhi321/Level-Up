@@ -1,5 +1,7 @@
 // https://leetcode.com/problems/score-of-parentheses/
 
+// Best approach can be done without stack, it is not implemented here
+
 class Solution {
     
     public int scoreOfParentheses(String s) {
