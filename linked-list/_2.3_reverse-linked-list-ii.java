@@ -27,7 +27,7 @@ class Solution {
                 }
             }
             else {
-                curr = curr.next;
+                curr = curr.next;  // Move to next node until you reach to left
                 idx++;
             }
         }
