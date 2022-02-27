@@ -1,4 +1,40 @@
 // https://leetcode.com/problems/reverse-linked-list/
+
+Reverse using addFirst() 
+
+```
+class Solution {
+    
+    public ListNode reverseList(ListNode head) {
+        
+        ListNode nhead = null;
+        ListNode curr = head;
+        
+        while(curr != null) {
+            ListNode forward = curr.next;
+            curr.next = null;
+            nhead = addFirst(curr, nhead);
+            curr = forward;
+        }   
+        return nhead;
+    }
+    
+    public static ListNode addFirst(ListNode node, ListNode nhead) {
+        if(nhead == null) {
+           nhead = node;
+        }
+        else {
+            node.next = nhead;
+            nhead = node;
+        }
+        return nhead;
+    }
+    
+}
+```
+
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
 Reverse pointers of LL
 
 Rajneesh Bhaiya
@@ -57,4 +93,4 @@ class Solution {
 }
 ```
 
--------------------------------------------------------------------------------------------------------------------------
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
