@@ -26,7 +26,7 @@ class Solution {
                 curr = forward; // for next iteration
             }
             
-            // After K iterations adjust originalHead and originalTail
+            // After K iterations add tempList in new original List
             if(oh == null) { // For 1st time when oh is null, make tempList as new OriginalList
                 oh = th;
                 ot = tt;
