@@ -11,6 +11,7 @@
     NOTE : DP will store max length chain that can be formed for the curr cell
 */
 
+```
 class Solution {
     
     public int longestIncreasingPath(int[][] matrix) {
@@ -44,11 +45,72 @@ class Solution {
         return dp[i][j] = max + 1;
     }
 }
+```
 
 //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
-// Using Khan's Algo // BFS // DAG
+// Rajneesh // Union Find
+// creating indegree + adding in queue together // Apna indegree badhao
 
+```
+class Solution {
+    
+    public int longestIncreasingPath(int[][] matrix) {
+        int n = matrix.length;
+        int m = matrix[0].length;
+        int[][] indegree = new int[n][m];
+        int[][] dir = {{-1, 0}, {0, 1}, {1, 0}, {0, -1}};
+        
+        // Creating indegree + adding in queue together
+        Queue<Integer> queue = new LinkedList<>();
+        for(int i = 0; i < n; i++) {
+            for(int j = 0; j < m; j++) {
+                for(int d = 0; d < dir.length; d++) { // Check all your neighbours
+                     int x = i + dir[d][0];
+                     int y = j + dir[d][1]; 
+                
+                     if(x >= 0 && y >= 0 && x < n && y < m && matrix[i][j] > matrix[x][y]) {
+                        indegree[i][j]++; // If you are greater than your nbr, increase your indegree
+                     }
+                }
+                if(indegree[i][j] == 0) queue.add(i * m + j);  // Adding all 0 indegee in queue 
+            }
+        }
+              
+        // Kahn's Algo
+        int level = 0;
+        while(!queue.isEmpty()) {
+            int size = queue.size();
+            while(size-- > 0) {
+                int idx = queue.poll();
+                int r = idx / m;
+                int c = idx % m;
+                
+                for(int d = 0; d < dir.length; d++) {
+                     int x = r + dir[d][0];
+                     int y = c + dir[d][1]; 
+                
+                     if(x >= 0 && y >= 0 && x < n && y < m && matrix[x][y] > matrix[r][c]) {
+                        indegree[x][y]--;
+                        if(indegree[x][y] == 0) {
+                            queue.add(x * m + y);
+                        }
+                    }
+                }
+            }
+            level++;
+        }
+       return level; // Last level is your answer
+    }
+}
+```
+
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+// Mine // Using Khan's Algo // BFS // DAG
+// creating indegree & adding in queue separately // Nbr ka indegree badhao
+
+```
 class Solution {
     
     public int longestIncreasingPath(int[][] matrix) {
@@ -81,24 +143,6 @@ class Solution {
             }
         }
         
-
-//         // Rajneesh : creating indegree + adding in queue together // Khud ka indegree badhao neighour k respect me
-//         Queue<Integer> queue = new LinkedList<>();
-//         for(int i = 0; i < n; i++) {
-//             for(int j = 0; j < m; j++) {
-//                 for(int d = 0; d < dir.length; d++) {
-//                      int x = i + dir[d][0];
-//                      int y = j + dir[d][1]; 
-                
-//                      if(x >= 0 && y >= 0 && x < n && y < m && matrix[i][j] > matrix[x][y]) {
-//                         indegree[i][j]++;
-//                      }
-//                 }
-//                 if(indegree[i][j] == 0) queue.add(i * m + j);  // Adding all 0 indegee in queue 
-//             }
-//         }
-        
-        
         // Kahn's Algo
         int level = 0;
         while(!queue.isEmpty()) {
@@ -123,7 +167,8 @@ class Solution {
             level++;
         }
         
-       return level; // Last level is your answer
+       return level; // Last level is your answer  // Dry run on small TC of size 2
     }
 }
+```
 //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
