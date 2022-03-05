@@ -1,7 +1,15 @@
 // https://leetcode.com/problems/longest-increasing-path-in-a-matrix/
 
 // Using DFS and DP
-// Approach : The idea is to make a dfs call on each cell, and in that dfs call move until you find a cell a that is equal or less than the current cell.
+
+/*
+    Approach : 
+    --------
+    The idea is to make a dfs call on each cell, and in that dfs call move until you find a cell a that is greater than the current cell.
+    Now, form your answer by taking maximum of all valid nbr cells + 1 for your current cell.
+
+    NOTE : DP will store max length chain that can be formed for the curr cell
+*/
 
 class Solution {
     
