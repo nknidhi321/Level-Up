@@ -5,8 +5,7 @@ next-greater-element-to-the-left
 ![next-greater-element-to-the-left](https://user-images.githubusercontent.com/53194167/157470319-8395b610-da7c-443c-b7e3-02fde2d9cf1a.PNG)
 
 minimum-add-to-make-parentheses-valid--Without-stack
-![minimum-add-to-make-parentheses-valid--Without-stack](https://user-images.githubusercontent.com/53194167/157470317-
-93e853c0-c94b-4e3c-999d-b580bc9d9f40.PNG)
+![minimum-add-to-make-parentheses-valid--Without-stack](https://user-images.githubusercontent.com/53194167/157470317-93e853c0-c94b-4e3c-999d-b580bc9d9f40.PNG)
 
 remove-duplicate-letters-OR-smallest-subsequence-of-distinct-characters
 ![remove-duplicate-letters-OR-smallest-subsequence-of-distinct-characters](https://user-images.githubusercontent.com/53194167/157470329-7b1290a7-270e-4957-8221-6909f6c299e9.PNG)
@@ -33,8 +32,7 @@ largest-rectangle-in-histogram-using-single-stack-Why-pop-before-width-calculati
 ![largest-rectangle-in-histogram-using-single-stack-Why-pop()-before-width-calculation](https://user-images.githubusercontent.com/53194167/157470349-afaee39f-04f6-42e4-ae70-4dea0018e0bc.PNG)
 
 largest-rectangle-in-histogram-using-single-stack-Why-pop-before-width-calculation-To-escape-overlappin-of-B
-![largest-rectangle-in-histogram-using-single-stack-Why-pop()-before-width-calculation-To-escape-overlappin-of-B](https://user-
-images.githubusercontent.com/53194167/157470308-09f3c8e0-ef2c-4f1a-ba17-4cb854945cad.PNG)
+![largest-rectangle-in-histogram-using-single-stack-Why-pop()-before-width-calculation-To-escape-overlappin-of-B](https://user-images.githubusercontent.com/53194167/157470308-09f3c8e0-ef2c-4f1a-ba17-4cb854945cad.PNG)
 
 maximal-rectangle_01
 ![maximal-rectangle](https://user-images.githubusercontent.com/53194167/157470313-057fb220-1240-4447-936f-59a377289c44.PNG)
