@@ -1,0 +1,7 @@
+![RotateArray_When_K_Is_Negative](https://user-images.githubusercontent.com/53194167/157479181-3f1459cc-67ec-4489-ae49-f04593a6049c.PNG)
+![RotateArray](https://user-images.githubusercontent.com/53194167/157479198-af25cf3e-4e38-4a9e-bd75-7f95d0555921.PNG)
+![Segregate](https://user-images.githubusercontent.com/53194167/157479187-51da299d-51bf-4418-b98e-b18e16dbecba.PNG)
+![Segregate01](https://user-images.githubusercontent.com/53194167/157479190-1285daa6-ee9a-4786-91b4-39c6ee8399bc.PNG)
+![Segregate012](https://user-images.githubusercontent.com/53194167/157479191-60631cf9-c7f3-4bf2-abde-5d1f181c2b5c.PNG)
+![ContainerWithMostWater_IgnoringChecks](https://user-images.githubusercontent.com/53194167/157479193-3bb96db7-bd78-42a1-bacc-8666dcf895e5.PNG)
+![MaxSumConfiguration](https://user-images.githubusercontent.com/53194167/157479195-69505414-64ff-4644-9d42-7644acb7dd83.PNG)
