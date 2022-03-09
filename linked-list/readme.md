@@ -22,27 +22,17 @@ unfold-even-length-c1-is-still-pointing-to-last-node
 unfold-odd-length
 ![unfold-odd-length](https://user-images.githubusercontent.com/53194167/157474184-16494aed-314b-4751-a05a-6cdd2a07bc95.PNG)
 
-Rem
-![Rem](https://user-images.githubusercontent.com/53194167/157474166-f7dd365a-0f1e-4556-933c-5554570d062a.PNG)
-
 remove-nth-node-from-end-of-list-using-dummy-node-handling-edge-case
 ![remove-nth-node-from-end-of-list-using-dummy-node-handling-edge-case](https://user-images.githubusercontent.com/53194167/157474168-46452a8d-d169-499e-8c90-658fe5186726.PNG)
 
 Segregate-Even-Odd
 ![Segregate-Even-Odd](https://user-images.githubusercontent.com/53194167/157474181-ac1118f6-e4f6-4b47-9301-4aea8ad3f968.PNG)
 
-LI
-![LI](https://user-images.githubusercontent.com/53194167/157474190-befb59a8-fe42-4f22-a529-dcd09a8aa692.PNG)
-
-LI-short
-![LI-short](https://user-images.githubusercontent.com/53194167/157474192-1fd455e6-154b-4501-8dc0-2ca40d5e97db.PNG)
-
 merge-k-sorted-LL-TC-when-using-merge-two-sorted-LL
 ![merge-k-sorted-LL-TC-when-using-merge-two-sorted-LL](https://user-images.githubusercontent.com/53194167/157474197-5efb64e0-3f26-4e67-94de-2f584
 
 merge-k-sorted-LL-when-using-merge-sort-getTail
 ![merge-k-sorted-LL-when-using-merge-sort-getTail](https://user-images.githubusercontent.com/53194167/157474206-7243332a-f3f7-4cb6-bf54-6bfd5b04b306.PNG)
-
 
 merge-sorted-LL
 ![merge-sorted-LL](https://user-images.githubusercontent.com/53194167/157474212-de277258-c1f0-4905-b822-f9f96adadd2b.PNG)
