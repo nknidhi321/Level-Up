@@ -29,7 +29,7 @@ Segregate-Even-Odd
 ![Segregate-Even-Odd](https://user-images.githubusercontent.com/53194167/157474181-ac1118f6-e4f6-4b47-9301-4aea8ad3f968.PNG)
 
 merge-k-sorted-LL-TC-when-using-merge-two-sorted-LL
-![merge-k-sorted-LL-TC-when-using-merge-two-sorted-LL](https://user-images.githubusercontent.com/53194167/157474197-5efb64e0-3f26-4e67-94de-2f584
+![merge-k-sorted-LL-TC-when-using-merge-two-sorted-LL](https://user-images.githubusercontent.com/53194167/157474197-5efb64e0-3f26-4e67-94de-2f58458c2363.PNG)
 
 merge-k-sorted-LL-when-using-merge-sort-getTail
 ![merge-k-sorted-LL-when-using-merge-sort-getTail](https://user-images.githubusercontent.com/53194167/157474206-7243332a-f3f7-4cb6-bf54-6bfd5b04b306.PNG)
