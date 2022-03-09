@@ -31,3 +31,16 @@ burning-tree
 burning-tree-with-water
 ![burning-tree-with-water](https://user-images.githubusercontent.com/53194167/157482817-3c382ae2-6d1b-441e-bb12-9a9d025cb93d.PNG)
 
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+BST
+![BST](https://user-images.githubusercontent.com/53194167/157483898-d1f353de-467f-4819-ad62-a910099d9428.PNG)
+
+BST_find
+![node](https://user-images.githubusercontent.com/53194167/157483885-da98d043-6bc9-40b6-9541-a34302cccc4b.PNG)
+
+node-to-root-path-in-BST
+![node-to-root-path-in-BST](https://user-images.githubusercontent.com/53194167/157483896-9e7251bf-1e84-4917-87e9-6bc27bcfe67b.PNG)
+
+BST_LCA
+![LCA_BST](https://user-images.githubusercontent.com/53194167/157483902-7f45c229-12d9-41b0-897d-74a5cf38f758.PNG)
