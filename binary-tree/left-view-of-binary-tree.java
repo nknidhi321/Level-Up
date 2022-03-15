@@ -1,4 +1,5 @@
 // https://practice.geeksforgeeks.org/problems/left-view-of-binary-tree/1/#
+// Do level order traversal and add left child first in your queue, so the 1st element popped at every level is your answer
 
 class Tree {
   
