@@ -1,5 +1,8 @@
 // https://practice.geeksforgeeks.org/problems/vertical-width-of-a-binary-tree/1/#
 
+// Root ko 0 idx maan lo, left me idx - 1 bhejo and right me idx + 1 bhejo  
+// Kisi v level pe maxLeft kitna gaya - kisi v level pe maxRight kitna gaya + 1    [ Why + 1 ? Mere ko include kar k ]
+
 class Tree {
    
     public static int verticalWidth(Node root) {
