@@ -1,5 +1,10 @@
 // https://leetcode.com/problems/path-sum-ii/
 
+// Using backtracking
+// Rajneesh
+// Efficient
+
+```
 class Solution {
     
     public List<List<Integer>> pathSum(TreeNode root, int targetSum) {
@@ -27,3 +32,40 @@ class Solution {
         smallAns.remove(smallAns.size() - 1);
     }
 }    
+```
+
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+// Without backtracking
+// Not efficient
+// Kevin 
+// Each time creating new ArrayList from every node
+
+```
+class Solution {
+    
+    public List<List<Integer>> pathSum(TreeNode root, int targetSum) {
+        if(root == null) return new ArrayList<>();
+        
+		List<List<Integer>> ans = new ArrayList<>();
+        pathSum_Util(root, targetSum, new ArrayList<>(), ans);
+        return ans;
+    }
+    
+    public static void pathSum_Util(TreeNode root, int targetSum, List<Integer> smallAns, List<List<Integer>> ans) {
+        if(root == null) return;
+        smallAns.add(root.val);    
+        if(root.left == null && root.right == null) {
+            if(targetSum - root.val == 0) {
+                ans.add(smallAns);
+            }
+            return;
+        }
+        
+        pathSum_Util(root.left, targetSum - root.val, new ArrayList<>(smallAns), ans);
+        pathSum_Util(root.right, targetSum - root.val, new ArrayList<>(smallAns), ans);
+    }
+} 
+```
+
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
