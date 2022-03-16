@@ -1,4 +1,5 @@
 // https://leetcode.com/problems/path-sum-ii/
+// See both approch
 
 // Using backtracking
 // Rajneesh
@@ -29,7 +30,7 @@ class Solution {
         smallAns.add(root.val); 
         pathSum_Util(root.left, targetSum - root.val, smallAns, ans);
         pathSum_Util(root.right, targetSum - root.val, smallAns, ans);
-        smallAns.remove(smallAns.size() - 1);
+        smallAns.remove(smallAns.size() - 1); // Backtrack
     }
 }    
 ```
@@ -39,7 +40,8 @@ class Solution {
 // Without backtracking
 // Not efficient
 // Kevin 
-// Each time creating new ArrayList from every node
+// Each time creating new ArrayList from every node, so that your left child does not mess with smallAns of right child,
+// So, when there's no messing why to backtrack
 
 ```
 class Solution {
