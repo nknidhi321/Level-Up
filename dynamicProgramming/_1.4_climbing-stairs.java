@@ -48,4 +48,27 @@ class Solution {
         return dp[STAIR];
     }
 }
+
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+// Two pointers, fibonacci 
+
+class Solution {
+    
+    public int climbStairs(int n) {
+        Integer[] dp = new Integer[n + 1];
+        return fibo_opti(n);
+    }
+    
+    public static int fibo_opti(int N) {
+        int a = 1, b = 1;
+        for (int i = 2; i <= N; i++) {
+            int sum = a + b;
+            a = b;
+            b = sum;
+        }
+        return b;
+    }
+}
+
 //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
