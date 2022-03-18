@@ -120,7 +120,7 @@ class Solution {
             a = sum;
         }
 
-        return a;  // Note : and will be in a, not b
+        return a;  // Note : answer will be in a, not b
     }
 }
 
