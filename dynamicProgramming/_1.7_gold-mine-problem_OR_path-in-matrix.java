@@ -1,5 +1,5 @@
 // https://practice.geeksforgeeks.org/problems/gold-mine-problem2608/1
-
+// Left to right max finding
 // Dp me kya store hoga ? Mere se aage tak ka maximum gold.
 
 // Memoization
@@ -72,4 +72,45 @@ class Solution  {
         }
     }
 }
+
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+// https://practice.geeksforgeeks.org/problems/path-in-matrix3805/1#
+// Top to Bottom max finding
+// Memoization
+
+class Solution {
+   
+    public static int n, m;
+    public static int[][] dir = {{1, 0}, {1, -1}, {1, 1}};
+   
+    public int maximumPath(int N, int[][] grid) {
+        n = grid.length;
+        m = grid[0].length;
+        int max = 0;
+        Integer[][] dp = new Integer[n][m];
+        for(int j = 0; j < m; j++) {
+            max = Math.max(max, minimumCostPath_Memo(0, j, grid, dp));
+        }
+        return max;
+    }
+   
+    public static int minimumCostPath_Memo(int x, int y, int[][] grid, Integer[][] dp) {
+        if(x == n - 1 && y == m - 1) return dp[x][y] = grid[x][y];
+       
+        if(dp[x][y] != null) return dp[x][y];
+     
+        int max = 0;
+        for(int d = 0; d < dir.length; d++) {
+            int r = x + dir[d][0];
+            int c = y + dir[d][1];
+           
+            if(r >= 0 && c >= 0 && r < n && c < m) {
+                max = Math.max(max, minimumCostPath_Memo(r, c, grid, dp));
+            }
+        }
+        return dp[x][y] = max + grid[x][y];
+    }
+}
+
 //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
