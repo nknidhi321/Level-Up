@@ -1,6 +1,23 @@
 // https://leetcode.com/problems/longest-palindromic-subsequence/
 // Make sure to check the follow up at down, used backEngineering
 
+/*  
+
+    All possible options :-      
+        
+        Si      Sj
+        
+        V       V
+        X       V
+        V       X
+        X       X       [You don't need to make this call explicitly because this call is hidden in the above two calls]
+
+
+    where V(tick) is wants to come, and X(cross) is does not want to come
+
+*/
+
+
 /*
     Approach 1 :- [ Efficient ] 
     --------
