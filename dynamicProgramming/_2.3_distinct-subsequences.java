@@ -13,7 +13,7 @@ class Solution {
     
     public static int numDistinctMemo(int len1, int len2, String s1, String s2, Integer[][] dp) {
         if(len2 == 0) return dp[len1][len2] = 1; // Jis din target string s2 exhaust ho gayi, hame ek tareeka mil gaya
-        if(len1 < len2) return dp[len1][len2] = 0; // When target/pattern string becomes smaller than s1
+        if(len1 < len2) return dp[len1][len2] = 0; // When s1 string becomes smaller than target/pattern
         
         if(dp[len1][len2] != null) return dp[len1][len2];
             
@@ -58,7 +58,7 @@ class Solution {
                     continue;
                 }
                 
-                // When target/pattern string becomes smaller than s1
+                // When s1 string becomes smaller than target/pattern
                 if(len1 < len2) {
                     dp[len1][len2] = 0;
                     continue;
