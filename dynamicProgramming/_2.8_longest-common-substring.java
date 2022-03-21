@@ -1,6 +1,7 @@
 // https://practice.geeksforgeeks.org/problems/longest-common-substring1452/1#
 // Substring question directly go for tabulation
 
+// Same as LCSS, just remove that last else of LCSS that calculates max of the 2 calls leaving n and m repectively.
 // Tabulation
 
 class Solution{
