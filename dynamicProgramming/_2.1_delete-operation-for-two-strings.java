@@ -1,9 +1,18 @@
 // https://leetcode.com/problems/delete-operation-for-two-strings/
 
 /*
-    Dono word ko add karo, aur 2 * LCSS k count ko subtract kr do
+    Take out longest common subsequence(LCSS) of both the string
+    Now, Add both the strings, observe that you have the LCSS string twice in that added final string
+    So just, get count of final added string and 2 * LCSS k count ko subtract kr do
     Why into 2 ? Because common toh dono s1 and s2 me milegi na 
     So jo remaining string bachegi, utne number of steps hame lenge honge to make s1 == s2
+    
+    Ex: word1 = "leetcode", word2 = "etco"
+    
+    LCSS = etco
+    word1 + word2 = leetcodeetco   <= etco is twice here
+    So just subtract 2 * LCSS count from word1 + word2 count
+    
 */
 
 // Memoization
