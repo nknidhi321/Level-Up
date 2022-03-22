@@ -37,7 +37,73 @@ class Solution {
 //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
 // P&C method, for loop
-// Memoization
+// Memoization // Moving from right to left
+// "Meaning & understanding" wise intuitive   [Do like this only]
+
+class Solution{
+    
+    static Boolean isSubsetSum(int N, int[] arr, int tar) {
+        Integer[][] dp = new Integer[N + 1][tar + 1];
+        return isSubsetSum_Memo(N, arr, tar, dp) == 1 ? true : false;
+    }
+    
+    public static int isSubsetSum_Memo(int n, int[] arr, int tar, Integer[][] dp) {
+        if(tar == 0 || n == 0) return dp[n][tar] = (tar == 0) ? 1 : 0;
+        
+        if(dp[n][tar] != null) return dp[n][tar];
+        
+        for(int i = n; i > 0; i--) {
+            if(tar - arr[i - 1] >= 0) {
+                if(isSubsetSum_Memo(i - 1, arr, tar - arr[i - 1], dp) == 1) {
+                    return dp[n][tar] = 1;
+                }
+            }
+        }
+        return dp[n][tar] = 0;
+    }
+}
+
+//----------------------------------------------------------------
+
+// Tab 
+// Wrong
+class Solution{
+    
+    static Boolean isSubsetSum(int N, int[] arr, int tar) {
+        Integer[][] dp = new Integer[N + 1][tar + 1];
+        return isSubsetSum_Tab(N, arr, tar, dp) == 1 ? true : false;
+    }
+    
+    public static int isSubsetSum_Tab(int N, int[] arr, int Tar, Integer[][] dp) {
+         for(int n = 0; n <= N; n++) {
+            for(int tar = 0; tar <= Tar; tar++) {
+                if(tar == 0 || n == 0) {
+                    dp[n][tar] = (tar == 0) ? 1 : 0;
+                    continue;
+                }
+                
+                for(int i = n; i > 0; i--) {
+                    if(tar - arr[i - 1] >= 0) {
+                        //if(isSubsetSum_Memo(i - 1, arr, tar - arr[i - 1], dp) == 1) {
+                        if(dp[i - 1][tar - arr[i - 1]] == 1) {
+                            dp[n][tar] = 1;
+                            continue;
+                        }
+                    }
+                }
+                dp[n][tar] = 0;
+            }
+         }
+         return dp[N][Tar];
+    }
+    
+}
+
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+// P&C method, for loop
+// Memoization // Moving from left to right
+// Code & dry run wise intuitive
 
 class Solution {
 
@@ -64,6 +130,7 @@ class Solution {
 }
 
 //-----------------------------------------------------------------------------------------------
+
 // Tab
 // Wrong
 
