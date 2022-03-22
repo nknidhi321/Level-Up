@@ -1,6 +1,6 @@
 // https://practice.geeksforgeeks.org/problems/subset-sum-problem-1611555638/1/ 
 // If infinite supply of coins is not mentioned then, consider it as, coins can be used only once
-// Not using boolean DP because false is also ananswer, Boolean DP could have been used.
+// Not using boolean DP because false is also an answer, Boolean DP could have been used.
 
 // Subsequence 
 // Memoization
@@ -31,8 +31,38 @@ class Solution {
 
 //----------------------------------------------------------------------------------------------
 
+// Subsequence 
 // Tabulation
 
+class Solution {
+
+    public static Boolean isSubsetSum(int n, int arr[], int tar) {
+        
+        Integer[][] dp = new Integer[n + 1][tar + 1];
+        return isSubsetSum_Tab(n, arr, tar, dp) == 1 ? true : false;
+    }
+    
+    public static int isSubsetSum_Tab(int N, int[] arr, int Tar, Integer[][] dp) {
+        for(int n = 0; n <= N; n++) {
+            for(int tar = 0; tar <= Tar; tar++) {
+                if(n == 0 || tar == 0) {
+                    dp[n][tar] = tar == 0 ? 1 : 0;
+                    continue;
+                }
+                
+                boolean res = false;
+                res = res || dp[n - 1][tar] == 1; //isSubsetSum_Memo(n - 1, arr, tar, dp) == 1; // Exclude
+                
+                if(tar - arr[n - 1] >= 0) {
+                    res = res || dp[n - 1][tar - arr[n - 1]] == 1; //isSubsetSum_Memo(n - 1, arr, tar - arr[n - 1], dp) == 1; // Include
+                }
+                dp[n][tar] = res ? 1 : 0;
+            }
+        }
+        return dp[N][Tar];
+    }
+    
+}
 
 //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
