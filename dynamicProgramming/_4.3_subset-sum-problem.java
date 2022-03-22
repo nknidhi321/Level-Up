@@ -64,8 +64,38 @@ class Solution {
 }
 
 //-----------------------------------------------------------------------------------------------
+// Tab
+// Wrong
 
-
-
+class Solution{
+    
+    static Boolean isSubsetSum(int N, int[] arr, int tar) {
+        Integer[][] dp = new Integer[N + 1][tar + 1];
+        return isSubsetSum_Tab(0, arr, tar, dp) == 1 ? true : false;
+    }
+    
+    public static int isSubsetSum_Tab(int Idx, int[] arr, int Tar, Integer[][] dp) {
+        for(int idx = arr.length; idx >= 0; idx--) {
+            for(int tar = 0; tar <= Tar; tar++) {
+                if(tar == 0 || idx == arr.length) {
+                    dp[idx][tar] = (tar == 0) ? 1 : 0;
+                    continue;
+                }
+                
+                for(int i = idx; i < arr.length; i++) {
+                    if(tar - arr[i] >= 0) {
+                        //if(isSubsetSum_Memo(i + 1, arr, tar - arr[i], dp) == 1) {
+                          if(dp[i + 1][tar - arr[i]] == 1) {
+                            dp[idx][tar] = 1;
+                            continue;
+                        }
+                    }
+                }
+                dp[idx][tar] = 0;
+            }
+        }
+        return dp[Idx][Tar];
+    }
+}
 
 //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
