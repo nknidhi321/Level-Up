@@ -1,5 +1,6 @@
 // https://leetcode.com/problems/partition-equal-subset-sum/
 // Aditya Verma
+// Rajneesh Bhaiya
 
 // Memoization
 
