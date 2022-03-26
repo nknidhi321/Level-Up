@@ -8,18 +8,18 @@ class Tree {
     public static int verticalWidth(Node root) {
 	   if(root == null) return 0;
         
-        int[] arr = new int[2]; // {maxHorizonatlLeftWidth, maxHorizontalRightWidth}
-        verticalWidth_Util(root, arr, 0);
-        return arr[1] - arr[0] + 1;
+        int[] minMax = new int[2]; // {maxVerticalLeftSideWidth, maxVerticalRightSideWidth}
+        widthOfShadow(root, minMax, 0);
+        return minMax[1] - minMax[0] + 1;
     }
     
-    public static void verticalWidth_Util(Node root, int[] arr, int idx) {
+    public static void widthOfShadow(Node root, int[] minMax, int idx) {
         if(root == null) return;
         
-        arr[0] = Math.min(arr[0], idx);
-        arr[1] = Math.max(arr[1], idx);
-        verticalWidth_Util(root.left, arr, idx - 1);
-        verticalWidth_Util(root.right, arr, idx + 1);  
+        minMax[0] = Math.min(minMax[0], idx);
+        minMax[1] = Math.max(minMax[1], idx);
+        widthOfShadow(root.left, minMax, idx - 1);
+        widthOfShadow(root.right, minMax, idx + 1);  
     }
 	
 }
