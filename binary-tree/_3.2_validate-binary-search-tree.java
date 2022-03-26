@@ -2,20 +2,23 @@
 
 /*
 
-Intuition:-
-Since it is BST, It's Inorder traversal will be sorted.
-So, Using morrisInOrderTravsersal, wherever you print the algorithm do the following:-
+    Intuition:-
+    Since it is BST, It's Inorder traversal will be sorted.
+    So, Using morrisInOrderTravsersal, wherever you print the algorithm do the following:-
 
-Keep a prev pointer which will always carry the prev value of the current node,
-And make a check that if prev is greater or equal to curr.val then it is not a BST.
+    Keep a prev pointer which will always carry the prev value of the current node,
+    And make a check that if prev is greater or equal to curr.val then it is not a BST.
 
-NOTE :-
-1) Make prev as Long, check the constraint, it exceeds Integer range.
-2) Make sure to iterate the whole tree(Algo) to cut down the thread which you created while traversing or you may get wrong result.
+    NOTE :-
+    1) Make prev as Long, check the constraint, it exceeds Integer range.
+    2) Make sure to iterate the whole tree(Algo) to cut down the thread which you created while traversing or you may get wrong result.
+
+    Jaha jaha print kar rahe the morrisInOrderTraversal me, bs waha waha check lga lo prev bada toh nahi hai curr se
 
 */
 
 class Solution {
+    
     public boolean isValidBST(TreeNode root) {
         return morrisInOrderTraversal(root);
     }
@@ -36,21 +39,27 @@ class Solution {
             TreeNode left = curr.left;
             
             if(left == null) {
+                
+                // Yaha print hota tha, so check
                 if(prev >= curr.val && flag == true) flag = false;
                 prev = curr.val;
+                
                 curr = curr.right;
             }
             else {
                 TreeNode rightMostNode = getRightMostNode(left, curr);
 
-                if(rightMostNode.right == null) {
+                if(rightMostNode.right == null) { // thread creation block
                     rightMostNode.right = curr;
                     curr = curr.left;
                 }
-                else {
+                else { // thread destroying block
                     rightMostNode.right = null;
+                    
+                    // Yaha print hota tha, so check
                     if(prev >= curr.val && flag == true) flag = false;
                     prev = curr.val;
+                    
                     curr = curr.right;
                 }
             }
@@ -59,7 +68,7 @@ class Solution {
     }
 }
 
-//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
 
 //Kevin
@@ -77,4 +86,4 @@ class Solution {
     }
 }
 
-//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
