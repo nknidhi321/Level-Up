@@ -1,10 +1,9 @@
 // https://leetcode.com/problems/maximum-width-of-binary-tree/
 //The idea is to get the 1st NodePair idx and the last NodePair idx at each level and get the difference + 1 (Inclusive) to find the maxWidth.
 
-
-Using heap indexing property: 1
-If we give 1 to root, suppose idx of root is idx = 1 , then it's left child would be 2 from (2 * idx) formula and
-right child would be 3 from (2 * idx + 1) formula and so on for the subtree.
+// Using heap indexing property: 1
+// If we give 1 to root, suppose idx of root is idx = 1 , then it's left child would be 2 from (2 * idx) formula and
+// right child would be 3 from (2 * idx + 1) formula and so on for the subtree.
 
 // Rajneesh
 
@@ -46,7 +45,7 @@ class Solution {
 }
 ```
 
-------------------------------------------------------------
+-------------------------------------------------------------------------------------------
 
 // Mine
 
