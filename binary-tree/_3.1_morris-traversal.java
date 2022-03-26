@@ -17,6 +17,7 @@ public class _3_TraversalSet {
 		}
 	}
 
+	
 	// =============================================================================================================================================
 	/*
 	 # ALGO morrisInOrderTraversal:-
@@ -25,7 +26,7 @@ public class _3_TraversalSet {
 	  		a. when we create a thread
 	  
 	   Right pe kab jana h: 
-      		a. left is null 
+      			a. left is null 
 	 	 	b. thread is cut down [Left subtree and root is processed]
 	  
 	   Print kab karna h: 
@@ -43,9 +44,12 @@ public class _3_TraversalSet {
 	 */
 
 	public static TreeNode getRightMostNode(TreeNode node, TreeNode curr) {
-
+		
+		// In while loops condition, node ka right null hoga agar aapne kvi thread nai bnaya
+		// In while loops condition, node ka right curr k equal hoga agar already thread bna hua hai
+		
 		// Jabtak node ka right null ya curr k equal nahi aa jaata right pe jaatey jaao
-		while (node.right != null && node.right != curr) {
+		while (node.right != null && node.right != curr) { 
 			node = node.right;
 		}
 
@@ -53,7 +57,8 @@ public class _3_TraversalSet {
 		return node;
 	}
 
-	// Thread destroy krte waqt answer bnao
+	
+	// Answer kab bnao? Jab left null ho + thread destroy krte waqt 
 	public static ArrayList<Integer> morrisInOrderTraversal(TreeNode root) {
 		ArrayList<Integer> ans = new ArrayList<>();
 		TreeNode curr = root;
@@ -72,8 +77,7 @@ public class _3_TraversalSet {
 				}
 
 				// Thread destroy //Thread kaat diya right pe chale jaao
-				else { // rightMostNode.right == curr //Agar null nahi h, mtlb curr k equal h, mtlb
-						// thread bna hua h, toh usko kato to maintain original tree
+				else { // rightMostNode.right == curr // thread bna hua h, toh usko kato to maintain original tree
 					rightMostNode.right = null; // Thread cut down ho gaya
 					ans.add(curr.val); // Inorder wala root print karo
 					curr = curr.right; // And now move to right
@@ -90,7 +94,13 @@ public class _3_TraversalSet {
 		Jab left null ho tab answer banao 
 					   +
 		morrisInOrderTraversal : Thread destroy krte waqt answer bnao 
+		
+		---------------------------------------------------------------------
+		
+		Jab left null ho tab answer banao 
+					   +
 		morrisPreOrderTraversal : Thread create krte waqt answer bnao
+	 
 	 
 	 
 	 # ALGO morrisPreOrderTraversal:-
@@ -99,7 +109,7 @@ public class _3_TraversalSet {
 	  		a. when we create a thread
 	  
 	   Right pe kab jana h: 
-      		a. left is null 
+      			a. left is null 
 	 	 	b. thread is cut down [Root and left subtree is processed]
 	  
 	   Print kab karna h: 
@@ -122,7 +132,7 @@ public class _3_TraversalSet {
 				// thread create
 				if (rightMostNode.right == null) {
 					rightMostNode.right = curr;
-					ans.add(curr.val); // Thread create krte waqt answer bnao
+					ans.add(curr.val); // Thread create krte waqt answer bnao  			// ONLY DIFFERENCE
 					curr = curr.left;
 				}
 
@@ -137,6 +147,8 @@ public class _3_TraversalSet {
 	}
 	// ================================================================================================================================================
 
+	
+	
 	public static void main(String[] args) {
 		TreeNode root = new TreeNode(7);
 		root.left = new TreeNode(3);
