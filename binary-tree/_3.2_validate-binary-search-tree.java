@@ -2,7 +2,8 @@
 
 /*
 
-    Intuition:-
+    Intuition :-
+    ---------
     Since it is BST, It's Inorder traversal will be sorted.
     So, Using morrisInOrderTravsersal, wherever you print the algorithm do the following:-
 
@@ -11,7 +12,8 @@
 
     NOTE :-
     1) Make prev as Long, check the constraint, it exceeds Integer range.
-    2) Make sure to iterate the whole tree(Algo) to cut down the thread which you created while traversing or you may get wrong result.
+    2) The moment you find that it is not validBST, "do not" return, make sure to unmodify the threads which you created.
+        So, make sure to iterate the whole tree(Algo) to cut down the thread which you created while traversing or you may get wrong result.
 
     Jaha jaha print kar rahe the morrisInOrderTraversal me, bs waha waha check lga lo prev bada toh nahi hai curr se
 
