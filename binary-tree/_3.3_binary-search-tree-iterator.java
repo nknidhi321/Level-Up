@@ -1,9 +1,60 @@
 // https://leetcode.com/problems/binary-search-tree-iterator/
 
 // Using Morris Traversal, SC : O(N)
+/*
+
+The only difference from original morris Traversal is, to break where ever you used to print your inOrder element, so that it can return nodes one by one.
+Also, make sure to make curr as global variable, because in next() we cannot pass anything, and somehow we need the curr iterator, to proceed from the very next element
+
+*/
 
 ```
+class BSTIterator {
 
+    public TreeNode curr = null;
+    
+    public BSTIterator(TreeNode root) {
+        curr = root;
+    }
+    
+    public int next() {
+        int returnValue = -1;
+        while(curr != null) {
+            TreeNode left = curr.left;
+            if(left == null) {
+                returnValue = curr.val;
+                curr = curr.right;
+                break;
+            }
+            else {
+                TreeNode rightMostNode = getRightMostNode(left);
+                if(rightMostNode.right == null) { // thread create
+                    rightMostNode.right = curr;
+                    curr = curr.left;
+                }
+                else { // thread destroy
+                    rightMostNode.right = null;
+                    returnValue = curr.val;
+                    curr = curr.right;
+                    break;
+                }
+            }
+        }
+        return returnValue;
+    }
+    
+    public boolean hasNext() {
+        return curr != null;
+    }
+    
+    public TreeNode getRightMostNode(TreeNode node) {
+        while(node.right != null && node.right != curr) {
+            node = node.right;
+        }
+        return node;
+    }
+    
+}
 ```
 
 //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
