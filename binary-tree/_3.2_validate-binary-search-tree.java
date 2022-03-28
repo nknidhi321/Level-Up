@@ -1,4 +1,5 @@
-//https://leetcode.com/problems/validate-binary-search-tree/
+// https://leetcode.com/problems/validate-binary-search-tree/
+// Morris is the best appoach then stack and then maxmin return type method.
 
 /*
 
@@ -72,8 +73,39 @@ class Solution {
 
 //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
+// Using stack,  TC : O(N), SC : (logN) [height of balanced BST]
 
-//Kevin
+class Solution {
+    
+    public boolean isValidBST(TreeNode root) {
+        
+        Stack<TreeNode> stack = new Stack<TreeNode>();
+        addAllLeft(root, stack);
+        
+        long prev = -(long)1e13;
+        while(!stack.isEmpty()) {
+            TreeNode topNode = stack.pop();
+            if(prev >= topNode.val) return false; // Checking prev was strictly smaller or not
+            
+            prev = topNode.val; // move prev to the topNode val, for next iteration  
+            addAllLeft(topNode.right, stack);
+        }
+        return true;
+    }
+    
+    public static void addAllLeft(TreeNode node, Stack<TreeNode> stack) {
+        while(node != null) {
+            stack.push(node);
+            node = node.left;
+        }
+    }
+    
+}
+
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+// Kevin
+// max min
 
 class Solution {
     public boolean isValidBST(TreeNode root) {
