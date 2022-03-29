@@ -103,6 +103,50 @@ class Solution {
 }
 
 //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+// Using pair class return type
+// take long, check constraints
+// Rajneesh
+
+class Solution {
+    
+    public class Pair {
+        long min;
+        long max;
+        boolean isBST;
+        
+        public Pair() {
+            this.min = (long)1e13; 
+            this.max = -(long)1e13;
+            this.isBST = true;
+        }
+    }
+    
+    public boolean isValidBST(TreeNode root) {
+        return isValidBST_Util(root).isBST;
+    }
+        
+    public Pair isValidBST_Util(TreeNode root) {
+        if(root == null) return new Pair();
+        
+        Pair lp = isValidBST_Util(root.left);
+        Pair rp = isValidBST_Util(root.right);
+        
+        Pair myPair = new Pair();
+        
+        // left && right subtree bst hai && aap left subtree k max se bade hone chahiye && right subtree k min se chote hone chahiye 
+        if(lp.isBST && rp.isBST && lp.max < root.val && root.val < rp.min) {  
+            myPair.isBST = true;
+            myPair.min = Math.min(lp.min, root.val);  // Apna min set karne k liye, left k min ki zaroorat hai
+            myPair.max = Math.max(rp.max, root.val);  // Apna max set karne k liye, right k max ki zaroorat hai
+        }
+        else {
+            myPair.isBST = false;
+        }
+        return myPair;
+    }
+}
+
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
 // Kevin
 // max min
