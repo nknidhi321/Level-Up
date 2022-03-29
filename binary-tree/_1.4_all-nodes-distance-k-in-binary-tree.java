@@ -147,7 +147,7 @@ class Solution {
                 }
             }
             k--;
-            if(k < 0)
+            if(k < 0) // You have aready processed k == 0 nodes in BFS fashion, so simply break
                 break;
         }
         return list;
@@ -169,11 +169,3 @@ class Solution {
 }
 
 //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-
-
-
-
-
-
-
-
