@@ -29,7 +29,7 @@ public class Solution {
         // Catch up the pt. where slow and fast meets for the very first time
         ListNode meet = null;
         ListNode slow = head, fast = head;
-        while(fast.next != null && fast.next.next != null) {
+        while(fast.next != null && fast.next.next != null) {   // while(fast != null && fast.next != null) {
             slow = slow.next;
             fast = fast.next.next;
             if(slow == fast) {
