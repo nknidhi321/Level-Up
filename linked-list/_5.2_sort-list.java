@@ -3,14 +3,19 @@
 class Solution {
     
     public ListNode sortList(ListNode head) {
-        if(head == null || head.next == null) return head;
+        if(head == null) return null;
+        else return sortList_(head);
+    }
+        
+    public ListNode sortList_(ListNode head) {
+        if(head.next == null) return head;
         
         ListNode mid = mid(head);
         ListNode nhead = mid.next; // head of 2nd LL
         mid.next = null; // Setting 1st half LL end to null
         
         // Divide and conquer, recursively divide and then merge
-        return mergeTwoSortedLists(sortList(head), sortList(nhead));
+        return mergeTwoSortedLists(sortList_(head), sortList_(nhead));
     }
     
     
