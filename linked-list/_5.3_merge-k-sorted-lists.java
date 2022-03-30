@@ -186,15 +186,14 @@ class Solution {
         
         while(!pq.isEmpty()) {
             ListNode node = pq.poll();  // minNode nikal gaya
-            prev.next = node; // ansList me usko jor diye
-
-            prev = prev.next; // prev ko ansList k tail pe point kara do
-            node = node.next; // minNode use ho chuka hai, so node ko aage badha do
-
-            // NOTE : mainList k last node ka next avi "apne" actual list ko point kar raha hai
-            // Ye link next iteration me break hogi jab prev.next = node karenge
+            ListNode forw = node.next;
             
-    
+            node.next = null;
+            prev.next = node; // ansList me usko jor diye
+            
+            prev = prev.next; // prev ko ansList k tail pe point kara do
+            node = forw; // minNode use ho chuka hai, so node ko aage badha do
+            
             // Jis list ko nikale the check karo kya ab usme sirf null toh nahi bacha hai
             // Agar sirf null hai toh, skip that list, since completed
             // par agar ab v elements bache hai then add the remaining list to pq
