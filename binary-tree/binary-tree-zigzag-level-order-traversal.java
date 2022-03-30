@@ -42,7 +42,48 @@ class Solution {
 }
 ```
 
------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------
+
+// Using ArrayDeque
+
+```
+class Solution {
+    
+    public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
+        if(root == null) return new ArrayList<>();
+        
+        List<List<Integer>> ans = new LinkedList<>();
+        Deque<TreeNode> dQueue = new ArrayDeque<>();
+        dQueue.add(root);
+        int flag = 0;
+        
+        while(!dQueue.isEmpty()) {
+            int size = dQueue.size();
+            List<Integer> smallerList = new ArrayList<>();
+            while(size-- > 0) {
+                if(flag == 0) { //As usual, aage se nikalo, piche daalo
+                    TreeNode currNode = dQueue.removeFirst();
+                    smallerList.add(currNode.val);
+                    if(currNode.left != null) dQueue.add(currNode.left);
+                    if(currNode.right != null) dQueue.add(currNode.right);
+                }
+                else { // flag == 1 //Sab ulta, piche se nikalo and aage daao
+                    TreeNode currNode = dQueue.removeLast();
+                    smallerList.add(currNode.val);
+                    if(currNode.right != null) dQueue.addFirst(currNode.right); // Right will be added first
+                    if(currNode.left != null) dQueue.addFirst(currNode.left); // Then Left 
+                }
+            }
+            ans.add(smallerList);
+            flag = (flag + 1) % 2;
+        }
+        return ans;
+    }
+    
+}
+```
+
+---------------------------------------------------------------------------------------------------------------------
 
 // DFS, do in preOrder
 /*
