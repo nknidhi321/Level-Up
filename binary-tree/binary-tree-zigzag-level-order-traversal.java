@@ -79,3 +79,40 @@ class Solution {
 }
 ```
 -------------------------------------------------------------------------------------------------------
+
+// DFS, do in preOrder
+/*
+    In DFS call, simply get the xth level arrayList and add at last 
+    Now, after you come out of the DFS call, reverse the ans list at desired levels.
+    Doing this just to escape shifting in the other DFS solution.
+*/
+
+```
+class Solution {
+    
+    public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
+        if(root == null) return new ArrayList<>();
+        
+        List<List<Integer>> ans = new LinkedList<>();
+        zigzagLevelOrder_DFS(root, 0, ans);
+        
+        for(int level = 1; level < ans.size(); level+=2) {
+            Collections.reverse(ans.get(level));
+        }
+        return ans;
+    }
+    
+    public static void zigzagLevelOrder_DFS(TreeNode root, int level, List<List<Integer>> ans) {
+        if(root == null) return;
+        
+        // Make sure to do it preOrder, so that new ArrayList gets added beforehand at every level
+        if(ans.size() == level) ans.add(new ArrayList<>());
+        ans.get(level).add(root.val);
+        
+        zigzagLevelOrder_DFS(root.left, level + 1, ans);
+        zigzagLevelOrder_DFS(root.right, level + 1, ans);
+    }
+    
+}
+```
+----------------------------------------------------------------------------------------------------
