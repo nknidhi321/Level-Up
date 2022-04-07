@@ -29,13 +29,15 @@ class Solution {
 
 // NOTE : It is not specified ki tumse niche wale tumse bade hai, but since it is sortes so tumse niche wale tumse bade he honge for sure
 // So this can be also solved like below follow up
--------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 // Follow up :- https://leetcode.com/problems/search-a-2d-matrix-ii/
+// Note : Here you cannot apply original Binary Search like above because though it array is sorted but not how it is expected in BS, so apply modified BS
 
 // Rajneesh
 // Staircase Search -> O(N + M) in Worst Case
-// Note : Here you cannot apply original Binary Search like above because though it array is sorted but not how it is expected in BS, so apply modified BS
+// You can only start from top right or bottom left, because here you know which direction will give you smaller number or larger number than the current number
+// You cannot start from top left or bottom right, but here you cannot figure out because both is smaller or both is larger
 
 ```
 class Solution {
@@ -61,4 +63,4 @@ class Solution {
 }
 ```
 
----------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
