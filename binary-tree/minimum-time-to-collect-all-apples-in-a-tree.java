@@ -14,11 +14,11 @@ class Solution {
             graph[v].add(u);
         }
         
-        boolean[] vis = new boolean[n + 1];
+        boolean[] vis = new boolean[n];
         int time = dfs(0, hasApple, vis, graph);
         
-        // Tumhara root node v apne parent k liye +2 bhej dega apne se aane jaane ka time,
-        // agar tumse niche se kuch time aara hoga tab
+        // Tumhara root node v apne parent k liye +2 bhej dega, 
+        // apne se aane jaane ka time, agar tumse niche se kuch time aara hoga tab
         // Islye usko -2 kar do final answer me
         return time > 0 ? time - 2 : time;   
     }
