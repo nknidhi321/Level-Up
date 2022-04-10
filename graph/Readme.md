@@ -36,13 +36,13 @@ Jab saare vtx ko touch krna ho with minimum cost then prims ya kruskals lga do
 
 PRIMS :
 1) You need graph to use Prim's Algo
-2) When graph is dense use Prims, because if you use Kruskals then you will have to sort huge number of edges
+2) When graph is dense use Prims, because if you use Kruskals then you will have to sort huge number of edges  [Edge is more compared to vtx]
 3) TC is E log V
 4) Prefer Kruskals since easy to code
 
 
 KRUSKALS :
-1) You don't need graph to use Kruskal's Algo, you job will be done just by tavelling on edges
+1) You don't need graph to use Kruskal's Algo, you job will be done just by tavelling on edges  [Edge is less compared to vtx]
 2) When graph is sparse use Kruskal's => Less edges => Less time for sorting the edge 
 3) TC is E log E, since you will sort all edges so it's E log E, 
 4) Easy to code
