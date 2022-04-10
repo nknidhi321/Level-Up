@@ -26,3 +26,49 @@ hamiltonian Cycle ? Above condition + source node has a direct edge with the las
 bipartite ? Look into 1st class notes
 
 ----------------------------------------------------------------------------------------------------------------------------
+
+MST : 
+---
+Graph should be connected, Should have N-1 edges, Cost should be minimum, No cycle
+
+MST Algorithms :-     1) Prims      2) Kruskal
+Jab saare vtx ko touch krna ho with minimum cost then prims ya kruskals lga do
+
+PRIMS :
+1) You need graph to use Prim's Algo
+2) When graph is dense use Prims, because if you use Kruskals then you will have to sort huge number of edges
+3) TC is E log V
+4) Prefer Kruskals since easy to code
+
+
+KRUSKALS :
+1) You don't need graph to use Kruskal's Algo, you job will be done just by tavelling on edges
+2) When graph is sparse use Kruskal's => Less edges => Less time for sorting the edge 
+3) TC is E log E, since you will sort all edges so it's E log E, 
+4) Easy to code
+
+----------------------------------------------------------------------------------------------------------------------------
+
+BFS aati hai mtlb Dijkastra && Prims v likhna v aati hai
+
+BFS kisi v 2 vtx/node ka minimum cost nikal k deti hai (Source && destination dependent) 
+Jab weight constant ho tab BFS lgti hai, deciding factor is length
+Queue is used
+
+Dijkastar kisi v 2 vtx/node ka minimum cost nikal k deti hai (Source && destination dependent) 
+Jab weight +ve && variable ho tab Dijkastra lgti hai, deciding factor is weightSoFar      [NOTE : Dijksta does not work for -ve weight]   
+PriorityQueue is used.
+
+Jab weight variable ho && saare vtx ko touch krna ho with minimum cost then prims ya kruskals lga do [MST], deciding factor in prims is weight
+PriorityQueue is used.
+
+NOTE : Dijksta and Prims is ditto same just relplace wsf of Dijksta with w in Prims
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+Union Find aati hai toh Kruskal v aati hai
+
+Bs Edges ko weight k basis pe sort kar do, now sbse minimum weight ko ek ek kar k nikalo and start forming your graph incase you want to see a graph,
+else just keep adding the cost also note to skip the edges which forms cycle same as Union Find.
+
+NOTE : Union Find and Kruskal is ditto same in extra just sort edges on weight in Kruskals 
+-------------------------------------------------------------------------------------------------------------------------------------------------------
