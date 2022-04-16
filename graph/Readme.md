@@ -92,3 +92,5 @@ and "overall mimimum cost" kisi dusre nodes se ghoom k aap tak "overall minimum 
 Dijkstra me koi kam weight path wala bnda usi node ko touch krne wapas aa sakta hai, with "minimum path cost", so tumko sabko chance dena hai, islye queue se nikalte waqt visited mark karo isme.
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+# Dijkstra : [Directed, Undirected] 
