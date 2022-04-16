@@ -1,4 +1,8 @@
-Revised 4th march
+In worst case a graph can have          V * (V - 1)       edges
+                                        -----------
+                                            2
+
+----------------------------------------------------------------------
 
 All nodes won't participate :-
 1)  Shortest path in terms of edge => BFS
@@ -27,7 +31,7 @@ bipartite ? Look into 1st class notes
 
 ----------------------------------------------------------------------------------------------------------------------------
 
-MST : 
+MST : [Only for Undirected Graph]
 ---
 Graph should be connected, Should have N-1 edges, Cost should be minimum, No cycle
 
