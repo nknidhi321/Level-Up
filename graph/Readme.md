@@ -36,7 +36,7 @@ Graph should be connected, Should have N-1 edges, Cost should be minimum, No cyc
 MST Algorithms :-     1) Prims      2) Kruskal
 Jab saare vtx ko touch krna ho with minimum cost then prims ya kruskals lga do
 
-PRIMS : ElogE == ElogV(GFG)  Why ? In worst case E can be V^2 => Elog(V^2) => 2ElogV => ElogV 
+PRIMS : [Greedy Algo]  TC : ElogE == ElogV(GFG)  Why ? In worst case E can be V^2 => Elog(V^2) => 2ElogV => ElogV 
 1) You need graph to use Prim's Algo
 2) When graph is dense use Prims, because if you use Kruskals then you will have to sort huge number of edges  [Edge is more compared to vtx]
 3) TC is E log V
