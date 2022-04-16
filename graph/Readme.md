@@ -87,6 +87,8 @@ Kuki BFS me agar cycle wali chiz nahi chahiye toh, daalte he mark kr dete hai, y
 islye queue me daalte he visied mark kar do kuki jo sbse pehle kisi xth node ko touch karta hai wahi mimimum hai us node tak radially pahuchne k liye.
 
 Par Prims me "p"queue me daalte he visited nahi mark saktey kuki aapko wo cycle wali chiz chahiye kuki yaha weight k terms me baat hoti hai,
-and koi kam weight path wala bnda usi node ko touch krne wapas aa sakta hai, with minimum cost, so tumko sabko chance dena hai, islye queue se nikalte waqt visited mark karo isme.
+and "overall mimimum cost" kisi dusre nodes se ghoom k aap tak "overall minimum cost" bna sakti hai, islye yaha cycle wali BFS use krna.
+
+Dijkstra me koi kam weight path wala bnda usi node ko touch krne wapas aa sakta hai, with "minimum path cost", so tumko sabko chance dena hai, islye queue se nikalte waqt visited mark karo isme.
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
