@@ -29,7 +29,7 @@ bipartite ? Look into 1st class notes
 
 ----------------------------------------------------------------------------------------------------------------------------
 
-MST : [Only for Undirected Graph]
+MST : [Only for Undirected Graph] [+ve, -ve, 0] all edge weights are allowed
 ---
 Graph should be connected, Should have N-1 edges, Cost should be minimum, No cycle
 
