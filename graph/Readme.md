@@ -47,6 +47,12 @@ KRUSKALS :
 3) TC is E log E, since you will sort all edges so it's E log E, 
 4) Easy to code
 
+
+# NOTE : Why do we use Simple array edge sorting in Kruskal's && PriorityQueue Sorting in Prim's ??
+Kuki Kruskal's khula chalta hai, jo v minimum hai poore edge me usko pick kar lega whereas
+Prim's haath pakar k chalta hai, src node se nbr node tak jo v mimimum hai usko pick karta hai(for this you need graph)
+nbrs ko daalna hai so you need queue like BFS, and minimum nikalna hai isliye PriorityQueue use krna parega
+
 ----------------------------------------------------------------------------------------------------------------------------
 
 BFS aati hai mtlb Dijkastra && Prims v likhna v aati hai
