@@ -89,8 +89,20 @@ islye queue me daalte he visied mark kar do kuki jo sbse pehle kisi xth node ko 
 Par Prims me "p"queue me daalte he visited nahi mark saktey kuki aapko wo cycle wali chiz chahiye kuki yaha weight k terms me baat hoti hai,
 and "overall mimimum cost" kisi dusre nodes se ghoom k aap tak "overall minimum cost" bna sakti hai, islye yaha cycle wali BFS use krna.
 
-Dijkstra me koi kam weight path wala bnda usi node ko touch krne wapas aa sakta hai, with "minimum path cost", so tumko sabko chance dena hai, islye queue se nikalte waqt visited mark karo isme.
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+# Shortest Path ALgo : ["-ve wt. cycle" k liye shortest path hota he nahi hai]
+
+
+# 1) Dijkstra : [Directed, Undirected] [Ek v -ve edge wt. nahi hona chahiye]
+
+Dijkstra me koi kam weight path wala bnda usi node ko touch krne wapas aa sakta hai, with "minimum path cost", so tumko sabko chance dena hai, islye queue se nikalte waqt visited mark karo isme, 
+PQ me jitne v nodes hai, unme se jis node ki sbse kam wsf hai, hum us node ka answer finalize kar saktey hai
+=> jo sbse pehli baar niklega PQ me se, us node tak pahuchne k liye wahi sbse "minimum path cost" hai.
+kuki dijkstra sirf +ve wt. k liye hota hai, and agar aapke (x-1) wsf bnde bade hai, x wsf bnde se, toh ghoom k cycle k through aapke (x-1) bnde,
+jab v x tak pahuchenge kuch wt. add on kar he aaenge, kuki jab pehle he haar rahe the toh ghoom k aaoge tab v haaroge he.
+
+=> Jo sbse pehli baar nikalta hai dijkstra me wahi us tak ka mimimum path cost hai, provided aap queue se nikalte waqt visisted mark karoge.
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-# Dijkstra : [Directed, Undirected] 
+ 
