@@ -120,18 +120,6 @@ Step 1) DFS (Random Order)
 Step 2) Reverse Edges
 Step 3) DFS (Stack Top Order)
 
-Step 1)
-While DFS call in random order, problematic edge(Wo edge jiske wazah se poori DFS ek he CC me aa jaati hai, here 3->4)
-k start k side jitne bnde hai, un me se koi ek bnda hamesha stack k top pe aaega, avi jaha aap point kar rahe ho mtlb right side wale SCC ko pehle visited mark krna chahte ho, kuki agar usko visited mark kar doge pehle he so ab jab 0 se DFS lgage toh 4 pe jaatey he nahi, So 2 alag alag SCC mil jaatey.
-
-Step 2)
-Reverse the graph, reverse krne se jo ek SCC k bnde honge unhe koi fark nai prega kuki ab v wo SCC he hai, fark sirf problematic edge ko parega.
-NOTE : Reverse kar diye ho graph ko mtlb ab left side k bndo ko aap kisi v tarah pehle he visited mark krna chahate ho.
-Aur left side wale bnde aapko pta hai stack k top pe mil jaaenge, islye stack k top se pehle DFS lgana shuru karte hai.
-
-Step 3) 
-DFS from stack's top, ab agar aap stack k top se DFS lgate ho toh ab problematic edge k start k side jitne bnde hai,
-wo sb pehle he visited mark ho jaaenge, and kuki graph reversed hai, islye 4th node pe nahi jaa saktey hai is DFS call me, So this will give 1 SCC as expected..
-And so on for the rest of the nodes +1 SCC.. +1 SCC.. so on..
+Look into .md file for explanation
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
