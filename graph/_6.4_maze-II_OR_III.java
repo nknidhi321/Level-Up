@@ -3,6 +3,75 @@
 // https://www.lintcode.com/problem/788/
 // Minimum shortest steps
 
+// NOTE : Agar dis array use nai karoge toh visited ka check toh lgaoge he, either of them is mandatory, ya fir dono saath me use kar lo. 
+
+// Subhesh
+// Smart && easy approach // Use this only
+// visited and distance same array me he le liye, disVis
+// -1/INFINITY se initiaize kar do, and make checks accordingly.  
+
+public class Solution {
+    
+    public static class pair implements Comparable<pair> {
+        int r = 0, c = 0, steps = 0;
+
+        pair(int r, int c, int steps) {
+            this.r = r;
+            this.c = c;
+            this.steps = steps;
+        }
+
+        @Override
+        public int compareTo(pair o) {
+            return this.steps - o.steps;
+        }
+    }
+
+     public int shortestDistance(int[][] maze, int[] start, int[] destination) {
+        int n = maze.length, m = maze[0].length, sr = start[0], sc = start[1], er = destination[0], ec = destination[1];
+        int[][] dir = { { 1, 0 }, { -1, 0 }, { 0, 1 }, { 0, -1 } };
+
+        int[][] disVis = new int[n][m];
+        for (int[] d : disVis) Arrays.fill(d, -1);
+
+        PriorityQueue<pair> que = new PriorityQueue<>();
+        que.add(new pair(sr, sc, 0));
+
+        while (que.size() != 0) {
+            pair p = que.remove();
+            int x = p.r;
+            int y = p.c;
+            int currSteps = p.steps;
+            if (x == er && y == ec) return currSteps;
+
+            if(disVis[x][y] != -1) continue; // Already visited nodes pe continue kar jaao
+
+            disVis[x][y] = currSteps; // markingVisited
+            for (int[] d : dir) { // Ab saare unvisited nbrs ko process karo
+                int r = x, c = y, steps = currSteps;
+                while (r >= 0 && c >= 0 && r < n && c < m && maze[r][c] == 0) {
+                    r += d[0];
+                    c += d[1];
+                    steps++;
+                }
+
+                r -= d[0];
+                c -= d[1];
+                steps--;
+
+                if(disVis[r][c] == -1) {
+                    que.add(new pair(r, c, steps));
+                }
+            }
+        }
+        return -1;
+    }
+    
+}
+
+//-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+// Rajneesh
 // Without dis[]
 
 public class Solution {
@@ -51,6 +120,7 @@ public class Solution {
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+// Rajneesh
 // With dis[]
 // Also using pair class
 
@@ -115,7 +185,7 @@ public class Solution {
 
 // Follow up  // https://www.lintcode.com/problem/789/
 // Minimum shortest steps + lex shortest path 
-
+// Rajneesh
 
 public class Solution {
 
