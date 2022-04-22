@@ -128,6 +128,11 @@ NOTE : Kosaraju is for SCC, and TopoSortDFS is JUST EXACTLY SAME to first step o
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-# Topological Sort (Only for DAG)  1) TopDFS(recursive)       2) Kahn's Algo(Iterative), kind of BFS
+# Topological Sort :-
+=> Only for DAG)  
+=> u comes before v
+
+1) TopDFS(recursive)       
+2) 2) Kahn's Algo(Iterative), kind of BFS
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
