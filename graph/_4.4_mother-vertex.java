@@ -1,5 +1,13 @@
 // https://practice.geeksforgeeks.org/problems/mother-vertex/1/#
 /*
+       tos     ros
+	X	X 
+	V	X
+	V	V
+	X	V	[This case will never exist, graph is disconnected 
+	
+	where tos= topOfStack, ros = restOfStack
+	
 	//Same as Topo DFS
 	//There might exist more than 1 mother vtx(which will the members of the cycle of that mothervtx), return smallest motherVtx 
 	//The top most element of the Stack/ArrayList can be mother Vtx or it cannot
