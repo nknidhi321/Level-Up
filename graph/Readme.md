@@ -124,7 +124,7 @@ Look into .md file for explanation
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-NOTE : Kosaraju is for SCC, and TopoSortDFS is similar to first step of Kosaraju
+NOTE : Kosaraju is for SCC, and TopoSortDFS is JUST EXACTLY SAME to first step of Kosaraju
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
