@@ -1,0 +1,74 @@
+// https://leetcode.com/problems/search-in-rotated-sorted-array/
+// Either left half is sorted or right half is sorted, take your decision accordingly 
+
+// Iterative // Binary Search
+
+```
+class Solution {
+    
+    public int search(int[] nums, int target) {
+        return search_Iterative(nums,0, nums.length - 1, target);
+    }
+    
+    public static int search_Iterative(int[] nums, int left, int right, int target){
+        while(left <= right) {
+            
+            int mid = left + (right - left) / 2;
+            if(nums[mid] == target) return mid;
+            
+            // Now, either left half is sorted or right half is sorted
+
+            // Left haf is sorted
+            else if(nums[left] <= nums[mid]) { // equalto is important, when you have only single element
+                if(nums[left] <= target && target <= nums[mid]) right = mid - 1; // check if your target lies in this range
+                else left = mid + 1;
+            }
+
+            // Right half is sorted
+            else {
+                if(nums[mid] <= target && target <= nums[right]) left = mid + 1; // check if your target lies in this range
+                else right = mid - 1;
+            }
+        }
+        return -1;
+    }
+    
+}
+```
+
+--------------------------------------------------------------------------------------------------------------------------------------------------
+
+// Recursive // Binary Search
+
+```
+class Solution {
+    
+    public int search(int[] nums, int target) {
+        return search_Rec(nums,0, nums.length - 1, target);
+    }
+    
+    public static int search_Rec(int[] nums, int left, int right, int target) {
+        if(left > right) return -1;
+        
+        int mid = left + (right - left) / 2;       
+        if(nums[mid] == target) return mid;
+        
+        // Now, either left half is sorted or right half is sorted
+        
+        // Left half is sorted
+        else if(nums[left] <= nums[mid]) { // equalto is important, when you have only single element
+            if(nums[left] <= target && target <= nums[mid]) return search_Rec(nums, left, mid - 1, target); // check if your target lies in this range
+            else return search_Rec(nums, mid + 1, right, target);
+        }
+        
+        // Right half is sorted
+        else {
+            if(nums[mid] <= target && target <= nums[right]) return search_Rec(nums, mid + 1, right, target); // check if your target lies in this range
+            else return search_Rec(nums, left, mid - 1, target);
+        }
+    }
+    
+}
+```
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------
