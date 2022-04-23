@@ -1,5 +1,13 @@
 // https://leetcode.com/problems/search-in-rotated-sorted-array/
-// Either left half is sorted or right half is sorted, take your decision accordingly 
+// Either your left half is sorted or right half is sorted, 
+// TAKE YOUR DECISION BASED ON SORTED REGION, like BS.
+// suppose your target lies in sorted region, then
+// you move into that sorted region then no such thing exists like,
+// either left half is sorted or right half is sorted, now that's just simple BS
+// You step into any "else if" or "else" below both are actually same.
+// Whereas, if your target lies in unsorted region, then
+// You will keep exploring a sorted region and an unsorted region. 
+        
 
 // Iterative // Binary Search
 
@@ -16,7 +24,15 @@ class Solution {
             int mid = left + (right - left) / 2;
             if(nums[mid] == target) return mid;
             
-            // Now, either left half is sorted or right half is sorted
+            // Now, either left half is sorted or right half is sorted, 
+            // TAKE YOUR DECISION BASED ON SORTED REGION, like BS.
+            // suppose your target lies in sorted region, then
+            // you move into that sorted region then no such thing exists like,
+            // either left half is sorted or right half is sorted, now that's just simple BS
+            // You step into any "else if" or "else" below both are actually same.
+            // Whereas, if your target lies in unsorted region, then
+            // You will keep exploring a sorted region and an unsorted region. 
+        
 
             // Left haf is sorted
             else if(nums[left] <= nums[mid]) { // equalto is important, when you have only single element
@@ -53,7 +69,14 @@ class Solution {
         int mid = left + (right - left) / 2;       
         if(nums[mid] == target) return mid;
         
-        // Now, either left half is sorted or right half is sorted
+        // Now, either left half is sorted or right half is sorted, 
+        // TAKE YOUR DECISION BASED ON SORTED REGION, like BS.
+        // suppose your target lies in sorted region, then
+        // you move into that sorted region then no such thing exists like,
+        // either left half is sorted or right half is sorted, now that's just simple BS
+        // You step into any "else if" or "else" below both are actually same.
+        // Whereas, if your target lies in unsorted region, then
+        // You will keep exploring a sorted region and an unsorted region. 
         
         // Left half is sorted
         else if(nums[left] <= nums[mid]) { // equalto is important, when you have only single element
