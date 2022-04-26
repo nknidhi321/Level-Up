@@ -136,3 +136,4 @@ NOTE : Kosaraju is for SCC, and TopoSortDFS is JUST EXACTLY SAME to first step o
 2) 2) Kahn's Algo(Iterative), kind of BFS
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# DSU can detect cycle only in "undirected" graph
