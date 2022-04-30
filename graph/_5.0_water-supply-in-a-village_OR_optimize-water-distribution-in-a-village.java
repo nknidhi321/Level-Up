@@ -15,7 +15,7 @@
       Kuki minimum koi ek node hamesha aisa hoga jo well se paani lega, ek node se zyada nodes v well se paani le saktey hai, but atleast ek toh hamesgha lega he.
 */
 
-// Here Kruskal is implemented
+// Kruskal
 
 import java.util.Arrays;
 
@@ -94,3 +94,59 @@ public class Solution {
     }
 
 }
+
+//===================================================================================================================================================================
+
+// Prims
+
+import java.util.*;
+
+public class Solution {
+
+    public static int supplyWater(int n, int k, int[] wells, int[][] pipes) {
+
+        ArrayList < int[] > [] graph = new ArrayList[n + 1];
+        for (int i = 0; i < n + 1; i++) graph[i] = new ArrayList < > ();
+
+        int idx = 0;
+        for (int i = 0; i < wells.length; i++) { // Adding edges from 0 to n nodes in the new array 
+            int v1 = 0; // From 0
+            int v2 = i + 1; // Other n nodes
+            graph[v1].add(new int[] {v2, wells[i]});  // With weight of given wells
+			graph[v2].add(new int[] {v1, wells[i]});
+        }
+
+        for (int i = 0; i < pipes.length; i++) { // Adding the given n edges of pipes in the new array
+            int[] pipe = pipes[i];
+            int v1 = pipe[0];
+            int v2 = pipe[1];
+            int w = pipe[2];
+            graph[v1].add(new int[] {v2, w}); // Just coping the pipes[][] data into the new array 
+        	graph[v2].add(new int[] {v1, w}); 
+        }
+
+        // Now, simple Prim's
+        boolean[] vis = new boolean[n + 1];
+        PriorityQueue < int[] > pq = new PriorityQueue < > ((a, b) -> a[1] - b[1]);
+        pq.add(new int[] {0, 0}); // {par, vtx, wt}
+		
+        int totalMinCost = 0;
+        while (pq.size() != 0) {
+            int[] p = pq.remove();
+            int vtx = p[0];
+            int w = p[1];
+            if (vis[vtx]) continue;
+
+		totalMinCost += w;                                                // [NOTE : Nikalte waqt he answer bnega in Prim's && Dijkstra]
+		vis[vtx] = true;
+		for (int[] e: graph[vtx]) {
+                  if (!vis[e[0]]) {
+                    pq.add(new int[] {e[0], e[1]});
+			}
+            }
+        }
+        return totalMinCost;
+    }
+
+}
+//===================================================================================================================================================================
