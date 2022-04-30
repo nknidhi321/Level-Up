@@ -9,6 +9,10 @@
       Approach :
       Covert all wells into pipes by placing an extra node say 0 to all the n nodes with weight that of given well digging cost.
       Now, its simple MST problem. Use Prims or Kruskals
+      
+      Obervation :  [Copied the statement from CN editor]
+      or pipe in water from another "well" to it => Minimum ek well toh lgega he, mtlb 0 hamesha connect ho jaaega tumhare final MST graph se.
+      Kuki minimum koi ek node hamesha aisa hoga jo well se paani lega, ek node se zyada nodes v well se paani le saktey hai, but atleast ek toh hamesgha lega he.
 */
 
 // Here Kruskal is implemented
