@@ -1,4 +1,7 @@
 // https://leetcode.com/problems/similar-string-groups/
+// Though the given input is array of String[], it is not necessary to make HashMap to keep track of parent[] array and size[] array.
+// You can treat word0 == 0, word1 == 1, word2 == 2, word3 == 3, and so on..
+// It really depends on question, if you need Map or Array to have your par and rank/height or size array.
 
 class Solution {
     
