@@ -1,5 +1,15 @@
 // https://www.pepcoding.com/resources/data-structures-and-algorithms-in-java-levelup/graphs/sentence_similarity_official/ojquestion#
-// Simple DSU, you just have to take Map instead of array for both parent and height because given input is in String.
+// Simple DSU.
+
+// You just have to take Map instead of array for both parent and height because the input word for DSU might not exist in the par and height array,
+// i.e after performing DSU, You will be getting words from sentences, which does not exist in par and height, so go for map.
+
+// Note : Here you cannot manage par and rank in array like we did in "similar string group" question thought the input here and there was String[] of array.
+// Here, It could have been tackled in array itself, it it was only till pairs array, but the sentence input might contain words which does not exist in pairs array
+// So, here you would face problem, if you would have taken array of par and size because coreresponding par and size does not exist for the new word,
+// but this could be handled easily in map by putting the newly word in the par and rank map.
+
+// If the input for DSU is String, think of Map for par and rank, but if all input is sured to exist in the array, then no need of Map, can be tackled in array itself. 
 
 import java.io.*;
 import java.util.*;
