@@ -1,5 +1,44 @@
 // https://leetcode.com/problems/longest-increasing-subsequence/ 
 
+// No dp, using simple BS
+// TC : nlogn
+// The LIS pattern might not necessarily be correct in subsequence terms
+// But the length would be 100% correct
+
+```
+class Solution {
+    
+    public int lengthOfLIS(int[] nums) {
+        List<Integer> list = new ArrayList<>(); 
+        for(int ele : nums) {
+            int insertPos = insertPos(0, list.size() - 1, ele, list);
+            if(insertPos == list.size()) list.add(ele);
+            else list.set(insertPos, ele);
+        }
+        return list.size();
+    }
+    
+    // List will never contain duplicate ele. Why ??
+    // Because everytime a duplicate element comes as tar, it gets overridden 
+    public int insertPos(int si, int ei, int tar, List<Integer> list) {
+        while(si <= ei) {
+            int mid = si + (ei - si) / 2;
+            if(list.get(mid) <= tar) si = mid + 1;
+            else ei = mid - 1;
+        }
+        int insertPos = si;
+        int duplicateEle = si - 1; 
+        
+        // If duplicate ele exists, we will override at the duplicate ele pos 
+        // Else return the proper insertPos
+        return si - 1 >= 0 && list.get(si - 1) == tar ? duplicateEle : insertPos;
+    }
+    
+}
+```
+
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
 /*
     DP will store mere "pe" khatam hone wala LIS ka length, na ki mere "tak" LIS ka length
     So that if I see an element less than myself, I can be assure that if I stick to the end of this chain, 
@@ -173,7 +212,7 @@ class Solution {
 
 ```
 
---------------------------------------------------------------------------------------------------------------
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
 // Brute Force, Recursion: O(2^N)
 // Unknown Source // Yet to see
@@ -201,6 +240,4 @@ class Solution {
 }
 ```
 
---------------------------------------------------------------------------------------------------------------
-
-// Do nlog Solution also
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
