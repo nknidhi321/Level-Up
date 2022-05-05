@@ -1,4 +1,6 @@
 // https://www.pepcoding.com/resources/data-structures-and-algorithms-in-java-levelup/dynamic-programming/max-non-overlapping-bridges-official/ojquestion
+// Sort on North, and south pe LIS lga do
+// Make sure when you sort on north, keep it's corresponding south and then find LIS on south   
 
 import java.io.*;
 import java.util.*;
@@ -17,19 +19,19 @@ public class Main {
     }
     
     
-    //==========================================================================================
+    //=============================================================================================
     public static int numberOfOverlappingBridges(int[][] pairs) {
         int n = pairs.length;
         Arrays.sort(pairs, (a, b) -> {
             if(a[0] == b[0]) return a[1] - b[1]; // If both are equal, then sort on smaller south
-            else return a[0] - b[0]; // Sort in acc order on north
+            else return a[0] - b[0]; // Sort in asc order on north
         });
         
         List<Integer> list = new ArrayList<>(); 
         for(int i = 0; i < n; i++) {
             int[][] pair = pairs;
-            int ele = pair[i][1];
-            int insertPos = insertPos(0, list.size() - 1, ele, list);
+            int ele = pair[i][1]; // LIS on south
+            int insertPos = lastInsertPos(0, list.size() - 1, ele, list);
             if(insertPos == list.size()) list.add(ele);
             else list.set(insertPos, ele);
         }
@@ -37,8 +39,8 @@ public class Main {
     }
     
     // List will contain duplicate ele. Why ?? Because it is valid as per question
-    // Everytime a duplicate element comes as tar, it gets added to the very next Idx 
-    public static int insertPos(int si, int ei, int tar, List<Integer> list) {
+    // Everytime a duplicate element comes as tar, it gets added to the valid very next Idx 
+    public static int lastInsertPos(int si, int ei, int tar, List<Integer> list) {
         while(si <= ei) {
             int mid = si + (ei - si) / 2;
             if(list.get(mid) <= tar) si = mid + 1;
@@ -47,6 +49,6 @@ public class Main {
         int insertPos = si;
         return insertPos;
     }
-    //=============================================================================================
+    //===============================================================================================
     
 }
