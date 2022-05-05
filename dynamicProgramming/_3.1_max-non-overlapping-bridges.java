@@ -1,5 +1,7 @@
 // https://www.pepcoding.com/resources/data-structures-and-algorithms-in-java-levelup/dynamic-programming/max-non-overlapping-bridges-official/ojquestion
-// Sort on North, and south pe LIS lga do
+
+// Agar dono ko sort kar do and longest non overlapping length find kar lo toh baat bn jaaegi
+// Sort on North, and south pe LIS lga do [LIS ka toh kaam he sorted order me LIS find karna]
 // Make sure when you sort on north, keep it's corresponding south and then find LIS on south   
 
 import java.io.*;
