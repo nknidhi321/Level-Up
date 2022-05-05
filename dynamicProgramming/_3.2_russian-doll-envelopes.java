@@ -6,7 +6,7 @@
     1) Sort the array, ascend on width and descend on height if width are same.
     2) Find the longest increasing subsequence based on height.
 
-    NOTE :
+    NOTE : width/height dono strictly increasing/decreasing hona chahiye, Solving using strictly increasing 
     ----
     Since the width is increasing, we only need to consider height.
     [3, 4] cannot contains [3, 3], so we need to put [3, 4] before [3, 3] when sorting otherwise
@@ -23,7 +23,7 @@ class Solution {
     
     public int maxEnvelopes(int[][] pairs) {
         int n = pairs.length;
-        Arrays.sort(pairs, (a, b) -> {
+        Arrays.sort(pairs, (a, b) -> { // Aise krne se width strictly increasing ka sure ho jaaega
             if(a[0] == b[0]) return b[1] - a[1]; // If both are equal, then sort on desc south/height
             else return a[0] - b[0]; // Sort in asc order on north/width
         });
@@ -40,6 +40,7 @@ class Solution {
         return list.size();
     }
     
+    // Aur yaha se height strictly increaing ho jaaega, kuki duplicates escape kar de rahe
     // List will not contain duplicate ele. Why ?? Because it is invalid as per question
     // Everytime a duplicate element comes as tar, it overrides on the last valid pos 
     public static int lastInsertPos(int si, int ei, int tar, List<Integer> list) {
