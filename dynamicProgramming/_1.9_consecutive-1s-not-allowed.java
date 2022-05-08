@@ -1,4 +1,5 @@
 // https://practice.geeksforgeeks.org/problems/consecutive-1s-not-allowed1912/1/#
+// consecutive 1's nahi hona chahiye 
 
 class Solution {
 
@@ -13,7 +14,7 @@ class Solution {
         // dp1[i] will store number of ways, string ending with 1 of length i		
         // ans of n will be calculated by dp0[i] + dp1[i]  
 		
-		    dp0[1] = dp1[1] = 1;  
+	dp0[1] = dp1[1] = 1;  
 		
         for(int i = 2; i <= n; i++) {
             dp0[i] = (dp0[i - 1] + dp1[i - 1]) % mod;
