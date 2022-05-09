@@ -16,11 +16,11 @@ class Solution {
         // dp1[i] will store number of ways, i fences which can be painted by ij		
         // ans of n will be calculated by dp0[i] + dp1[i]  
 		
-	    dp0[2] = k;
-	    dp1[2] = k * (k - 1);  
+	    dp0[2] = k * 1; // repeation allowed
+	    dp1[2] = k * (k - 1); // repeation not allowed 
 		
         for(int i = 3; i <= n; i++) {
-            dp0[i] = dp1[i - 1];
+            dp0[i] = dp1[i - 1] * 1;
             dp1[i] = (((dp0[i - 1] + dp1[i - 1]) % mod) * (k - 1)) % mod;
         }
         return (dp0[n] + dp1[n]) % mod;
