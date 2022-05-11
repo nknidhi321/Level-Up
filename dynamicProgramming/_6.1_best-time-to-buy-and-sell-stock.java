@@ -1,4 +1,5 @@
 // https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
+// Not a DP question
 
 // Keep a min variable for minimum price, from the current point to all the previous points 
 // and update maxProfit accordingly  for the current price. 
