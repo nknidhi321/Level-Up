@@ -11,16 +11,16 @@ class Solution{
     }
     
     public static int MM_Memo(int si, int ei, int[] arr, Integer[][] dp) {
-        if(ei - si == 1) return dp[si][ei] = 0;
+        if(ei - si == 1) return dp[si][ei] = 0; // Ek single matrix bacha, uska kya he cost hoga 
         
         if(dp[si][ei] != null) return dp[si][ei];
         
         int minCost = (int)1e9;
-        for(int cut = si + 1; cut < ei; cut++) {
-            int leftCost = MM_Memo(si, cut, arr, dp); // An index is 2 different matrix's part
+        for(int cut = si + 1; cut < ei; cut++) { // An index is 2 different matrix's part
+            int leftCost = MM_Memo(si, cut, arr, dp); // So, divide the ele for left matrix && right matrix by slicing the element
             int rightCost = MM_Memo(cut, ei, arr, dp); // So here cut will only be passed
             
-            int currCutCost = leftCost + rightCost + (arr[si] * arr[cut] * arr[ei]);
+            int currCutCost = leftCost + (arr[si] * arr[cut] * arr[ei]) + rightCost;
             
             minCost = Math.min(minCost, currCutCost);
         }
@@ -58,7 +58,7 @@ class Solution{
                     int leftCost = dp[si][cut]; // MM_Tab(si, cut, arr, dp);
                     int rightCost = dp[cut][ei]; //MM_Tab(cut, ei, arr, dp);
                     
-                    int currCutCost = leftCost + rightCost + (arr[si] * arr[cut] * arr[ei]);
+                    int currCutCost = leftCost + (arr[si] * arr[cut] * arr[ei]) + rightCost;
                     
                     minCost = Math.min(minCost, currCutCost);
                 }
