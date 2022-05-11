@@ -1,6 +1,9 @@
 // https://leetcode.com/problems/longest-increasing-subsequence/ 
 
-// No dp, using simple BS
+// NOTE : In LIS either use O(N^2) approach[tabulation] or nlog(n) BS approach              
+// Ignore rest solutions here because memo or rec sol. is not at all optimized
+
+// Using simple BS
 // TC : nlogn
 // The LIS pattern might not necessarily be correct in subsequence terms
 // But the length would be 100% correct
@@ -45,8 +48,39 @@ class Solution {
     I can form one of the possible answers of LIS jo mere "pe" khatam ho
 */
 
-// Sumeet Sir // Tabulation
-// Refer this to understanding
+// Rajneesh
+// Tabulation
+// Follow this
+```
+class Solution {
+
+    public int lengthOfLIS(int[] arr) {
+        int n = arr.length;
+        int[] dp = new int[n];
+        int maxLIS = 1; // Atlease 1 length ki LIS hamesha rahegi
+
+        for(int i = 0; i < n; i++) {  // Sare elements pe khatam hone wala longest LIS find karo
+            dp[i] = 1;
+            // Mere se, mtlb i se pehle jo v chote bnde hai, unme se max length wala find karo unke dp se and apne naam ka +1
+            for(int j = i - 1; j >= 0; j--) { // Mere se pehle 
+                if(arr[j] < arr[i]) { // mere se chote bnde
+                    if(dp[j] + 1 > dp[i]) { // Jinka length mere se zyada ho, find from respective dp, +1 of my name
+                        dp[i] = dp[j] + 1; // Mai uske piche chipak jaaungi
+                        maxLIS = Math.max(maxLIS, dp[i]); // Overall max lete chalo for final answer
+                    }
+                }
+            }
+        }
+        return maxLIS;        
+    }
+    
+}
+```
+
+//-----------------------------------------------------------------------------------------
+// Sumeet Sir 
+// Tabulation
+// Refer this to understand
 
 ```
 class Solution {
