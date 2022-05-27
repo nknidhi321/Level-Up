@@ -1,6 +1,7 @@
 // https://leetcode.com/problems/cherry-pickup/
 
 // 4D DP
+// TC = SC = O(N^4)
 
 class Solution {
     
@@ -60,6 +61,7 @@ class Solution {
 
 // 3D DP
 // r1 + c1 = r2 + c2   =>   c2 = r1 + c1 - r2   [Since, Jumps will always be equal]
+// TC = SC = O(N^3)
 
 ```
 class Solution {
