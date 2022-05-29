@@ -81,11 +81,15 @@ class Solution {
             
             // will you buy on the current day ?? // Buy karoge toh wallet k paise ghatenge 
             // Agar Buy krte ho toh pichle state k sell pe karoge // Kuki Buy Buy is not allowed
-            int nbsp = Math.max(obsp, ossp - prices[i]); // Ya toh apna pichla state hold kr lo ya buy kr lo
+            // Ya toh apna pichla state hold kr lo ya "abtak jitne paise kamaye uspe" buy kr lo
+            int nbsp = Math.max(obsp, ossp - prices[i]); 
             
             // will you sell on the current day ?? // Sell karoge toh wallet k paise badhenge, par fee dena prega
             // Agar sell krte ho toh pichle state k buy pe karoge // Kuki Sell Sell is not allowed
-            int nssp = Math.max(ossp, obsp + prices[i] - fee); // Ya toh apna pichla state hold kr lo ya sell kr lo
+            // Ya toh apna pichla state hold kr lo ya sell kr lo 
+            // NOTE : Yaha pe "abtak jitne paise kamaye uspe" sell kr lo is included
+            // kuki obsp hamare pichle x transaction ko include karte huye bna hai  [ossp - prices[i]]
+            int nssp = Math.max(ossp, obsp + prices[i] - fee); 
             
             obsp = nbsp;
             ossp = nssp;
