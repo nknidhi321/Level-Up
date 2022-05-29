@@ -62,6 +62,8 @@ class Solution {
 
 // Replaced Dp using 2 variables
 // Kind of include exclude 
+// Bechoge tvi jab ek stock buy kara hua hai
+// NOTE: Same day pe buy sell karne ka sense nai bnta hai, kuki 0 profit hogi
 
 ```
 class Solution {
@@ -69,44 +71,30 @@ class Solution {
     public int maxProfit(int[] prices, int fee) {
         int n = prices.length;
         
-        // Bechoge tvi jab ek stock buy kara hua hai
-
         // Initially 0 rupee hai wallet me, toh kuch kharioge toh -ve me he jaaoge
         int obsp = -prices[0]; // old Bought State Profit
         
         // Curent state se pehle na kuch kharida, na kuch becha, so sell state ki profit will be 0 
         int ossp = 0; // old Sold State Profit
         
-        // NOTE: Same day pe buy sell karne ka sense nai bnta hai, kuki 0 profit hogi
-        
         for(int i = 1; i < n; i++) {
             
-            int nbsp = 0; // New bought state profit 
-            int nssp = 0; // New sold state profit
-            
-            // will you buy on the current day ?? // Buy karoge toh wallet k paise ghatenge
-            if(ossp - prices[i] > obsp) { // current buy hamesha pichla sold state se compare hoga
-                nbsp = ossp - prices[i]; // kuki b b is not allowed, agar zyada profit bnri hai toh rakh lo
-            }
-            else { // Else jo stock already kharid rakha tha wahi rehne do
-                nbsp = obsp; // kuki usi se max profit milra h
-            }
+            // will you buy on the current day ?? // Buy karoge toh wallet k paise ghatenge 
+            // Agar Buy krte ho toh pichle state k sell pe karoge // Kuki Buy Buy is not allowed
+            int nbsp = Math.max(obsp, ossp - prices[i]); // Ya toh apna pichla state hold kr lo ya buy kr lo
             
             // will you sell on the current day ?? // Sell karoge toh wallet k paise badhenge, par fee dena prega
-            if(obsp + prices[i] - fee > ossp) { // current sold hamesha pichla bought state se compare hoga
-                nssp = obsp + prices[i] - fee; // kuki ss is not allowed, agar zyada profit bnri hai toh rakh lo  
-            }
-            else { // Else hum aaj nai bechenge
-                nssp = ossp; // kuki pichle se he max profit bnri hai
-            }
+            // Agar sell krte ho toh pichle state k buy pe karoge // Kuki Sell Sell is not allowed
+            int nssp = Math.max(ossp, obsp + prices[i] - fee); // Ya toh apna pichla state hold kr lo ya sell kr lo
             
             obsp = nbsp;
             ossp = nssp;
         }
         
-        return ossp;
+        return ossp; // Max hamesha sold state pe he milega, kuki buy krte waqt -price[i] krte hai
     }
     
 }
 ```
+
 --------------------------------------------------------------------------------------------------------------------------------
