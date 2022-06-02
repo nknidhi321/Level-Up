@@ -3,6 +3,10 @@
 // Cut based question :-
 // The idea is [si, ei] me khud ko sbse last me phoroge,
 // taaki is baat ki assurity rahe ki tumhara left and right boundary alive hai 
+// [NOTE : Left and right boundary us poore array me se chhose hoga na ki sirf -1 && n index]
+// Note : Aap yaha kisi v order me phor saktey ho balloon, incase agar aap visited leke chalte ho toh, 
+// kuki jab aap khud ko phoroge toh aap apne left and right chcek karne jaao, ki mere se mera first left kon hai,
+// and mere se mera first right kon hai, un dono ko pick kar lo, and for do and khud ko phuta hua mark kar do.
 
 ```
 class Solution {
