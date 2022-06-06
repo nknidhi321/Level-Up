@@ -18,7 +18,7 @@ class Solution {
     public int findPaths_Memo(int r, int c, int n, int m, int maxMove, Integer[][][] dp) {
         
         // So, OutOfBoundary jaane k "baad" v agar maxMove 0 ya us se zyada hai then you got a path
-        if(r < 0 || r == n || c < 0 || c == m) return maxMove >= 0 ? 1 : 0;  
+        if(r < 0 || r == n || c < 0 || c == m) return 1;  
         
         // So, OutOfBoundary jaane se pehle he agar maxMove 0 ho gayi toh ab kuch nai ho sakta
         if(maxMove == 0) return 0;
