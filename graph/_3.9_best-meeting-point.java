@@ -1,5 +1,9 @@
 // https://www.lintcode.com/problem/912/
 
+// BFS // TLE
+// NOTE : Yaha overall distance minimize karna hai
+// Individually distance minimize karne ko 2nd priority rakhna
+
 public class Solution {
 
     public int minTotalDistance(int[][] grid) {
