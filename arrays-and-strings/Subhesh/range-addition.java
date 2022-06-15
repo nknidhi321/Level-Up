@@ -14,6 +14,11 @@
     Ab prefixSum calculate kar lo
     
     Now, you have your query based answer in prefixSum.
+    
+    ---------------------------------------------------------------------------------------------------------------------------------------------------------------
+    
+    The question is prefixSum q kaam kar raha hai ??
+    Take a single query and find out the answer in prefixSum using the same approach, you will get your ans.
 */
 
 // Best Approach,  TC : O(2N)
