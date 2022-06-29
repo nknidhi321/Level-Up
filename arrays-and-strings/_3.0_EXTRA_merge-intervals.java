@@ -1,8 +1,20 @@
 // https://leetcode.com/problems/merge-intervals/
 
- // Follow this
- // Intuition : 
+// Follow this 
 
+// Just keep a note ki tumhara ek boundary hamesha fixed hona chahiye,
+// Fir jaisa chahe waisa sorting lgago in this ques.
+// Agar sorting end time pe lgate hai, and 0 se ans bnane ki koshish krte hai then that would be wrong
+// Ex : [2, 4] [1, 5] Ye end pe sorted hai 
+// Par yaha na start fixed hai na end fixed, kidhar kaise ans bnaye is not intuitive.
+
+// Agar start pe sorting lgate ho then 0 se ans bnana shuru karo 
+// => You know ki aage jo v interval milega wo piche k start time se bada nahi hoga, so yaha start time fixed hai for an interval
+
+// Agar end pe sorting lgate ho then last se ans bnana shuru karo 
+//=> You know ki tumse pehle jo v aane wala interval hai wo mere end ko kvi cross nahi karega, so yaha end time fixed hai for an interval
+
+// Intuition : 
 // Sort karo, why sorting ?? 
 // Assume (7, 7) mila then (6, 6) 
 // So (6, 6) kisi pehle wale interval me merge ho jana chahiye tha.
@@ -11,6 +23,10 @@
 // Agar merge hoenge, then list me daalte jaao jo v merge hone k baad intervals bn raha hai
 // NOTE : i pe khare hoke, khud se pehle walo ka ans bna rahe ho, so handle (i == n) also
 // last me ans hoga list me, just copy them to an array 
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+// Sorted on start pt., iterate from start
 
 ```
 class Solution {
@@ -59,6 +75,60 @@ class Solution {
     
 }
  ```
+
+--------------------------------------------------------------------------------------------------------------------------------
+
+// Sorted on end pt, so start from end
+
+```
+class Solution {
+    
+    public int[][] merge(int[][] intervals) {
+        int n = intervals.length;
+        Arrays.sort(intervals, (a, b) -> Integer.compare(a[1], b[1])); // Sort at end 
+        
+        List<int[]> list = new ArrayList<>(); // Since you don't know ki kitne intervals merge honge, so keep a list
+        
+        int startSoFar = intervals[n - 1][0];
+        int endSoFar = intervals[n - 1][1];
+        
+        for(int i = n - 2; i >= -1; i--) { // End pe sort kiya, so end se ans bnao, Why ? Read 1st comment 
+            if(i == -1) { // (i == -1) Last interval ka ans
+                list.add(new int[] {startSoFar, endSoFar});
+                continue;
+            }
+            
+            int currStart = intervals[i][0];
+            int currEnd = intervals[i][1];
+            
+            if(currEnd < startSoFar) { // Non overlapping
+                
+                // NOTE : i pe khare hoke, khud se peeche walo ka ans bna rahe ho,
+                // So last wala bnda reh jaaega, so uska jugard if(i == -1) me kiya hai upar
+                list.add(new int[] {startSoFar, endSoFar}); // form your ans
+                
+                startSoFar = currStart; // For next iteration
+                endSoFar = currEnd; // For next iteration
+            }
+            else {  // currEnd >= startSoFar   // overlapping, so merge in same
+                startSoFar = Math.min(startSoFar, currStart); // Merge hoke jo v chota bnda hoga wo startPoint rahega, wo jeetega
+            }
+        }
+        
+        // List me ens se ans stored tha, and ans is expected from start, so just iterate from end
+        
+        // Copying list into array as expected by the method
+        int listN = list.size();
+        int[][] ans = new int[listN][2];
+        for(int i = listN - 1; i >= 0; i--) {
+            ans[i] = list.get(i);
+        }
+        
+        return ans;
+    }
+    
+}
+```
 
 --------------------------------------------------------------------------------------------------------------------------------
 
