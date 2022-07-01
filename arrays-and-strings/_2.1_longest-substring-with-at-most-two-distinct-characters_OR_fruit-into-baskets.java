@@ -1,4 +1,5 @@
-// https://www.lintcode.com/problem/928/
+// https://www.lintcode.com/problem/928/ [Coded here]
+// https://leetcode.com/problems/fruit-into-baskets/
 
 // Map me unique ele and unki freq rakh lo, since sirf 2 unique char hone chahiye substr/window me 
 // so, jab v map ka size <= 2 ho apne window ka answer nikalwa lo and 
