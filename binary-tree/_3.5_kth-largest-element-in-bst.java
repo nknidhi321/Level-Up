@@ -1,6 +1,50 @@
 // https://practice.geeksforgeeks.org/problems/kth-largest-element-in-bst/1/#
+// Kth largest == Iterate from back in asc sorted inOrder
 
-// Using morris Traversal, SC : O(1)
+// Using Morris Traversal from end, SC : O(1)
+
+class Solution {
+    
+    public int kthLargest(Node root, int k) {
+        
+        int returnValue = -1;
+        Node curr = root;
+        while(curr != null) {
+            Node right = curr.right;
+            if(right == null) {
+                // System.out.println(curr.data);
+                if(--k == 0) returnValue = curr.data;
+                curr = curr.left;
+            }
+            else {
+                Node leftMostNode = getLeftMostNode(right, curr);
+                if(leftMostNode.left == null) { // thread create
+                    leftMostNode.left = curr;
+                    curr = curr.right;
+                }
+                else { // thread destroy
+                    leftMostNode.left = null;
+                    // System.out.println(curr.data);
+                    if(--k == 0) returnValue = curr.data;
+                    curr = curr.left;
+                }
+            }
+        }
+        return returnValue;
+    }
+    
+    public static Node getLeftMostNode(Node node, Node curr) {	
+	while (node.left != null && node.left != curr) { 
+	    node = node.left;
+	}
+	return node;
+    }
+	
+}
+
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+// Using morris Traversal from start, SC : O(1)
 
 class Solution {
     
