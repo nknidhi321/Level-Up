@@ -1,5 +1,49 @@
 // https://leetcode.com/problems/kth-smallest-element-in-a-bst/
 
+// Using Morris Traversal
+// --k kuki 1 based indexing hai
+
+```
+class Solution {
+    
+    public int kthSmallest(TreeNode root, int k) {
+        
+        TreeNode curr = root;
+        int returnValue = -1;
+        while(curr != null) {
+            TreeNode left = curr.left;
+            if(left == null) {
+                if(--k == 0) returnValue = curr.val; // [Don't return from here, because tree will remain modified]
+                curr = curr.right;
+            }
+            else {
+                TreeNode rightMostNode = getRightMostNode(left, curr);
+                if(rightMostNode.right == null) { // create thread
+                    rightMostNode.right = curr;
+                    curr = curr.left;
+                }
+                else { // destroy thread
+                    rightMostNode.right = null;
+                    if(--k == 0) returnValue = curr.val;  // [Don't return from here, because tree will remain modified]
+                    curr = curr.right;
+                }
+            }
+        }
+        return returnValue;
+    }
+    
+    public TreeNode getRightMostNode(TreeNode node, TreeNode curr) {
+        while(node.right != null && node.right != curr) {
+            node = node.right;
+        }
+        return node;
+    }
+    
+}
+```
+
+-------------------------------------------------------------------------------
+
 // Using stack, TC : O(N), SC : O(logN) 
 
 ```
