@@ -104,3 +104,36 @@ class BSTIterator {
 ```
 
 //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+// Using queue
+```
+class BSTIterator {
+
+    Queue<Integer> queue = new LinkedList<>();
+    
+    public BSTIterator(TreeNode root) {
+        if(root != null) {
+            inorder(root, queue);
+        }
+    }
+    
+    // Works same like stack, right pe aate he apne saare left ko stack me daal do
+    // Par yaha queue hai, so pop it from start // Relate it
+    public void inorder(TreeNode root, Queue<Integer> q) {
+        if(root.left != null) inorder(root.left, q);
+        q.add(root.val);
+        if(root.right != null) inorder(root.right, q);
+    }
+    
+    public int next() {
+        return queue.remove();
+    }
+    
+    public boolean hasNext() {
+        return !queue.isEmpty();
+    }
+    
+}
+```
+
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
