@@ -1,10 +1,14 @@
 // https://leetcode.com/problems/construct-binary-search-tree-from-preorder-traversal/
 // Follow up for postoder is at below
 
+
+// NOTE : PreOrder && PostOder me jo tree ki "structure and value" hoti h wo ditto same bnti h but this is not true for inorder,
+// structure maybe retain kr v sakte par guarenteed same value retain nahi kr paaoge
+
+
 // Construct BST from PreOrder
 // Strictly increasing and decreasing
 // Mentioned  <= and >= for base condition of min and max checking
-
 // NOTE : Suppose given preorder ka ek "BT" bna k deta aur kaha jata ki same structure wali "BST" bna k do
 // from given preorder array then => min, max range set kar k he BST bna paaoge, in O(1) Space and O(N) time
 
