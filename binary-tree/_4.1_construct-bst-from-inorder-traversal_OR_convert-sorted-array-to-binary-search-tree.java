@@ -1,7 +1,12 @@
 // https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/
 // https://www.pepcoding.com/resources/data-structures-and-algorithms-in-java-levelup/trees/construct-bst-from-inorder-traversal/ojquestion
 
-// [At Leetcode]
+// NOTE : Range wala tareeka jo preorder and postorder k liye lgate hai wo yaha nai lga saktey kuki
+// root toh bna loge par jaise usme preorder k liye right me jaate the, postorder k liye left me,
+// waise he yaha kidhar jaaoge, so not possible to do in that way.
+
+// Using divide and conquer [At Leetcode]
+
 ```
 class Solution {
     
