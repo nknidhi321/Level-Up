@@ -23,7 +23,6 @@ public class Main {
     
     public static TreeNode constructFromInOrder(int si, int ei, int[] inOrder) {
         if(si > ei) return null;
-        if (si == ei) new TreeNode(inOrder[si]);
         
         int mid = si + (ei - si) / 2;
         TreeNode root = new TreeNode(inOrder[mid]);
