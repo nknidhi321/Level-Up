@@ -54,9 +54,71 @@ class Solution {
 
 // Follow up : https://leetcode.com/problems/palindrome-partitioning-ii/
 
-// Tabulation in pdp preparation + minimum cut calulation of recursive solution for all palindrome substring 
+// Tabulation in pdp preparation + minimum cut based strategy for calulation of memo solution for all palindrome substring 
+// TC : O(N^3)
 
+```
+class Solution {
+    
+    public int minCut(String s) {
+        int n = s.length();
+        Boolean[][] pdp = new Boolean[n][n];
+        preparePalindromeDP(s, pdp);
+        // for(int i = 0; i < pdp.length; i++) {
+        //     for(int j = 0; j < pdp[0].length; j++) {
+        //         System.out.print(pdp[i][j] + "\t"); 
+        //     }
+        //     System.out.println();
+        // }
+        
+        Integer[][] dp = new Integer[n][n];
+        return minCuts(0, s.length() - 1, s, pdp, dp);
+    }
+    
+    public void preparePalindromeDP(String s, Boolean[][] pdp) {
+        int n = s.length();
+        for(int gap = 0; gap < n; gap++) {
+            for(int i = 0, j = gap; j < n; i++, j++) {
+                if(gap == 0) { 
+                    pdp[i][j] = true;  
+                }
+                else if(gap == 1) {
+                    if(s.charAt(i) == s.charAt(j)) pdp[i][j] = true;
+                    else pdp[i][j] = false;
+                }
+                else {
+                    if(s.charAt(i) == s.charAt(j) && pdp[i + 1][j - 1]) pdp[i][j] = true;
+                    else pdp[i][j] = false;
+                }
+            }
+        }
+    }
+    
+	// Agar ye tab hota toh gap ka loop lgta, for(gap).. for(i,j).. for(cut) => O(N^3)
+    public int minCuts(int si, int ei, String s, Boolean[][] pdp, Integer[][] dp) {
+        if(pdp[si][ei]) return dp[si][ei] = 0;
+        
+        if(dp[si][ei] != null) return dp[si][ei];
+        
+        int min = (int)1e9;
+        for(int cut = si; cut < ei; cut++) {
+            int lc = minCuts(si, cut, s, pdp, dp);
+            int rc = minCuts(cut + 1, ei, s, pdp, dp);
+            
+            int myAns = lc + 1 + rc;
+            
+            min = Math.min(min, myAns);
+        }
+        return dp[si][ei] = min;
+    }
+        
+}
+```
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+// Tabulation in pdp preparation + minimum cut calulation of recursive solution for all palindrome substring 
 // Ditto as Palindrome Partitioning, here only difference is calculating minimum cut from all the recursive calls of cut
+// tc :  O(N^2)
 
 class Solution {
     
@@ -100,4 +162,4 @@ class Solution {
     }
 }
 
-//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
