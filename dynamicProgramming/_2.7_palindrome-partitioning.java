@@ -116,8 +116,10 @@ class Solution {
 ```
 -------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-// Tabulation in pdp preparation + minimum cut calulation of recursive solution for all palindrome substring 
+// Tabulation in pdp preparation + minimum cut calulation memo solution for all palindrome substring 
 // Ditto as Palindrome Partitioning, here only difference is calculating minimum cut from all the recursive calls of cut
+// Find prefix palindrome, and check for rest of the string (ros)
+// So, here your left call is saved like we do in cut strategy, only right call goes, so O(N^2)
 // tc :  O(N^2)
 
 class Solution {
