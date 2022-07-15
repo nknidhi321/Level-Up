@@ -93,19 +93,22 @@ Reason : Our operations in first iteration will help us counteract the differenc
 ```
 public class Solution {
     
-    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
-        ListNode c1 = headA;
-        ListNode c2 = headB;
-        if(c1 == c2) return c1; // When head is the intersection point
+    public ListNode getIntersectionNode(ListNode h1, ListNode h2) {
         
-        while(c1 != c2) {
-            c1 = c1 != null ? c1.next : headB;
-            c2 = c2 != null ? c2.next : headA;
-            if(c1 == c2) return c1;
+        ListNode t1 = h1;
+        ListNode t2 = h2;
+        
+		// This diff will be balanced
+        while(t1 != t2) {
+            t1 = t1.next;
+            t2 = t2.next;
+            if(t1 == t2) return t1;
+            if(t1 == null) t1 = h2;
+            if(t2 == null) t2 = h1;
         }
-        return null;
+        return t1; // If 1st node is the intersection pt.
     }
-    
+        
 }
 ```
 
