@@ -1,5 +1,12 @@
 // https://leetcode.com/problems/reorganize-string/
 
+/*
+     Approach :
+     ---------
+     Sabki freq check karo, sbse max bnde ko sbse pehle rakho, uske just baad sec max freq waale bnde ko rakho
+     freq update karo pq me dono char ki, and repeat. 
+*/
+
 // Same logic Using Array + PQ(Pair class)
 // Follow this
 
