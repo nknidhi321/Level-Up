@@ -1,6 +1,8 @@
 // https://practice.geeksforgeeks.org/problems/consecutive-1s-not-allowed1912/1/#
 // consecutive 1's nahi hona chahiye 
 
+// Using dp 
+
 class Solution {
 
     public long countStrings(int n) {
@@ -21,6 +23,29 @@ class Solution {
             dp1[i] = dp0[i - 1];
         }
         return (dp0[n] + dp1[n]) % mod;
+    }
+    
+}
+
+---------------------------------------------------
+	
+// Optimization, without DP
+
+class Solution {
+    
+    public static long mod = (long)1e9 + 7; 
+    
+    public long countStrings(int n) {
+        long endWith0 = 1; // One length
+        long endWith1 = 1; // One length
+        for(int i = 2; i <= n; i++) {
+            long currEndWith0 = (endWith0 + endWith1)  % mod;;
+            long currEndWith1 = endWith0;
+            
+            endWith0 = currEndWith0;
+            endWith1 = currEndWith1;
+        }
+        return (endWith0 + endWith1) % mod;
     }
     
 }
