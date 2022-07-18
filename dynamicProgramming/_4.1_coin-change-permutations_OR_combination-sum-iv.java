@@ -1,6 +1,6 @@
 // https://www.pepcoding.com/resources/online-java-foundation/dynamic-programming-and-greedy/coin-change-permutations-official/ojquestion
 // https://leetcode.com/problems/combination-sum-iv/        [This is Permutation question, wrong name of question is given]
-// Infinite supply of coin
+// Infinite supply of coin // Har ek target pe saare coins ka loop lgega.
 
 // Using for loop method so only tar is changing so 1D DP is sufficient // P&C method
 // Memoization
