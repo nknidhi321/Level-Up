@@ -1,7 +1,8 @@
 // https://www.pepcoding.com/resources/online-java-foundation/dynamic-programming-and-greedy/coin-change-permutations-official/ojquestion
 // https://leetcode.com/problems/combination-sum-iv/        [This is Permutation question, wrong name of question is given]
+// Infinite supply of coin
 
-// Using for loop method so only tar is changing so 1D DP is sufficient
+// Using for loop method so only tar is changing so 1D DP is sufficient // P&C method
 // Memoization
 
 ```
@@ -30,9 +31,9 @@ class Solution {
 }
 ```
 
----------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------
 
-// Using for loop method so only tar is changing so 1D DP is sufficient
+// Using for loop method so only tar is changing so 1D DP is sufficient // P&C method
 // Tabulation
 
 ```
@@ -65,7 +66,7 @@ class Solution {
 
 //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
-// Using pick and not pick method
+// Using pick and not pick method // subsequence method
 // Use 2D DP here, because here we need to pick up using index, so 2 variables are changing idx/n and tar 
 // Memoization
 
