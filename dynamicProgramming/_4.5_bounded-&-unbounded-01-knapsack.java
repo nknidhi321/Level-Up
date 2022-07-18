@@ -151,6 +151,9 @@ class Solution{
 
 //---------------------------------------------------------------------------------------------------------------------------
 
+// P&C works here, becaause max le rahe ho, and saare permutation nikal rahe ho, that is a total waste.
+// Use Subsequence approach for this question.
+
 // P&C, for loop
 
 /*	
