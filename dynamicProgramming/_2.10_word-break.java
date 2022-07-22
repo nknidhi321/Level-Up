@@ -50,27 +50,30 @@ class Solution {
     make sure to check every possibility by using for loop
 */
 
+```
 class Solution {
     
-    public static int n;
+    int n;
     
-    public boolean wordBreak(String s, List<String> wordDict) {
-        int maxLength = 0;
-        Set<String> dict = new HashSet<>();
-        for(String word : wordDict) {
-            maxLength = Math.max(maxLength, word.length());
-            dict.add(word);
-        }
+    public boolean wordBreak(String s, List<String> arr) {
         n = s.length();
-        return wordBreak(0, n - 1, maxLength, s, dict);
+        int maxWordLen = 0;
+        Set<String> set = new HashSet<>();
+        for(int i = 0; i < arr.size(); i++) {
+            set.add(arr.get(i));
+            maxWordLen = Math.max(maxWordLen, arr.get(i).length());
+        }
+        return wordBreak(0, n - 1, maxWordLen, s, set);
     }
-    
-    public static boolean wordBreak(int si, int ei, int maxLength, String s, Set<String> dict) {
-        if(si == n) return true;
         
-        for(int brk = si; brk < si + maxLength && brk <= ei; brk++) {
-            if(dict.contains(s.substring(si, brk + 1))) {
-                if(wordBreak(brk + 1, ei, maxLength, s, dict)) {
+    public boolean wordBreak(int si, int ei, int maxWordLen, String s, Set<String> set) {
+        if(si == n) return true;
+
+        boolean flag = false;
+        for(int cut = si; cut <= Math.min(ei, si + maxWordLen - 1); cut++) {
+            String sub = s.substring(si, cut + 1);
+            if(set.contains(sub)) {
+                if(wordBreak(cut + 1, ei, maxWordLen, s, set)) {
                     return true;
                 }
             }
@@ -79,10 +82,97 @@ class Solution {
     }
     
 }
+```
+
+---------------------------------------------------------------------------------------------------
+
+// Mine Memo // 1D DP
+
+```
+class Solution {
+    
+    int n;
+    
+    public boolean wordBreak(String s, List<String> arr) {
+        n = s.length();
+        int maxWordLen = 0;
+        Set<String> set = new HashSet<>();
+        for(int i = 0; i < arr.size(); i++) {
+            set.add(arr.get(i));
+            maxWordLen = Math.max(maxWordLen, arr.get(i).length());
+        }
+        Boolean[] dp = new Boolean[n + 1];
+        return wordBreak(0, n - 1, maxWordLen, s, set, dp);
+    }
+        
+    public boolean wordBreak(int si, int ei, int maxWordLen, String s, Set<String> set, Boolean[] dp) {
+        if(si == n) return dp[n] = true;
+        
+        if(dp[si] != null) return dp[si];
+        
+        for(int cut = si; cut <= Math.min(ei, si + maxWordLen - 1); cut++) {
+            String sub = s.substring(si, cut + 1);
+            if(set.contains(sub)) {
+                if(wordBreak(cut + 1, ei, maxWordLen, s, set, dp)) {
+                    return dp[si] = true;
+                }
+            }
+        }
+        return dp[si] = false;
+    }
+    
+}
+```
+
+----------------------------------------------------------------------------------------------------------------
+
+// Mine Tab // 1D DP
+
+```
+class Solution {
+    
+    int n;
+    
+    public boolean wordBreak(String s, List<String> arr) {
+        n = s.length();
+        int maxWordLen = 0;
+        Set<String> set = new HashSet<>();
+        for(int i = 0; i < arr.size(); i++) {
+            set.add(arr.get(i));
+            maxWordLen = Math.max(maxWordLen, arr.get(i).length());
+        }
+        Boolean[] dp = new Boolean[n + 1];
+        return wordBreak(0, n - 1, maxWordLen, s, set, dp);
+    }
+        
+    public boolean wordBreak(int SI, int ei, int maxWordLen, String s, Set<String> set, Boolean[] dp) {
+        for(int si = n; si >= 0; si--) {
+            if(si == n) {
+                dp[n] = true;
+                continue;
+            }
+
+            boolean flag = false;
+            for(int cut = si; cut <= Math.min(ei, si + maxWordLen - 1); cut++) {
+                String sub = s.substring(si, cut + 1);
+                if(set.contains(sub)) {
+                    if(dp[cut + 1]) { // if(wordBreak(cut + 1, ei, maxWordLen, s, set, dp)) {
+                        flag = true;
+                        break;
+                    }
+                }
+            }
+            dp[si] = flag == true;
+        }
+        return dp[SI];
+    }
+    
+}
+```
 
 //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
-// Mine // 1D DP
+// Mine // 1D DP // Old
 // Same above Sumeet Malik code + using dp
 // Memoization
 
