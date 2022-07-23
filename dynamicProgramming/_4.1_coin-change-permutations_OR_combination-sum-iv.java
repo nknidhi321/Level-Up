@@ -2,8 +2,71 @@
 // https://leetcode.com/problems/combination-sum-iv/        [This is Permutation question, wrong name of question is given]
 // Infinite supply of coin // Har ek target pe saare coins ka loop lgega.
 
+// Using for loop method 
+// Coins ko piche se use kr rahe h
+// Memoization
+```
+class Solution {
+
+    int n;
+    
+    public int combinationSum4(int[] nums, int target) {
+        n = nums.length;
+        Integer[] dp = new Integer[target + 1];
+        return permutationInfinite(nums, target, dp);
+    }
+    
+    public int permutationInfinite(int[] nums, int target, Integer[] dp) {
+        if(target == 0) return dp[0] = 1;
+            
+        if(dp[target] != null) return dp[target];
+        
+        int count = 0;
+        for(int i = n - 1; i >= 0; i--) {
+            if(target - nums[i] >= 0) {
+                count += permutationInfinite(nums, target - nums[i], dp);
+            }
+        }
+        return dp[target] = count;
+    }
+    
+}
+```
+---------------------------------------------------------------------------------
+// Tabulation
+```
+class Solution {
+
+    int n;
+    
+    public int combinationSum4(int[] nums, int target) {
+        n = nums.length;
+        Integer[] dp = new Integer[target + 1];
+        return permutationInfinite(nums, target, dp);
+    }
+    
+    public int permutationInfinite(int[] nums, int TARGET, Integer[] dp) {
+        for(int target = 0; target <= TARGET; target++) {
+            if(target == 0) {dp[0] = 1; continue;}
+
+            int count = 0;
+            for(int i = n - 1; i >= 0; i--) {
+                if(target - nums[i] >= 0) {
+                    count += dp[target - nums[i]]; // permutationInfinite(nums, target - nums[i], dp);
+                }
+            }
+            dp[target] = count;
+        }
+        return dp[TARGET];
+    }
+    
+}
+```
+
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 // Using for loop method so only tar is changing so 1D DP is sufficient // P&C method
 // Memoization
+// Coins ko aage se use kar rahe
 
 ```
 class Solution {
@@ -35,6 +98,7 @@ class Solution {
 
 // Using for loop method so only tar is changing so 1D DP is sufficient // P&C method
 // Tabulation
+// Coins ko aage se use kar rahe
 
 ```
 class Solution {
