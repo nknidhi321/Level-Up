@@ -1,4 +1,5 @@
 // https://practice.geeksforgeeks.org/problems/image-multiplication0627/1
+// Similar to symmetry of tree
 
  class Solution {
      
