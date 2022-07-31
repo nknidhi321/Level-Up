@@ -1,5 +1,5 @@
 // https://leetcode.com/problems/split-array-largest-sum/
-// Same as allocate-minimum-number-of-pages
+// Ditto allocate-minimum-number-of-pages
 
 class Solution {
     
