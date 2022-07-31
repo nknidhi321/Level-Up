@@ -1,4 +1,5 @@
 //https://leetcode.com/problems/koko-eating-bananas/
+// Similar to Book Allocation
 
 /*  
     IMPORTANT :
