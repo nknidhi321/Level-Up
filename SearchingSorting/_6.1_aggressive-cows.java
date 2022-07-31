@@ -1,4 +1,5 @@
 // https://www.codingninjas.com/codestudio/problems/aggressive-cows_1082559?leftPanelTab=0
+// Similar to Book Allocation
 
 import java.util.*;
 
