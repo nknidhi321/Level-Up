@@ -1,5 +1,41 @@
-// https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/
+// https://practice.geeksforgeeks.org/problems/level-order-traversal-in-spiral-form/1
+// Using single Data Structure
+// Using LinkedList, as doubly ended queue, dono taraf se data process karna hai
 
+class Spiral {
+
+    public ArrayList<Integer> findSpiral(Node root) {
+        if(root == null) return new ArrayList<>();
+        
+        ArrayList<Integer> ans = new ArrayList<>();
+        LinkedList<Node> queue = new LinkedList<>();
+        queue.addFirst(root); // Odd level
+
+        int level = 1;
+        while(!queue.isEmpty()) {
+            int size = queue.size();
+            while(size-- > 0) {
+                if(level % 2 == 0) { // Even level 
+                    Node node = queue.removeFirst(); // Aage se nikalo, piche se daalo
+                    ans.add(node.data);
+                    if(node.left != null) queue.addLast(node.left); // left pehle
+                    if(node.right != null) queue.addLast(node.right); // fir right
+                }            
+                else { // Odd level
+                    Node node = queue.removeLast(); // Piche se nikalo, aage se daalo
+                    ans.add(node.data);
+                    if(node.right != null) queue.addFirst(node.right); // right pehle
+                    if(node.left != null) queue.addFirst(node.left); // fir left
+                }            
+            }
+            level++;
+        }
+        return ans;
+    }
+    
+}
+//--------------------------------------------------------------------------------------------------
+// https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/
 // BFS
 /*
     Approach
@@ -45,6 +81,7 @@ class Solution {
 -------------------------------------------------------------------------------------------------------
 
 // Using ArrayDeque
+// Single DS
 
 ```
 class Solution {
