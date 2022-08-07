@@ -9,7 +9,7 @@
 // Whereas, if your target lies in unsorted region, then
 // You will keep exploring a sorted region and an unsorted region. 
         
-
+// TC : logN
 // Iterative // Binary Search
 
 ```
@@ -54,7 +54,7 @@ class Solution {
 ```
 
 --------------------------------------------------------------------------------------------------------------------------------------------------
-
+// TC : logN
 // Recursive // Binary Search
 
 ```
@@ -95,3 +95,52 @@ class Solution {
 }
 ```
 ----------------------------------------------------------------------------------------------------------------------------------------------------------
+// TC : O(2logN)
+// First logN to find minIdx and 2nd logN to find the target  
+
+```
+class Solution {
+    
+    public int search(int[] nums, int target) {
+        int minIdx = findMin(nums);
+        if(nums[minIdx] == target) return minIdx;
+        
+        int idx1 = search_Iterative(nums, 0, minIdx - 1, target);
+        if(idx1 != -1) return idx1;
+        
+        int idx2 = search_Iterative(nums, minIdx + 1, nums.length - 1, target);
+        if(idx2 != -1) return idx2;
+        
+        return -1;
+    }
+    
+    public int findMin(int[] arr) {
+        int n = arr.length;
+        int si = 0, ei = n - 1;
+        while(si < ei) { // NOTE : = mat lgana
+            int mid = si + (ei - si) / 2;
+            // Compare mid bnda with "rightmost" bnda
+            if(arr[mid] <= arr[ei]) { // right region is sorted => Udhar mko min nahi milega
+                ei = mid; // But mid can be your min so assign with mid and not mid - 1
+            }
+            else { // left region is sorted
+                si = mid + 1; 
+            }
+        }
+        return ei; // Either return si or ei, both will obvio point to same bnda
+    }
+    
+    // Simple BS
+    public static int search_Iterative(int[] nums, int left, int right, int target){
+        while(left <= right) {
+            int mid = left + (right - left) / 2;
+            if(nums[mid] == target) return mid;
+            else if(nums[mid] < target) left = mid + 1;                
+            else right = mid - 1;
+        }
+        return -1;
+    }
+    
+}
+```
+--------------------------------------------------------------------------------------------------------------------------------------------------------
