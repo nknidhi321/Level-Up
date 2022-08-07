@@ -1,4 +1,5 @@
 // https://leetcode.com/problems/search-in-rotated-sorted-array/
+
 // Either your left half is sorted or right half is sorted, 
 // TAKE YOUR DECISION BASED ON SORTED REGION, like BS.
 // suppose your target lies in sorted region, then
@@ -36,13 +37,13 @@ class Solution {
 
             // Left haf is sorted
             else if(nums[left] <= nums[mid]) { // equalto is important, when you have only single element
-                if(nums[left] <= target && target <= nums[mid]) right = mid - 1; // check if your target lies in this range
+                if(nums[left] <= target && target < nums[mid]) right = mid - 1; // check if your target lies in this range
                 else left = mid + 1;
             }
 
             // Right half is sorted
             else {
-                if(nums[mid] <= target && target <= nums[right]) left = mid + 1; // check if your target lies in this range
+                if(nums[mid] < target && target <= nums[right]) left = mid + 1; // check if your target lies in this range
                 else right = mid - 1;
             }
         }
@@ -68,7 +69,7 @@ class Solution {
         
         int mid = left + (right - left) / 2;       
         if(nums[mid] == target) return mid;
-        
+
         // Now, either left half is sorted or right half is sorted, 
         // TAKE YOUR DECISION BASED ON SORTED REGION, like BS.
         // suppose your target lies in sorted region, then
@@ -79,19 +80,18 @@ class Solution {
         // You will keep exploring a sorted region and an unsorted region. 
         
         // Left half is sorted
-        else if(nums[left] <= nums[mid]) { // equalto is important, when you have only single element
-            if(nums[left] <= target && target <= nums[mid]) return search_Rec(nums, left, mid - 1, target); // check if your target lies in this range
-            else return search_Rec(nums, mid + 1, right, target);
+        else if(nums[left] <= nums[mid]) { // here equalto is important, when you have only single element
+            if(nums[left] <= target && target < nums[mid]) return search_Rec(nums, left, mid - 1, target); // check if your target lies in this range
+            else return search_Rec(nums, mid + 1, right, target); // tar is already checked with mid, so no need to write target <= nums[mid] 
         }
         
         // Right half is sorted
         else {
-            if(nums[mid] <= target && target <= nums[right]) return search_Rec(nums, mid + 1, right, target); // check if your target lies in this range
-            else return search_Rec(nums, left, mid - 1, target);
+            if(nums[mid] < target && target <= nums[right]) return search_Rec(nums, mid + 1, right, target); // check if your target lies in this range
+            else return search_Rec(nums, left, mid - 1, target); // tar is already checked with mid, so no need to write nums[mid] <= target
         }
     }
     
 }
 ```
-
 ----------------------------------------------------------------------------------------------------------------------------------------------------------
