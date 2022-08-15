@@ -1,4 +1,52 @@
 // https://leetcode.com/problems/binary-tree-maximum-path-sum/
+// Kadan's Algo, Using Pair class for maxSoFar
+
+class Solution {
+
+	public class Pair {
+        int nodeToNode;
+        int maxSoFar; // nodeToNode_maxSoFar
+        public Pair(int nodeToNode, int maxSoFar) {
+            this.nodeToNode = nodeToNode;
+            this.maxSoFar = maxSoFar;
+        }
+    }
+    
+    public int maxPathSum(TreeNode root) {
+        Pair ans = maxPathSumHelper(root);
+        return ans.maxSoFar;
+    }
+    
+    public Pair maxPathSumHelper(TreeNode root) {
+        if(root == null) return new Pair(Integer.MIN_VALUE, Integer.MIN_VALUE);
+        
+        // Mere ko apna maxPathSum find karne k liye chahiye
+        // koi left ka maxSum "Path" dede
+        // koi right ka maxSum "Path" dede
+        // So mera answer hoga : left + right + mai khud 
+        
+        Pair left = maxPathSumHelper(root.left); 
+        Pair right = maxPathSumHelper(root.right); 
+        
+        int leftNodeToNode = left.nodeToNode;
+        int rightNodeToNode = right.nodeToNode;
+        if(left.nodeToNode < 0) leftNodeToNode = 0;
+        if(right.nodeToNode < 0) rightNodeToNode = 0;
+        
+        // Mera ans ya toh left ya right subtree me kvi pehle he bn gaya hoga, 
+        // ya mai max path sum bna sakti hu
+        int currMaxSoFar = Math.max(Math.max(left.maxSoFar, right.maxSoFar), 
+                                    leftNodeToNode + rightNodeToNode + root.val); 
+        
+        // Khud se shuru hone wala longest path currNodeToNodedaal do
+        int currNodeToNode = Math.max(leftNodeToNode, rightNodeToNode) + root.val;  
+        
+        return new Pair(currNodeToNode, currMaxSoFar); 
+    }
+    
+}
+//------------------------------------------------------------------------------------------
+// Kadan's Algo, Using static for maxSoFar
 
 class Solution {
     
