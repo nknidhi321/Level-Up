@@ -1,5 +1,8 @@
 // https://leetcode.com/problems/minimum-time-to-collect-all-apples-in-a-tree/
 
+// DFS
+// Considered it as a graph
+```
 class Solution {
     
     public int minTime(int n, int[][] edges, List<Boolean> hasApple) {
@@ -44,3 +47,59 @@ class Solution {
     }
     
 }
+```
+
+-----------------------------------------------------------------------------------------------------------------------
+
+// BFS
+// Considered it as a tree
+```
+class Solution {
+    
+    public int minTime(int n, int[][] edges, List<Boolean> hasApple) {
+//        ArrayList<Integer>[] graph = new ArrayList[n];
+        
+//        for(int i = 0; i < n; i++) graph[i] = new ArrayList<>();
+        
+        int[] par = new int[n];
+        Arrays.fill(par, -1);
+        for(int[] edge : edges) {
+            int u = edge[0];
+            int v = edge[1];
+            // graph[u].add(v);
+            // graph[v].add(u);
+            if(par[v] == -1) par[v] = u;
+            else par[u] = v; // To handle one special case
+            
+        }
+        
+        int m = hasApple.size();
+        boolean [] vis = new boolean[n];
+        LinkedList<Integer> queue = new LinkedList<>();
+        for(int i = 0; i < m; i++) {
+            if(hasApple.get(i)) {
+                queue.add(i);
+                vis[i] = true;
+            }
+        }
+
+        int timer = 0;
+        while(!queue.isEmpty()) {
+            int size = queue.size();
+            while(size-- > 0) {
+                int node = queue.removeFirst();
+                if(node == 0) break;
+                else timer += 2;
+                
+                if(!vis[par[node]]) { 
+                    queue.add(par[node]);
+                    vis[par[node]] = true;
+                }
+            }
+        }
+        
+        return timer;
+    }
+    
+}
+```
