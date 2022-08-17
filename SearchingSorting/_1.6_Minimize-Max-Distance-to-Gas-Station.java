@@ -1,6 +1,7 @@
 // https://www.lintcode.com/problem/848/description
 // Similar to cow problem, but usme dis max rakhna tha, isme dis min krna h
-// A bit hard due to double and identifying ans can lie between mid, mid + 1 or mid - 1, mid
+// A bit hard due to double and identifying ans can lie between [mid, mid + 1] or [mid - 1, mid]
+// Refer : https://github.com/nknidhi321/Level-Up/blob/main/SearchingSorting/Screenshots.md
 
 public class Solution {
   
