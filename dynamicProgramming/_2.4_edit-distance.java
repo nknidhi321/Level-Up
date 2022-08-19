@@ -14,6 +14,38 @@
 
 class Solution {
     
+    public int minDistance(String s, String tar) {
+        int n = s.length();
+        int m = tar.length();
+        Integer[][] dp = new Integer[n + 1][m + 1];
+        return memo(n, s, m, tar, dp);
+    }
+    
+    public int memo(int n, String s, int m, String tar, Integer[][] dp) {
+        if(m == 0 || n == 0) return dp[n][m] = n == 0 ? m : n;
+        
+        if(dp[n][m] != null) return dp[n][m];
+        
+        char c1 = s.charAt(n - 1);
+        char c2 = tar.charAt(m - 1);
+        int min = (int)1e9;
+        if(c1 == c2) { // char equal
+            min = memo(n - 1, s, m - 1, tar, dp);
+        }
+        else { // char unequal
+            min = Math.min(min, memo(n, s, m - 1, tar, dp) + 1); // insert
+            min = Math.min(min, memo(n - 1, s, m, tar, dp) + 1); // delete
+            min = Math.min(min, memo(n - 1, s, m - 1, tar, dp) + 1); // replace
+        }
+        return dp[n][m] = min;
+    }
+    
+}
+------------------
+// SAame code old
+	
+class Solution {
+    
     public int minDistance(String s1, String s2) {
         int len1 = s1.length();
         int len2 = s2.length();
