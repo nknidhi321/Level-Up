@@ -1,6 +1,52 @@
 // https://practice.geeksforgeeks.org/problems/detect-cycle-in-a-directed-graph/1
 
-// GFG
+// Using Kahn's Algo
+// Agar saare nodes queue se bhr aa gaye mtlb sbki indegree resolve ho gayi thi => No cycle 
+
+class Solution {
+
+    public boolean isCyclic(int V, ArrayList<ArrayList<Integer>> adj) {
+        int n = adj.size();
+        int[] indegree = new int[V];
+        for(int i = 0; i < n; i++) {
+            for(int nbr : adj.get(i)) {
+                indegree[nbr]++;
+            }
+        }
+        
+        Queue<Integer> queue = new LinkedList<Integer>();
+        for(int i = 0; i < indegree.length; i++) {
+            if(indegree[i] == 0) {
+                queue.add(i);
+            }
+        }
+        
+        //In topBFS we add parents first and then child
+        //And parent node should be as last as possible in the array as asked in question
+        //So start filling ans from back so that parents can be as last as possible
+        
+        int count = 0;
+        int[] ans = new int[V];
+        while(!queue.isEmpty()) {
+            int vtx = queue.poll();
+            count++;
+            
+            for(int v : adj.get(vtx)) {
+                if(--indegree[v] == 0) {
+                    queue.add(v);
+                }
+            }
+        }
+        return count == V ? false : true;
+    }
+    
+}
+
+//==============================================================================================================================================
+
+// GFG 
+// Using DFS, keeping track of recursive stack
+
 class Solution {
 
     public boolean isCyclic(int V, ArrayList<ArrayList<Integer>> adj) {
@@ -45,6 +91,8 @@ class Solution {
 //================================================================================================================================================
 
 // Shamii
+// Using DFS keeping track of process start and process end, serves the purpose of visited and recStack in the above code 
+
 class Solution {
 
     public boolean isCyclic(int V, ArrayList<ArrayList<Integer>> adj) {
