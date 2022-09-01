@@ -58,4 +58,49 @@ class Solution {
         return count;
     }
 }
+
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+// Memo
+class Solution {
+    
+    public int countSubstrings(String s) {
+        int n = s.length();
+        int[][] dp = new int[n][n];
+        for(int[] d : dp) Arrays.fill(d, -1);
+        prepareDP(0, n - 1, s, dp);
+        
+        int count = 0;
+        for(int i = 0; i < n; i++) {
+            for(int j = 0; j < n; j++) {
+                if(dp[i][j] == 1) {
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+    
+    public int prepareDP(int i , int j, String s, int[][] dp) {
+        if(i == j) return dp[i][j] = 1; // true
+        if(i > j) return 0; // false
+        
+        if(dp[i][j] != -1) return dp[i][j];
+        
+        char ch1 = s.charAt(i);
+        char ch2 = s.charAt(j);
+        if(ch1 == ch2) {
+            if(i + 1 == j) dp[i][j] = 1; // true
+            else dp[i][j] = prepareDP(i + 1, j - 1, s, dp); // true or false
+        }
+        else {
+            dp[i][j] = 0; // false    
+        }
+        prepareDP(i + 1, j, s, dp);
+        prepareDP(i, j - 1, s, dp);
+        return dp[i][j]; 
+    }
+    
+}
+
 //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
