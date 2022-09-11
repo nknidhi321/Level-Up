@@ -1,5 +1,47 @@
 // https://www.lintcode.com/problem/919/
- 
+// Using PQ
+
+/**
+ * Definition of Interval:
+ * public class Interval {
+ *     int start, end;
+ *     Interval(int start, int end) {
+ *         this.start = start;
+ *         this.end = end;
+ *     }
+ * }
+ */
+
+public class Solution {
+    
+    public int minMeetingRooms(List<Interval> intervals) {
+        int n = intervals.size();
+        Collections.sort(intervals, (a, b) -> a.start - b.start); // sort on starting pt.
+        PriorityQueue<Interval> pq = new PriorityQueue<>((a, b) -> a.end - b.end); // sort on ending pt.
+        int count = 1;
+        
+        for(int i = 0; i < n; i++) {
+            Interval currInterval = intervals.get(i);
+            int currStart = currInterval.start;
+            if(!pq.isEmpty()) {
+                Interval pair = pq.peek(); // pair with least ending time
+                int leastEndingTime = pair.end;
+                if(currStart < leastEndingTime) {
+                    count++;
+                }
+                else {
+                    pq.remove();
+                }
+            }
+            pq.add(currInterval);
+        }
+        return count;
+    }
+}
+
+//================================================================================================================
+// Without using PQ
+
  /**
  * Definition of Interval:
  * public class Interval {
@@ -10,7 +52,7 @@
  *     }
  * }
  */
- 
+
 public class Solution {
    
     public int minMeetingRooms(List<Interval> intervals) {
