@@ -1,6 +1,10 @@
 // https://leetcode.com/problems/subarray-sum-equals-k/
 
-// current state pe (preFixSum - k) nikalo, and agar wo exist krta hai,
+// sum(i,j) = preFixSum[j] - preFixSum[i - 1]       , where i <= j and sum(i,j) is k
+// k = preFixSum[j] - preFixSum[i - 1]
+// preFixSum[i - 1] = preFixSum[j] - k
+
+// So, current state pe (preFixSum - k) nikalo, and agar wo exist krta hai,
 // then jaha jaha v (preFixSum - k) aaya, uske next bnde se tum tak ek subarray milega.
 
 class Solution {
