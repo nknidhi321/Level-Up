@@ -1,5 +1,57 @@
 // https://practice.geeksforgeeks.org/problems/fractional-knapsack-1587115620/1
 
+// Latest
+
+class Solution {
+    class Pair {
+        int v;
+        int w;
+        double r;
+        Pair() {}
+    }
+    
+    double fractionalKnapsack(int W, Item arr[], int n) {
+        Pair[] info = new Pair[n];
+        for(int i = 0; i < n; i++) {
+            Pair p = new Pair();
+            p.v = arr[i].value;
+            p.w = arr[i].weight;
+            p.r = arr[i].value / (arr[i].weight * 1.0);
+            info[i] = p;
+        }
+        
+        // Arrays.sort(info, (a, b) -> {
+        //     if(b.r > a.r) return 1;
+        //     else if(b.r < a.r) return -1;
+        //     else return 0;
+        // }); // Sorted based on ratio in desc Order
+        
+        Arrays.sort(info, (a, b) -> { // You want reverse Order 
+            if(b.r - a.r > 0) return 1; // b - a > 0 ho tab 1 bhejo
+            else if(b.r - a.r < 0) return -1;
+            else return 0;
+        });  // Sorted based on ratio in desc Order
+        
+        int i = 0;
+        double profit = 0.0;
+        while(i < n && W > 0) {
+            if(info[i].w <= W) {
+                profit += info[i].v;
+                W -= info[i].w;
+            }
+            else {
+                profit += W * info[i].r;
+                W -= W;
+            }
+            i++;
+        }
+        return profit;        
+    }
+}
+
+//-----------
+// Same Logic
+
 class Solution {
 
     double fractionalKnapsack(int W, Item arr[], int n) {
