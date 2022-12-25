@@ -41,6 +41,38 @@ public class Solution {
 
 //================================================================================================================
 // Without using PQ
+// Same as below, Latest Code
+class Solution {
+    
+    public int minMeetingRooms(int[][] intervals) {
+        int n = intervals.length;
+        Integer[] startPts = new Integer[n];
+        Integer[] endPts = new Integer[n];
+        for(int i = 0; i < n; i++) {
+            startPts[i] = intervals[i][0];
+            endPts[i] = intervals[i][1];
+        }
+        
+        Arrays.sort(startPts, (a, b) -> a - b);
+        Arrays.sort(endPts, (a, b) -> a - b);
+        
+        int count = 1; // First meeting is in progress
+        int s = 1, e = 0; // s = startPt, e = endPt 
+        while(s < n) {
+            if(startPts[s] < endPts[e]) { // next starting meeting time is earlier than prev end time
+                count++; // You require another room
+            }
+            else { // next starting meeting time is after prev end time
+                e++; // Meeting can be done in the same room, so next ending pt update karo
+            }
+            s++;
+        }
+        return count;
+    }
+    
+}
+
+//-------
 
  /**
  * Definition of Interval:
