@@ -16,49 +16,37 @@ class Solution {
     // NOTE: It is guaranteed that the input board has only one solution
     
     public void solveSudoku(char[][] board) {
-        
-        //Creating list of emptyIndex Cells
         List<Integer> emptyIndex = new ArrayList<>();
         for(int i = 0; i < 9; i++) {
             for(int j = 0; j < 9; j++) {
                 if(board[i][j] == '.') {
-                    emptyIndex.add(i * 9 + j); // Adding idx in encoded form => i * m + j
+                    emptyIndex.add(i * 9 + j);
                 }
             }
         }
-        
         isSolved(0, emptyIndex, board);
     }
     
     public static boolean isSolved(int idx, List<Integer> emptyIndex, char[][] board) {
         if(idx == emptyIndex.size()) return true; // Sudoku solved
         
-        // Decoding the encoded idx back to row, col
         int cellIdx = emptyIndex.get(idx);
         int row = cellIdx / 9;
         int col = cellIdx % 9;
-        
-        // Calculating nextRow, nextCol for the next call
-        int nextRow = (col == 8) ? row + 1 : row; 
-        int nextCol = (col == 8) ? 0 : col + 1;
-
-        // If cell is empty, try filling the valid number
-        if(board[row][col] == '.') {
-            for(char num = '1'; num <= '9'; num++) { // Check from 0 to 9
-                if(isValid(row, col, num, board)) {  // If any number is valid
-                    board[row][col] = num; // Create your answer
-                    if(isSolved(idx + 1, emptyIndex, board)) return true; // If Sudoku is solved make sure to return else ip == op *
-                    board[row][col] = '.'; // Backtrack // * Because we will backtrack
-                }
+      
+        // For sure cell is empty, try filling the valid number
+        for(char num = '1'; num <= '9'; num++) { // Check from 0 to 9
+            if(isValid(row, col, num, board)) {  // If any number is valid
+                board[row][col] = num; // Create your answer
+                if(isSolved(idx + 1, emptyIndex, board)) return true; // If Sudoku is solved make sure to return else ip == op *
+                board[row][col] = '.'; // Backtrack // * Because we will backtrack
             }
         }
         
         return false;
     }
     
-    
     public static boolean isValid(int row, int col, char num, char[][] board) {
-        
         // Check row and col
         for(int i = 0; i < 9; i++) {
             if(board[row][i] == num || board[i][col] == num) {
@@ -76,7 +64,6 @@ class Solution {
                 }
             }
         }
-        
         return true;
     }
     
