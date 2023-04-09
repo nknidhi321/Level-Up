@@ -96,8 +96,8 @@ jab v x tak pahuchenge kuch wt. add on kar he aaenge, kuki jab pehle he haar rah
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # NOTE : BFS me queue me daalte he visited mark kar dete hai and Prim's && Dijksra me nikalte waqt Why ??
 
-Kuki BFS me agar cycle wali chiz nahi chahiye toh, daalte he mark kr dete hai, yaha hamesha level/radially baat hoti hai
-islye queue me daalte he visied mark kar do kuki jo sbse pehle kisi xth node ko touch karta hai wahi mimimum hai us node tak radially pahuchne k liye.
+Kuki BFS me agar cycle wali chiz nahi chahiye toh, daalte he mark kr dete hai, yaha hamesha level/radially baat hoti hai, with wt. 1
+islye queue me daalte he visied mark kar do kuki sbka wt. 1 hota hai, so cycle lekar aaoge toh wt. aur badh he jaaega, jo sbse pehle kisi xth node ko touch karta hai wahi mimimum hai us node tak radially pahuchne k liye.
 
 Par Prims me "p"queue me daalte he visited nahi mark saktey kuki aapko wo cycle wali chiz chahiye kuki yaha weight k terms me baat hoti hai,
 and "overall mimimum cost" kisi dusre nodes se ghoom k aap tak "overall minimum cost" bna sakti hai, islye yaha cycle wali BFS use krna.
