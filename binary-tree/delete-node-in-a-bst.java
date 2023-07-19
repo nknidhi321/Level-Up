@@ -1,4 +1,8 @@
 // https://leetcode.com/problems/delete-node-in-a-bst/
+2 child : Ya toh left subtree ka largest bnda us node ko replace krega ya fir right subtree ka smallest node usko replace karega to maintain BST property.. 
+          Koi v kar lo your choice..
+1 child : Us node ko delete karo uske niche wale jo v child h us se replace karo..
+0 child : Simply delete
 
 class Solution {
     
