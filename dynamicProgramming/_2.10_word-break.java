@@ -1,5 +1,35 @@
 // https://leetcode.com/problems/word-break/
 
+// Latest
+class Solution {
+  
+    public boolean wordBreak(String s, List<String> wordDict) {
+        Set<String> set = new HashSet<>();
+        for(int i = 0; i < wordDict.size(); i++) {
+            set.add(wordDict.get(i));
+        }
+
+        int n = s.length();
+        int[] dp = new int[n];
+        int si = 0, ei = 0;
+        while(ei < n) {
+            si = 0;
+            while(si <= ei) {
+                if(set.contains(s.substring(si, ei + 1))) {
+                    dp[ei] += (si - 1 >= 0 ? dp[si - 1] : 1);    
+                }
+                else dp[ei] += 0;
+                si++;
+            }
+            ei++;
+        }
+        return dp[n - 1] > 0 ? true : false;
+    }
+    
+}
+
+----------------------------------XXX---------------------------------
+
 // Rajneesh, 
 // Efficient // 1D DP
 // He solved Direct tabulation
