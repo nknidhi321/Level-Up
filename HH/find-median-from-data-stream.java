@@ -17,8 +17,8 @@ class MedianFinder {
         else min.add(num);
         
         // Shuffling to keep both heaps balanced, to find median in O(1)
-        if(max.size() - min.size() >= 2) min.add(max.remove()); 
-        if(min.size() - max.size() >= 1) max.add(min.remove());
+        if(max.size() - min.size() >= 2) min.add(max.remove()); // if max +1 => OK, but +2 => Not OK, so balance out
+        if(min.size() - max.size() >= 1) max.add(min.remove()); // Because max ko hamesha +1 rakhna h
     }
     
     public double findMedian() {
