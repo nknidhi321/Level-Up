@@ -1,6 +1,6 @@
 // https://practice.geeksforgeeks.org/problems/left-view-of-binary-tree/1/#
-// Do level order traversal and add left child first in your queue, so the 1st element popped at every level is your answer
 
+// Do level order traversal and add left child first in your queue, so the 1st element popped at every level is your answer
 class Tree {
   
     ArrayList<Integer> leftView(Node root) {
@@ -22,6 +22,23 @@ class Tree {
             }
         }
         return ans;
+    }
+}
+----------------------------------------------------------------
+// PreOrder Traversal
+class Tree {
+    ArrayList<Integer> leftView(Node root) {
+        ArrayList<Integer> ans = new ArrayList<>();
+        leftView(root, 0, ans);
+        return ans;
+    }
+    
+    public void leftView(Node root, int level, ArrayList<Integer> ans) {
+        if(root == null) return;
+        
+        if(ans.size() == level) ans.add(root.data); //visiting level for the 1st time
+        leftView(root.left, level + 1, ans);
+        leftView(root.right, level + 1, ans);
     }
 }
 
