@@ -46,8 +46,9 @@ class Tree {
 
 // Follow up :-
 // https://leetcode.com/problems/find-bottom-left-tree-value/
-// Last level ki sbse pehli node is your answer
 
+// Last level ki sbse pehli node is your answer
+// LevelOrder
 class Solution {
     
     public int findBottomLeftValue(TreeNode root) {
@@ -68,7 +69,24 @@ class Solution {
         }
         return leftMostValue;
     }
-
+}
+----------------------------------------------------------------
+// PreOrder
+class Solution {
+    public int findBottomLeftValue(TreeNode root) {
+        List<Integer> ans = new ArrayList<>();
+        leftView(root, 0, ans);
+        System.out.println(ans);
+        return ans.get(ans.size() - 1);
+    }
+    
+    public void leftView(TreeNode root, int level, List<Integer> ans) {
+        if(root == null) return;
+        
+        if(ans.size() == level) ans.add(root.val); //visiting level for the 1st time
+        leftView(root.left, level + 1, ans);
+        leftView(root.right, level + 1, ans);
+    }
 }
 
 //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
