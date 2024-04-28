@@ -1,6 +1,20 @@
 // https://practice.geeksforgeeks.org/problems/max-sum-in-the-configuration/1/
 // Check Rajneesh Bhaiya's SS notes for observation
 
+/*      
+	n = 5
+	arr[i] = {a, b, c, d, e}  
+	
+	sum = a + b + c + d + e
+	sumWithIndex = sum1 = 0*a + 1*b + 2*c + 3*d + 4*e
+ 
+  	sum2 : (0*a + 1*b + 2*c + 3*d + 4*e) - (a + b + c + d + e) + (5*a) => 0*b + 1*c + 2*d + 3*e + 4*a
+  	sum3 : (0*b + 1*c + 2*d + 3*e + 4*a) - (a + b + c + d + e) + (5*b) => 0*c + 1*d + 2*e + 3*a + 4*b
+   	sum4 : (0*c + 1*d + 2*e + 3*a + 4*b) - (a + b + c + d + e) + (5*c) => 0*d + 1*e + 2*a + 3*b + 4*c
+    	sum5 : (0*d + 1*e + 2*a + 3*b + 4*c) - (a + b + c + d + e) + (5*d) => 0*e + 1*a + 2*b + 3*c + 4*d
+
+     	Therefore, sumWithIndex = sumWithIndex - sum + (n * arr[i - 1])
+*/
 class GfG {
     
     int max_sum(int arr[], int n) {
@@ -11,7 +25,7 @@ class GfG {
             sumWithIndex += (i * arr[i]);
         }
         
-        // 0th rotation has been checked
+        // 0th/nth rotation has been checked
         int max = sumWithIndex;  
         
         // Now check from 1 to n-1 rotation
