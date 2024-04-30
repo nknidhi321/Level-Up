@@ -1,6 +1,23 @@
 // https://practice.geeksforgeeks.org/problems/top-view-of-binary-tree/1/
 // Level order traversal me vertical level pe jo sbse pehla banda hoga wo sab answer hai 
 
+/*
+     Why dfs won't work ?? Because it will go in the depth first and not on the top/surface level
+     See below TC
+     
+     Input:           1
+                    /   \
+                   2      3
+                    \   
+                     4  
+                       \
+                        5
+                         \
+                          6
+     
+     Output: Top view of the above binary tree is: 2 1 3 6
+*/
+
 class Solution {
      public static class Pair {
         Node node = null;
