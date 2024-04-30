@@ -8,7 +8,46 @@
 */
 
 // Memoization
+// same n - 1, m - 1
+// diff 
+//    if * => n - 1 , m 
+//    else if ? n - 1, m - 1
+//    else return false
 
+class Solution {
+    
+    public boolean isMatch(String s, String p) {
+        int n = s.length();
+        int m = p.length();
+        Boolean[][] dp = new Boolean[n + 1][m + 1];
+        return isMatch(n, m, s, p, dp);
+    }
+    
+    public boolean isMatch(int n, int m, String s, String p, Boolean[][] dp) {
+        if(n == 0 && m == 0) return dp[n][m] = true;
+        if(n > 0 && m == 0) return dp[n][m] = false;
+        if(n == 0 && m > 0) {
+            for(int i = m - 1; i >= 0; i--) { // pattern only consists of *, then it can come 0 times
+                if(p.charAt(i) != '*') return dp[n][m] = false;
+            }
+            return dp[n][m] = true;
+        }
+            
+        if(dp[n][m] != null) return dp[n][m];
+        
+        if(s.charAt(n - 1) == p.charAt(m - 1)) return dp[n][m] = isMatch(n - 1, m - 1, s, p, dp);
+        else {
+            if(p.charAt(m - 1) == '*') return dp[n][m] = isMatch(n, m - 1, s, p, dp) || isMatch(n - 1, m, s, p, dp);
+            else if(p.charAt(m - 1) == '?') return dp[n][m] = isMatch(n - 1, m - 1, s, p, dp);
+            else return dp[n][m] = false;
+        }
+    }
+    
+}
+
+--------
+
+// Old
 class Solution {
     
     public boolean isMatch(String s, String p) {
