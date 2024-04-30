@@ -3,6 +3,38 @@
 // Memoization
 
 class Solution {
+    
+    public int numDistinct(String s, String t) {
+        int n = s.length();
+        int m = t.length();
+        Integer[][] dp = new Integer[n + 1][m + 1];
+        return numDistinct(n, m, s, t, dp);
+    }
+    
+    public int numDistinct(int n, int m, String s, String t, Integer[][] dp) {
+        if(n == 0 && m == 0) return dp[n][m] = 1;
+        if(n > 0 && m == 0) return dp[n][m] = 1;
+        if(n == 0 && m > 0) return dp[n][m] = 0;
+        
+        if(dp[n][m] != null) return dp[n][m];
+        
+        int sum = 0;
+        if(s.charAt(n - 1) == t.charAt(m - 1)) {
+            sum += numDistinct(n - 1, m - 1, s, t, dp);
+            sum += numDistinct(n - 1, m, s, t, dp);
+        }
+        else {
+            sum += numDistinct(n - 1, m, s, t, dp);
+        }
+        return dp[n][m] = sum;
+    }
+    
+}
+
+------
+    
+// Old
+class Solution {
     public int numDistinct(String s1, String s2) {
         int len1 = s1.length();
         int len2 = s2.length();
