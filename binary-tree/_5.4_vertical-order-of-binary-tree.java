@@ -193,3 +193,59 @@ class Solution {
 }
 
 //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+/*
+    Using Map<Vertical Level, PQ> + DFS
+    Store PQ on each vertical level
+    you do not need vl to store in Pair because every PQ is on each vertical level only, 
+    so every vl will be same for that individual PQ, so hl is only required here.
+*/
+class Solution {
+    
+    static class Pair implements Comparable<Pair> {
+        int val;
+        int hl;
+        Pair(int val, int hl) {
+            this.val = val;
+            this.hl = hl;
+        }
+        public int compareTo(Pair o) {
+            if(this.hl == o.hl) return this.val - o.val;
+            else return this.hl - o.hl;
+        }
+    }
+    
+    public List<List<Integer>> verticalTraversal(TreeNode root) {
+        Map<Integer, PriorityQueue<Pair>> map = new TreeMap<>();
+        traverseTree(root,0, 0, map);
+        
+        List<List<Integer>> ans = new ArrayList<>();
+        for(Map.Entry<Integer, PriorityQueue<Pair>> entry : map.entrySet()) {
+            List<Integer> li = new ArrayList<>();
+            PriorityQueue<Pair> pq = entry.getValue();
+            while(!pq.isEmpty()) {
+                Pair pair = pq.poll();
+                li.add(pair.val);
+            }
+            ans.add(li);
+        }
+        return ans;
+    }
+    
+    public void traverseTree(TreeNode root, int vl, int hl, Map<Integer, PriorityQueue<Pair>> map) {
+        if(root == null) return;
+        
+        if(map.containsKey(vl)) {
+            PriorityQueue<Pair> pq = map.get(vl);
+            pq.add(new Pair(root.val, hl));
+        }
+        else {
+            PriorityQueue<Pair> pq = new PriorityQueue<>();
+            pq.add(new Pair(root.val, hl));
+            map.put(vl, pq);
+        }
+        
+        traverseTree(root.left, vl - 1, hl + 1, map);
+        traverseTree(root.right, vl + 1, hl + 1, map);
+    }
+    
+}
