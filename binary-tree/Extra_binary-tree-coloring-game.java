@@ -20,7 +20,6 @@ Claim is :-
     Mere jeetne k liye aadhe se zyada log blue marked hone chahiye tvi baat bnegi. 
 */
 
-```
 class Solution {
     
     public boolean btreeGameWinningMove(TreeNode root, int n, int x) {
@@ -53,6 +52,30 @@ class Solution {
     } 
     
 }
-```
 
+----------------
+// Same approach
+
+class Solution {
+    
+    public boolean btreeGameWinningMove(TreeNode root, int n, int x) {
+        if(root == null) return false;
+        if(root.val == x) {
+            int leftSubtreeSize = size(root.left);
+            int rightSubtreeSize = size(root.right);
+            int parentRemainingSubtreeSize = n - leftSubtreeSize - rightSubtreeSize - 1;
+            if(parentRemainingSubtreeSize > leftSubtreeSize + rightSubtreeSize + 1) return true;
+            if(leftSubtreeSize > parentRemainingSubtreeSize + rightSubtreeSize + 1) return true;
+            if(rightSubtreeSize > parentRemainingSubtreeSize + leftSubtreeSize + 1) return true;
+            return false;
+        }
+        return btreeGameWinningMove(root.left, n, x) || btreeGameWinningMove(root.right, n, x);
+    }
+    
+    public int size(TreeNode root) {
+        if(root == null) return 0;
+        return size(root.left) + size(root.right) + 1;
+    }
+    
+}
 ----------------------------------------------------------------------------------------------------------------------
