@@ -55,6 +55,9 @@ class Solution {
 
 ----------------
 // Same approach
+// Efficient Approach
+// Not travelling the entire tree once you found x
+// The above solution is travelling the entire tree to calculate size
 
 class Solution {
     
