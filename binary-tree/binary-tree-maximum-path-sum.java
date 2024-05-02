@@ -45,7 +45,7 @@ class Solution {
     }
     
 }
-//------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------------------------------
 // Kadan's Algo, Using static for maxSoFar
 
 class Solution {
@@ -75,6 +75,44 @@ class Solution {
         
         // Any xth node will say mere se niche yahi MaxSumPath mil sakta hai aapko zyada se zyada
         return Math.max(leftMaxSumPath, rightMaxSumPath) + root.val; // And this will be required to my parent
+    }
+    
+}
+
+//---------------------------------------
+// Same as above using static variable
+
+class Solution {
+    
+    public int maxPathSum(TreeNode root) {
+        maxPathSum_(root);
+        return overallMax;
+    }
+    
+    public int overallMax = Integer.MIN_VALUE;
+    
+    public int maxPathSum_(TreeNode root) {
+        if(root == null) return 0;
+        
+        int lMaxSum = maxPathSum_(root.left);
+        int rMaxSum = maxPathSum_(root.right);
+        
+        int curvePath = lMaxSum + root.val + rMaxSum;
+        int leftPath = lMaxSum + root.val;
+        int rightPath = rMaxSum + root.val;
+        int alonePath = root.val; // Karje me nai jana hai, apna khud bnana hai
+        
+        overallMax = getMax(curvePath, leftPath, rightPath, alonePath, overallMax);
+        
+        return Math.max(Math.max(leftPath, rightPath), alonePath);
+    }
+    
+    public int getMax(int a, int b, int c, int d, int max) {
+        if(a > max) max = a;
+        if(b > max) max = b;
+        if(c > max) max = c;
+        if(d > max) max = d;
+        return max;
     }
     
 }
