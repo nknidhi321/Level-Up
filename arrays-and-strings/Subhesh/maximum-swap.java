@@ -8,7 +8,8 @@
 
     Approach:-
     --------
-    SuffixMax bna lo and iterate from left jis pehle bnde ne bola ki mera max mai khud nahi hu
+    Create a SuffixMax(mere se aage k bndo ka, not including me, Why ? Ex : 1993)
+    Now, iterate from left and jis pehle bnde ne bola ki mera max mai khud nahi hu
     usko uske max k saath swap kar do
 */
 
