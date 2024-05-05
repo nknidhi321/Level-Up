@@ -8,7 +8,8 @@
 
     Approach:-
     --------
-    SuffixMax bna lo and iterate from left jis pehle bnde ne bola ki mera max mai khud nahi hu usko uske max k saath swap kar do
+    SuffixMax bna lo and iterate from left jis pehle bnde ne bola ki mera max mai khud nahi hu
+    usko uske max k saath swap kar do
 */
 
 ```
@@ -54,3 +55,62 @@ class Solution {
 }
 ```
 ---------------------------------------------------------------------------------------------------------------------
+
+// Using sorting : O(nlogn)
+// unsorted and sorted array me check karo, 
+// Iterate from left jo sbse pehla diff element hai
+// unhi dono elements ko ek dusre k original pos se swap karna hoga
+// Now, Ex : 993885 here 8 should be swapped with 3 but which 8 ?? 
+// So, 998835, 998385 we have to choose the max number so 998835 should be our answer
+// So, you should pick up the rightmost idx of 8 to swap
+
+class Solution {
+    public int maximumSwap(int num) {
+        List<Integer> sorted = new ArrayList<>();
+        List<Integer> original = new ArrayList<>();
+        int n = num;
+        while(n > 0) {
+            int rem = n % 10;
+            n = n / 10;
+            sorted.add(rem);
+            original.add(rem);
+        }
+        Collections.reverse(original);
+        Collections.sort(sorted, Collections.reverseOrder());
+        
+        // First diff idx
+        int shouldBe = -1;
+        int sortedPositionOfshouldBe = -1;
+        for(int i = 0; i < original.size(); i++) {
+            if(original.get(i) != sorted.get(i)) {
+                shouldBe = sorted.get(i);
+                sortedPositionOfshouldBe = i;
+                break;
+            }
+        }
+        
+        if(sortedPositionOfshouldBe == -1) return num;
+        
+        // Pick the rightmost idx of shouldBe
+        int lastOccuringPositionOfShouldBe = -1;
+        for(int i = original.size() - 1; i >= 0; i--) {
+            if(original.get(i) == shouldBe) {
+                lastOccuringPositionOfShouldBe = i;
+                break;
+            }
+        }
+        
+        // swap both
+        original.set(lastOccuringPositionOfShouldBe, original.get(sortedPositionOfshouldBe));
+        original.set(sortedPositionOfshouldBe, shouldBe);
+        
+        // Form number from ans list
+        int pow = 0, ans = 0;
+        for(int i = original.size() - 1; i >= 0; i--) {
+            ans += original.get(i) * Math.pow(10, pow++);
+        }
+        
+        return ans;
+    }
+    
+}
