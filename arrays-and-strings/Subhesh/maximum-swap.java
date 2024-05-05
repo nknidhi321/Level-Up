@@ -1,11 +1,67 @@
 // https://leetcode.com/problems/maximum-swap/
+// https://www.youtube.com/watch?v=IiAd7twX0xU
 
 /*
     NOTE :-
     ----
     Sbse max digit ko 0th idx pe daal denge, this is wrong logic 
     Ex TC : 98368  Here 3 and last 8 should be swapped
+*/
 
+// TC : O(10 * n) = O(n), SC : O(10) = O(1)
+// Store lastIndexOf All digits [0, 9]
+// Now, iterate from left over num array, 
+// Agar tum 4 ho toh tumko tumhare se aage k bnde,
+// starting from max like 9 8 7 6 5 digits he replace kar paaenge 
+// provided these digits exits after you in the num array
+// And starting from 9, 8, 7... So that the number formed is maximum.
+
+class Solution {
+    
+    public int maximumSwap(int num) {
+        int[] lastIndexOfDigits = new int[10];
+        Arrays.fill(lastIndexOfDigits, -1);
+        StringBuilder sb = new StringBuilder(num + "");
+        int n = sb.length();
+        
+        // lastIndexOfDigits 
+        for(int i = 0; i < n; i++) {
+            int digit = Integer.parseInt(sb.charAt(i) + "");
+            lastIndexOfDigits[digit] = i;
+        }
+        
+        // for(int i = 0; i < 10; i++) System.out.println(i + " : " + lastIndexOfDigits[i]);
+        
+        boolean flag = false;
+        for(int i = 0; i < n; i++) {
+            int currDigit = Integer.parseInt(sb.charAt(i) + "");
+            // Tumse aage ka sbse bada bnda jo exit karta hai
+            // num array of digits me wo he tumko replace kar sake hai to form maximum number
+            for(int digit = 9; digit > currDigit; digit--) { 
+                if(lastIndexOfDigits[digit] > i && digit != currDigit) {
+                    flag = true;
+                    swap(i, lastIndexOfDigits[digit], sb);
+                    break;
+                }
+            }
+            if(flag) break;
+        }
+        return Integer.parseInt(sb.toString());
+    }
+    
+    public void swap(int a, int b, StringBuilder s) {
+        char temp = s.charAt(a);
+        s.setCharAt(a, s.charAt(b));
+        s.setCharAt(b, temp);
+    }
+    
+}
+---------------------------------------------------------------------------------------------------------------------
+/*
+
+    TC : O(n)
+    SC : O(n)
+    
     Approach:-
     --------
     Create a SuffixMax(mere se aage k bndo ka, not including me, Why ? Ex : 1993)
