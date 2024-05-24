@@ -1,5 +1,9 @@
 // https://leetcode.com/problems/find-median-from-data-stream/
 
+// Keeping maxHeap size as +1 
+// maxHeap .... minHeap +1 (asc Order)
+// smaller .... larger (asc Order)
+
 class MedianFinder {
 
     // Only DS is PQ jisme bina O(n) traversal k bina ye solve hoga
@@ -26,4 +30,48 @@ class MedianFinder {
         else return max.peek(); // Odd
     }
     
+}
+
+-------------------------------------------------------------------------------------------------------------------------
+
+// Keeping minHeap size as +1 
+// maxHeap .... minHeap +1 (asc Order)
+// smaller .... larger (asc Order)
+
+class MedianFinder {
+
+    private PriorityQueue<Integer> maxHeap;
+    private PriorityQueue<Integer> minHeap;
+    
+    public MedianFinder() {
+        maxHeap = new PriorityQueue<>(Collections.reverseOrder());
+        minHeap = new PriorityQueue<>();
+    }
+    
+    public void addNum(int num) {
+        if(minHeap.isEmpty() || num >= minHeap.peek()) {
+            minHeap.offer(num);
+            if(minHeap.size() > maxHeap.size() + 1) { // balance
+                maxHeap.offer(minHeap.poll());
+            }
+        }
+        else {
+            maxHeap.offer(num);
+            if(maxHeap.size() > minHeap.size()) { // balance
+                minHeap.offer(maxHeap.poll());
+            }
+        }
+    }
+    
+    public double findMedian() {
+        if(minHeap.size() > 0 && maxHeap.size() > 0 && minHeap.size() == maxHeap.size()){
+            return (minHeap.peek() + maxHeap.peek()) / 2.0;
+        }
+        else if(minHeap.size() > 0) {
+            return minHeap.peek();
+        }
+        else {
+            return 0.0;
+        }
+    }
 }
