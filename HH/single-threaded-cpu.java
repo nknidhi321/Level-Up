@@ -37,34 +37,32 @@ class Solution {
         });
         
         int[] ans = new int[n];
-        int currTime = process[0].startTime;
+        int prevProcessEndTime = process[0].startTime; // process will start from first processes start time 
         int idx = 0, ansIdx = 0;
-
-        // O(n) 
+        
         while(ansIdx < n) {
-            
-            // If coming processes startTime is less than currTime
+            // If coming processes startTime is less than prevProcessEndTime
             // Add all of them in the pq
             while(idx < n) { 
                 ProcessN p = process[idx];
-                if(p.startTime <= currTime) {
+                if(p.startTime <= prevProcessEndTime) {
                     pq.add(p);
                     idx++;
                 }
-                else { // No need to check further because it's already sorted 
+                else { 
                     break;
                 }
             }
             
-            // After processing each process add that processes duration in the currentTime
-            // Now since the currentTime has changed so check all the remaining processes again to push in the pq
+            // After processing each process add that processes duration in the prevProcessEndTime
+            // Now since the prevProcessEndTime has changed so check all the remaining processes again to push in the pq
             if(!pq.isEmpty()) {
                 ProcessN p = pq.poll();
                 ans[ansIdx++] = p.id;
-                currTime += p.duration;
+                prevProcessEndTime += p.duration;
             }
-            else {
-                currTime = process[idx].startTime; // pq is empty and prev process ended at t1 and next process starts at t5
+            else { // pq is empty and prev process ended at t1 and next process starts at t5
+                prevProcessEndTime = process[idx].startTime; 
             }
         }
         return ans;
