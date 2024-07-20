@@ -1,5 +1,79 @@
 // https://leetcode.com/problems/partition-labels/
 
+// Using Array
+
+class Solution {
+    
+    static class Pair {
+        int start;
+        int end;
+        Pair(int start, int end) {
+            this.start = start;
+            this.end = end;
+        }
+        public String toString() {
+            return this.start + " " + this.end;
+        }
+    }
+    
+    public List<Integer> partitionLabels(String s) {
+        if(s.equals("")) return new ArrayList<>();
+        
+        List<Integer> ans = new ArrayList<>();
+        Pair[] intervals = new Pair[26];
+        
+        // Kept Integer.MAX_VALUE so that while sorting these useless Pairs comes at the end
+        Arrays.fill(intervals, new Pair(Integer.MAX_VALUE, Integer.MAX_VALUE)); 
+        
+        int n = s.length();
+        for(int i = 0; i < n; i++) {
+            char ch = s.charAt(i);
+            if(intervals[ch - 'a'].start == Integer.MAX_VALUE) { // Found start idx of alphabet
+                Pair p = new Pair(i, i); // (i, i) because an alphabet might come only once so start == end 
+                intervals[ch - 'a'] = p;
+            }
+            else { // Found end idx of alphabet
+                Pair p = intervals[ch - 'a'];
+                p.end = i;
+            }
+        }
+        
+        Arrays.sort(intervals, (a, b) -> a.start - b.start);
+        // for(int i = 0; i < 26; i++) {
+        //     System.out.println(intervals[i]);
+        // }
+        
+        int prevStart = intervals[0].start;
+        int prevEnd = intervals[0].end;
+        
+        // Note it's sorted array and useless Pairs are at the end
+        // Now the problem is ditto Merge Interval
+        for(int i = 0; i < 26; i++) {
+            Pair interval = intervals[i];   
+            if(interval.start != Integer.MAX_VALUE) {
+                if(interval.start <= prevEnd) {
+                    prevEnd = Math.max(prevEnd, interval.end);
+                }
+                else {
+                    //System.out.println(interval);
+                    ans.add(prevEnd - prevStart + 1);
+                    prevStart = interval.start;
+                    prevEnd = interval.end;
+                }
+            }
+            else {  // if(interval.start == Integer.MAX_VALUE) iske baad sab useless pairs he hai
+                break; 
+            }
+        }
+        
+        ans.add(prevEnd - prevStart + 1);
+        return ans;
+    }
+}
+
+//-------
+
+// Same as above but using Map + ArrayList
 class Solution {
     
     public List<Integer> partitionLabels(String s) {
