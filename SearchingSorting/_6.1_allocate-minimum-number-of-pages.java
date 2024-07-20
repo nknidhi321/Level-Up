@@ -4,6 +4,7 @@
 class Solution {
     //Function to find minimum number of pages.
     public static int findPages(int[]pages ,int n, int students) {
+        if(students > n) return -1;
         
         // Min fixedPage max of pages hoga he kuki kisi din us max pages ko toh padhna he padega kisi ko,
         // So set your low at max of pages and max fixedPage can be sum of all pages so set high at sum of pages
