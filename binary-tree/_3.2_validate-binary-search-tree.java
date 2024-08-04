@@ -115,8 +115,8 @@ class Solution {
         boolean isBST;
         
         public Pair() {
-            this.min = (long)1e13; 
-            this.max = -(long)1e13;
+            this.min = Long.MAX_VALUE;
+            this.max = Long.MIN_VALUE;
             this.isBST = true;
         }
     }
@@ -133,11 +133,10 @@ class Solution {
         
         Pair myPair = new Pair();
         
-        // left && right subtree bst hai && aap left subtree k max se bade hone chahiye && right subtree k min se chote hone chahiye 
-        if(lp.isBST && rp.isBST && lp.max < root.val && root.val < rp.min) {  
+        if(lp.isBST && rp.isBST && lp.max < root.val && root.val < rp.min) {
             myPair.isBST = true;
-            myPair.min = Math.min(lp.min, root.val);  // Apna min set karne k liye, left k min ki zaroorat hai
-            myPair.max = Math.max(rp.max, root.val);  // Apna max set karne k liye, right k max ki zaroorat hai
+            myPair.min = Math.min(lp.min, root.val);
+            myPair.max = Math.max(rp.max, root.val);
         }
         else {
             myPair.isBST = false;
