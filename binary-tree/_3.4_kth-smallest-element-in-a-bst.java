@@ -96,8 +96,37 @@ class Solution {
     }
     
 }
-```
+-------------------------------------------------------------------------------
 
+// Inorder Traversal is alreary sorted in BST
+// Keeping k in the array of 1 size and passing in parameter instead of using static variable
+// Time complexity : O(N), SC : O(1)
+```
+class Solution {
+    
+    public int kthSmallest(TreeNode root, int k) {
+        if(root == null) return 0;
+        return getElementsinInOrder(root, new int[] {k});
+    }
+    
+    // NOTE : Passing k-- in the parameter will give you levels and not what is expected here
+    // So, keeping k in array instead of creating static variable
+    public int getElementsinInOrder(TreeNode root, int[] arr) {
+        if(root == null) return -1;
+       
+        int leftSmallest = getElementsinInOrder(root.left, arr);
+        if(leftSmallest != -1) return leftSmallest;
+        
+        arr[0]--;
+        if(arr[0] == 0) return root.val;
+        
+        int rightSmallest = getElementsinInOrder(root.right, arr);
+        if(rightSmallest != -1) return rightSmallest;
+        
+        return -1;
+    }
+    
+}
 ---------------------------------------------------------------------------------
 
 // Brute force approach 
