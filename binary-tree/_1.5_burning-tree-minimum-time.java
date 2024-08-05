@@ -1,6 +1,9 @@
 // https://practice.geeksforgeeks.org/problems/burning-tree/1#
 
 // By converting the tree into graph
+// And applying BFS
+// Taking extra space of graph
+
 class Solution {
 	
     public static int minTime(Node root, int start) {
@@ -61,6 +64,7 @@ class Solution {
 //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
 // Solving it in tree form using blocker node 
+// DFS
 class Solution {
 	
     public static int minTime(Node root, int target) {
