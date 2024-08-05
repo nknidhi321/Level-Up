@@ -1,20 +1,68 @@
-//https://practice.geeksforgeeks.org/problems/burning-tree/1#
+// https://practice.geeksforgeeks.org/problems/burning-tree/1#
 
+// By converting the tree into graph
 class Solution {
-    /*class Node {
-    	int data;
-    	Node left;
-    	Node right;
-    
-    	Node(int data) {
-    		this.data = data;
-    		left = null;
-    		right = null;
-    	}
-    }*/
-    
-    
-    //======================================================================================
+	
+    public static int minTime(Node root, int start) {
+        if (root == null) return 0;
+
+        // Convert the tree to a graph (adjacency list)
+        Map<Integer, List<Integer>> graph = new HashMap<>();
+        buildGraph(root, null, graph);
+
+        // Perform BFS from the start node
+        return bfs(start, graph);
+    }
+
+    private static void buildGraph(Node node, Node parent, Map<Integer, List<Integer>> graph) {
+        if (node == null) return;
+
+        graph.putIfAbsent(node.data, new ArrayList<>());
+        if (parent != null) {
+            graph.putIfAbsent(parent.data, new ArrayList<>());
+            
+            graph.get(node.data).add(parent.data); // create birectional edge
+            graph.get(parent.data).add(node.data); // create birectional edge
+        }
+
+        buildGraph(node.left, node, graph);
+        buildGraph(node.right, node, graph);
+    }
+
+    private static int bfs(int start, Map<Integer, List<Integer>> graph) {
+        Queue<Integer> queue = new LinkedList<>();
+        Set<Integer> visited = new HashSet<>();
+        queue.offer(start);
+        visited.add(start);
+
+        int minutes = 0;
+
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            for (int i = 0; i < size; i++) {
+                int node = queue.poll();
+                for (int neighbor : graph.get(node)) {
+                    if (!visited.contains(neighbor)) {
+                        queue.offer(neighbor);
+                        visited.add(neighbor);
+                    }
+                }
+            }
+            if (!queue.isEmpty()) {
+                minutes++;
+            }
+        }
+
+        return minutes;
+    }
+
+}
+
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+// Solving it in tree form using blocker node 
+class Solution {
+	
     public static int minTime(Node root, int target) {
         //Since you are using static variable
         //always remember to initialize it with default value before running any TC
@@ -54,7 +102,6 @@ class Solution {
         burningTreeNode(root.left, blockerNode, time + 1);
         burningTreeNode(root.right, blockerNode, time + 1);
     }
-	//=============================================================================================================
 	
 }
 
