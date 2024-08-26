@@ -1,4 +1,6 @@
 // https://www.lintcode.com/problem/920/
+// If you find an overlapping interval, you cannot attend all the meetings
+
 
 /**
  * Definition of Interval:
@@ -11,6 +13,38 @@
  * }
  */
 
+// Sort on start
+// Intuitive
+
+public class Solution {
+    
+    public boolean canAttendMeetings(List<Interval> intervals) {
+        int n = intervals.size();
+        if(n == 0) return true;
+
+        Collections.sort(intervals, (a,b) -> a.start - b.start);
+        int prevStart = intervals.get(0).start;
+        int prevEnd = intervals.get(0).end;
+        for(int i = 1; i < n; i++) {
+            int currStart = intervals.get(i).start;
+            int currEnd = intervals.get(i).end; 
+            if(currStart < prevEnd) {
+                return false;
+            }
+            else {
+                prevStart = currStart;
+                prevEnd = currEnd;
+            }
+        }
+        return true;
+    }
+
+}
+
+//-------------------------------------------------------------------------------------
+
+
+// Sort on end
 public class Solution {
     
     public boolean canAttendMeetings(List<Interval> intervals) {
