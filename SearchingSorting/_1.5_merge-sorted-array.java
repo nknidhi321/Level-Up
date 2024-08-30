@@ -6,6 +6,9 @@
 // NOTE : Front se nai kr sakte kuki nums1 pe ans bnate waqt values override ho jaaengi
 // So, compare from end of both the array and keep on forming the ans
 
+Input: nums1 = [1,2,3,0,0,0], m = 3, nums2 = [2,5,6], n = 3
+Output: [1,2,2,3,5,6]
+
 ```
 class Solution {
     
