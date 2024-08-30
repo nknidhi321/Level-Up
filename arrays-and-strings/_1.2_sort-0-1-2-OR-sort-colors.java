@@ -1,7 +1,7 @@
 // https://leetcode.com/problems/sort-colors/
 
 /*
-	      My Region :-
+	My Region :-
         ---------
         [0 - ptr] => 0
         [ptr+1 - itr-1] => 1
