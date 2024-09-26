@@ -23,7 +23,7 @@ So it is impossible.
 */
 
 
-// Rajneesh
+// Rajneesh // Intuitive
 // By creating graph
 
 // Ex : [0, 1]  {v, u}   u -> v  => u ki depenency 0 hai, v ki dependency 1 hai
@@ -45,10 +45,10 @@ class Solution {
         
         // Creating graph and indegree 
         for(int[] pre : prerequisites) {
-            int u = pre[1];
-            int v = pre[0];
+            int u = pre[1]; // Note u and v
+            int v = pre[0]; // Note u and v
             graph[u].add(v);
-            indegree[v]++;
+            indegree[v]++; // Increase indegree of pre[0]
         }
         
         // Add all whose indegree is 0
