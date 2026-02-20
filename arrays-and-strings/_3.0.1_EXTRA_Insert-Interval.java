@@ -26,6 +26,8 @@
 */
 
 // Complexity : O(N), Linear
+// NOTE : We could have used BS also, but complexity would have remained same because we are returning a new array 
+// so we have to copy all the 1st half remaining array + merged array + last half remaining array
 
 class Solution {
 
